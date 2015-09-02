@@ -1,30 +1,33 @@
 <div class="container">
+
     <div class="card">
         <div class="card-content">
+
             <span class="card-title" style="color: black;"><h4>เพิ่มพนักงาน</h4></span>
 
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">label</i>
+                    <i class="material-icons prefix" id="id">label</i>
                     <input type="text" id="id" disabled ng-model="employee.id">
                     <label for="id">ID : </label>
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">email</i>
-                    <input type="text" id="email" ng-model="employee.email">
-                    <label for="email">อีเมลล์ : </label>
+                    <input type="text" id="email" ng-model="employee.email" ng-change="error.violations.email.message = '';setBackgroundPrefixId()">
+                    <label for="email">อีเมลล์ : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input type="text" id="password"  ng-model="employee.password">
-                    <label for="password">พาสเวิร์ด : </label>
+                    <input type="password" id="password"  ng-model="password" ng-change="comparePassword();error.violations.password.message = ''">
+                    <label for="password">พาสเวิร์ด : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">lock</i>
-                    <input type="text" id="confirmpassword"  ng-model="employee.password">
-                    <label for="confirmpassword">ยืนยังพาสเวิร์ด : </label>
+                    <input type="password" id="confirmpassword"  ng-model="employee.password" ng-change="comparePassword();error.violations.password.message = ''">
+                    <label for="confirmpassword">ยืนยังพาสเวิร์ด : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
+                    <i class="material-icons right-input-custom" id="confirm"></i>
                 </div>
             </div>
             <div class="row">
@@ -35,8 +38,8 @@
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">account_circle</i>
-                    <input type="text" id="nameth"  ng-model="employee.nameTh">
-                    <label for="nameth">ชื่อ ภาษาไทย : </label>
+                    <input type="text" id="nameth"  ng-model="employee.nameTh" ng-change="error.violations.nameTh.message = ''">
+                    <label for="nameth">ชื่อ ภาษาไทย : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
                 </div>
             </div>
             <div class="row">
@@ -53,41 +56,41 @@
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix">wc</i>
+                    <i class="material-icons prefix" id="sex">wc</i>
                     <div class="select-custom">
-                        <select class="browser-default" id="select-sex" ng-model="employee.sex"> 
-                            <option value="Male">ชาย</option>
-                            <option value="Female">หญิง</option>
+                        <select class="browser-default" id="select-sex" ng-model="employee.sex" ng-init="employee.sex = 'ชาย'"> 
+                            <option value="ชาย">ชาย</option>
+                            <option value="หญิง">หญิง</option>
                         </select> 
                     </div>
-                    <label class="" id="label-sex">เพศ: </label>
+                    <label class="active" id="label-sex">เพศ: </label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix">format_bold</i>
+                    <i class="material-icons prefix" id="blood">format_bold</i>
                     <div class="select-custom">
-                        <select class="browser-default" id="select-blood" ng-model="employee.blood">
+                        <select class="browser-default" id="select-blood" ng-model="employee.blood" ng-init="employee.blood = 'A'">
                             <option value="A">A</option>
                             <option value="B">B</option> 
                             <option value="AB">AB</option>
                             <option value="O">O</option>
                         </select>
                     </div>
-                    <label class="" id="label-blood">กรุ๊ปเลือด : </label>
+                    <label class="active" id="label-blood">กรุ๊ปเลือด : </label>
                 </div>
             </div>
             <div class="row" >
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix">favorite</i>
+                    <i class="material-icons prefix" id="marrystatus">favorite</i>
                     <div class="select-custom">
-                        <select class="browser-default" id="select-marrytatus" ng-model="employee.marryStatus">
-                            <option value="Single">โสด</option>
-                            <option value="Married">สมรส</option>
-                            <option value="Widowed">หม้าย</option>
-                            <option value="divorce">อย่า</option>
-                            <option value="Live Apart">เเยกกันอยู่</option>
+                        <select class="browser-default" id="select-marrytatus" ng-model="employee.marryStatus" ng-init="employee.marryStatus = 'โสด'">
+                            <option value="โสด">โสด</option>
+                            <option value="สมรส">สมรส</option>
+                            <option value="หม้าย">หม้าย</option>
+                            <option value="อย่า">อย่า</option>
+                            <option value="เเยกกันอยู่">เเยกกันอยู่</option>
                         </select>
                     </div>
-                    <label class="" id="label-marrystatus">สถานภาพสมรส : </label>
+                    <label class="active" id="label-marrystatus">สถานภาพสมรส : </label>
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">language</i>
@@ -115,8 +118,8 @@
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">home</i>
-                    <textarea type="text" id="currentaddress" class="materialize-textarea" ng-model="employee.currentAddress"></textarea>
-                    <label for="currentaddress">ที่อยู่ปัจจุบัน : </label>
+                    <textarea type="text" id="currentaddress" class="materialize-textarea" ng-model="employee.currentAddress" ng-change="error.violations.currentAddress.message = '';setBackgroundPrefixSexBloodMarryStatus()"></textarea>
+                    <label for="currentaddress">ที่อยู่ปัจจุบัน : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.currentAddress.message}}</span></label>
                 </div>
             </div>
             <div class="row">
@@ -127,18 +130,18 @@
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">stay_current_portrait</i>
-                    <input type="text" id="mobile" ng-model="employee.mobile">
-                    <label for="mobile">เบอร์โทรศัพท์มือถือ : </label>
+                    <input type="text" id="mobile" ng-model="employee.mobile" ng-change="error.violations.mobile.message = '';setBackgroundPrefixDepartmentWorkstatus()">
+                    <label for="mobile">เบอร์โทรศัพท์มือถือ : <span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.mobile.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix">star_rate</i>
+                    <i class="material-icons prefix" id="department">star_rate</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-department" ng-model="employee.department" ng-options="dep.name for dep in departments.content">
                         </select>
                     </div>
-                    <label id="label-department" class="">เเผนก : </label>
+                    <label id="label-department" class="active">เเผนก : </label>
                 </div>
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">insert_invitation</i>
@@ -153,9 +156,14 @@
                     <label for="endwork">วันที่ออกจากงาน : </label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">content_paste</i>
-                    <input type="text" id="workstatus" ng-model="employee.workStatus">
-                    <label for="workstatus">สถานะการทำงาน : </label>
+                    <i class="material-icons prefix" id="workstatus">content_paste</i>
+                    <div class="select-custom">
+                        <select class="browser-default" id="select-marrytatus" ng-model="employee.workStatus" ng-init="employee.workStatus = 'ปกติ'">
+                            <option value="ปกติ">ปกติ</option>
+                            <option value="พักงาน">พักงาน</option>
+                            <option value="ลาออก">ลาออก</option>
+                        </select>
+                    </div><label class="active" for="workstatus">สถานะการทำงาน : </label>
                 </div>
             </div>
         </div>

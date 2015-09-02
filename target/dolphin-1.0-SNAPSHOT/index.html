@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="css/font.css">
+        <link rel="stylesheet" href="css/handle.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <script src="js/jquery-2.1.4.min.js"></script>
+    </head>
+    <body>
+        <div class="fixed-navbar">
+            <nav style="background: #00bcd4" ng-controller="homeController">
+                <a href="#" class="band-logo" style="margin-left: 10px;">Dolphin</a>
+                <ul class="right margin-right hide-on-med-and-down">
+                    <a href="#" class="btn waves-effect waves-light btn-blue btn-border-white">Login</a>
+                </ul>
+                <ul id="slide-out" class="side-nav">
+                    <li style="height: 100px;background: #00bcd4">
+
+                    </li>
+                    <li><a href="#!"><span style="margin-left: 40px;">Home</span></a></li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><span>Employee</span><i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="li-height"><a href="#/employee">Add Employee</a></li>
+                                        <li class="li-height"><a href="#/employee/information">Employee Information</a></li>
+                                        <li class="li-height"><a href="#/department">Department</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><span>Doctor</span><i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="li-height"><a href="#/dector">Add Doctor</a></li>
+                                        <li class="li-height"><a href="#">Doctor Information</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><span>Customer</span><i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="li-height"><a href="#">Add Customer</a></li>
+                                        <li class="li-height"><a href="#">Customer Information</a></li>
+                                        <li class="li-height"><a href="#">Applointment</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><span>Stock</span><i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li class="li-height"><a href="#">Add Stock</a></li>
+                                        <li class="li-height"><a href="#">View Product</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header"><span>Print</span><i class="mdi-navigation-arrow-drop-down"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li><a href="#" class="li-height">Print Customer Card</a></li>
+                                        <li><a href="#" class="li-height">Print Applointment</a></li>
+                                        <li><a href="#" class="li-height">Print Work schedule</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </nav> 
+        </div>
+
+        <div class="fixed-navbar">
+            <nav style="background: #ffffff" id="nav-topic">
+                <div class="container">
+                    <ul class="hide-on-med-and-down">
+                        <li><a href="#" class="text-sky"><i class="margin-right-5 mdi-action-home"></i><span>Home</span></a></li>
+                        <li><a href="" class="dropdown-button text-sky" data-activates="employee" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-social-person"></i><span>Employee</span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                        <ul id="employee" class="dropdown-content" >
+                            <li><a href="#/employee">Add Employee</a></li>
+                            <li><a href="#/employee/information">Employee Information</a></li>
+                            <li><a href="#/department">Department</a></li>
+                        </ul>
+                        <li><a class="dropdown-button text-sky" href="#" data-activates="doctor" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-action-face-unlock"></i><span>Doctor</span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
+                        <ul id="doctor" class="dropdown-content">
+                            <li><a href="#/dector">Add Doctor</a></li>
+                            <li><a href="#">Doctor Information</a></li>
+                        </ul>
+                        <li><a href="#" class="dropdown-button text-sky" data-activates="customer" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-social-people"></i><span>Customer</span><i class="mdi-navigation-arrow-drop-down"></i></a></li>
+                        <ul id="customer" class="dropdown-content">
+                            <li><a href="#">Add Customer</a></li>
+                            <li><a href="#">Customer Information</a></li>
+                            <li><a href="#">Applointment</a></li>
+                        </ul>
+                        <li><a href="#" class="dropdown-button text-sky" data-activates="stock" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-notification-event-note"></i><span>Stock</span><i class="mdi-navigation-arrow-drop-down"></i></a></li>
+                        <ul class="dropdown-content" id="stock">
+                            <li><a href="#">Add Product</a></li>
+                            <li><a href="#">View Stock</a></li>
+                        </ul>
+                        <li><a href="#" class="dropdown-button text-sky" data-activates="print" daa-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-editor-insert-drive-file"></i><span>Print</span><i class="mdi-navigation-arrow-drop-down"></i></a></li>
+                        <ul id="print" class="dropdown-content">
+                            <li><a href="#">Print Customer Card</a></li>
+                            <li><a href="#">Print Applointment</a></li>
+                            <li><a href="#">Print Work schedule for Doctor</a></li>
+                        </ul>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div ng-view></div>
+
+        <script>
+            $(document).ready(function () {
+                $(".button-collapse").sideNav();
+                $('.dropdown-button').dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrain_width: false,
+                    hover: true,
+                    gutter: 0,
+                    belowOrigin: true
+                }
+                );
+
+            });
+
+        </script>
+        <script src="materialize/js/materialize.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/angular-route.js"></script>
+        <script src="js/checklist-model.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/employee.js"></script>
+        <script src="js/department.js"></script>
+        <script src="js/employee-information.js"></script>
+    </body>
+</html>

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['checklist-model','ngRoute', 'employee', 'department']);
+var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     checkMobile();
@@ -10,7 +10,7 @@ app.controller('homeController', function ($scope, $http) {
             console.log('mobile');
         }
     }
-    
+
 });
 
 app.config(function ($routeProvider) {
@@ -25,7 +25,10 @@ app.config(function ($routeProvider) {
     }).when('/department', {
         controller: 'departmentController',
         templateUrl: 'pages/department.html'
-    }).when('/dector',{
+    }).when('/employee/information', {
+        controller: 'employeeInformationController',
+        templateUrl: 'pages/employee-information.html'
+    }).when('/dector', {
         templateUrl: 'pages/doctor.html'
     }).otherwise({
         redirectTo: '/'

@@ -5,12 +5,11 @@
  */
 package th.co.geniustree.dental.controller;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,9 +34,7 @@ public class EmployeeController {
     private EmployeePicture employeePicture;
 
     @RequestMapping(value = "/saveemployee", method = RequestMethod.POST)
-    public void saveEmployee(@RequestBody Employee employee) {
-        System.out.println("------------------------------------------------------------------------------>" + employee);
-        System.out.println("--------------------------------------------------------->" + employeePicture);
+    public void saveEmployee(@Validated @RequestBody Employee employee) {
         if (employeePicture != null) {
             employee.setEmployeePicture(employeePicture);
         }
@@ -47,13 +44,9 @@ public class EmployeeController {
 
     @RequestMapping(value = "/saveemployeeimage", method = RequestMethod.POST)
     public void saveEmployeePicture(MultipartRequest file) throws IOException {
-        System.out.println("------------------------------------------------>" + file.getFile("file"));
         employeePicture.setContent(file.getFile("file").getBytes());
-        System.out.println("--------------------------------------------------------->" + file.getFile("file").getBytes());
         employeePicture.setName(file.getFile("file").getOriginalFilename());
-        System.out.println("--------------------------------------------------------->" + file.getFile("file").getOriginalFilename());
         employeePicture.setType(file.getFile("file").getName());
-        System.out.println("--------------------------------------------------------->" + file.getFile("file").getName());
     }
 
     @RequestMapping(value = "/getnoimage", method = RequestMethod.GET)
@@ -62,4 +55,8 @@ public class EmployeeController {
         return emppicture;
     }
 
+    @RequestMapping(value = "/employees" , method = RequestMethod.GET)
+    public Page<Employee> getEmployee(Pageable pageable){
+    return employeeRepo.findAll(pageable);
+    }
 }

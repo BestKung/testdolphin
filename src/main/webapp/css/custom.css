@@ -96,3 +96,30 @@
    width: calc(100% - 3rem);
    margin-left: 3rem
 }
+.necessary{
+    color: red;
+    font-size: 18px;
+}
+.necessary-text{
+    color: red;
+    font-size: 13px;
+}
+.right-input-custom{
+    float: right;
+    margin-left: 15px;
+    margin-top: -50px;
+    margin-right: 20px;
+}
+.btn-pagination{
+    margin-left: 5px;
+    background: #cfd8dc;
+    color: black;
+}
+.btn-pagination:hover{
+    background: #2196f3;
+    color: white;
+}
+.textsize-pagination{
+    font-size: 15px;
+    padding: 1px 1px;
+}

@@ -3,8 +3,11 @@ var app = angular.module('employee')
         .controller('employeeController', function ($scope, $http, $compile) {
             $scope.authoritys = {};
             $scope.departments = {};
+            $scope.department = "";
             $scope.employee = {};
             $scope.image;
+            $scope.error = {};
+            $scope.password = "";
             var byteArray;
             checkMobile();
             function  checkMobile() {
@@ -19,12 +22,39 @@ var app = angular.module('employee')
                 }
             }
 
+
+            $scope.comparePassword = function () {
+                if ((!!$scope.password) && (!!$scope.employee.password)) {
+                    if ($scope.password == $scope.employee.password) {
+                        $('#confirm').css('color', '#64dd17');
+                        $('#confirm').html('done');
+                    }
+                    if ($scope.password != $scope.employee.password) {
+                        $('#confirm').css('color', 'red');
+                        $('#confirm').html('clear');
+                    }
+                }
+                else{
+                    $('#confirm').html('');
+                }
+            };
+            
+                function confirmPassword (){
+                    if (($scope.password == $scope.employee.password) || (!$scope.password) || (!$scope.employee.password)) {
+                        return true;
+                    }
+                    if ($scope.password != $scope.employee.password) {
+                        return false;
+                    }
+                }
+
+
             getDepartment();
             function getDepartment() {
                 $http.get('/getdepartment').success(function (data) {
                     $scope.departments = data;
+                    $scope.employee.department = data.content[0];
                 });
-
             }
 
             getAuthority();
@@ -37,21 +67,27 @@ var app = angular.module('employee')
                 });
             }
 
-
-
             $scope.saveEmployee = function () {
-                if (!!$scope.image) {
+                if(confirmPassword()){
+                    if (!!$scope.image) {
                     saveFile();
-                    console.log('true');
                 }
                 saveEmployee();
+                console.log('save success');
+                }
+                else{
+                    console.log('password error');
+                     $('body,html').animate({scrollTop: 0}, "600");
+                }
             };
 
             function saveEmployee() {
                 $http.post('/saveemployee', $scope.employee)
                         .success(function (data) {
-                            console.log('save success');
+
                         }).error(function (data) {
+                    $scope.error = data;
+                    $('body,html').animate({scrollTop: 0}, "600");
                 });
             }
             function saveFile() {
@@ -61,41 +97,62 @@ var app = angular.module('employee')
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined}
                 });
-            };
+            }
+            ;
 
 
             NoImage();
-            function NoImage () {
+            function NoImage() {
                 $http.get('/getnoimage').success(function (data) {
-                    document.getElementById('employee-picture').src = "data:image/jpg;base64,"+data.content;
-                    console.log(data.content);
+                    document.getElementById('employee-picture').src = "data:image/jpg;base64," + data.content;
                 });
             };
-            function onOpen(){
-                alert("Hello");
-            }
+
+            $scope.setBackgroundPrefixId = function () {
+                var email = $scope.employee.email;
+                if (email.length != 0) {
+                    $('#id').css('color', '#00bcd4');
+                }
+                else if (email.length == 0) {
+                    $('#id').css('color', 'black');
+                }
+            };
+
+            $scope.setBackgroundPrefixSexBloodMarryStatus = function () {
+                var currentAddress = $scope.employee.currentAddress;
+                if (currentAddress != 0) {
+                    $('#sex').css('color', '#00bcd4');
+                    $('#blood').css('color', '#00bcd4');
+                    $('#marrystatus').css('color', '#00bcd4');
+                }
+                else if (currentAddress == 0) {
+                    $('#sex').css('color', 'black');
+                    $('#blood').css('color', 'black');
+                    $('#marrystatus').css('color', 'black');
+                }
+            };
+
+            $scope.setBackgroundPrefixDepartmentWorkstatus = function () {
+                var mobile = $scope.employee.mobile;
+                if (mobile != 0) {
+                    $('#department').css('color', '#00bcd4');
+                    $('#workstatus').css('color', '#00bcd4');
+                }
+                else if (mobile == 0) {
+                    $('#department').css('color', 'black');
+                    $('#workstatus').css('color', 'black');
+                }
+            };
+
             $('.datepicker').pickadate({
                 selectMonths: true,
                 selectYears: 200,
                 format: 'yyyy-mm-dd',
-                container: 'body'         
+                container: 'body'
             });
-            
-           
-            $('select').material_select();
 
-            $('#select-sex').click(function () {
-                $('#label-sex').addClass('active');
-            });
-            $('#select-marrytatus').click(function () {
-                $('#label-marrystatus').addClass('active');
-            });
-            $('#select-blood').click(function () {
-                $('#label-blood').addClass('active');
-            });
-            $('#select-department').click(function () {
-                $('#label-department').addClass('active');
-            });
+
+            $('select').material_select();
 
             function readURL(input) {
                 if (input.files && input.files[0]) {

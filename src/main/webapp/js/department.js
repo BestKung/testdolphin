@@ -4,6 +4,14 @@ angular.module('department').controller('departmentController', function ($scope
     $scope.departments = {};
     $scope.department = {};
     $scope.depqrtmentUpdate = {};
+    checkMobile();
+    function  checkMobile() {
+                var $mobile = $(window).outerWidth() < 995;
+                if ($mobile) {
+                   $('.table-department').removeAttr('style');
+                }
+            }
+
     $scope.saveDepartment = function () {
         $http.post('/savedepartment', $scope.department)
                 .success(function (data) {
