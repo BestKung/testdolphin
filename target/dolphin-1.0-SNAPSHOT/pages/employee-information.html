@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col m6 input-field">
                     <i class="material-icons prefix">search</i>
-                    <input type="text" id="search">
+                    <input type="text" id="search" ng-model="searchData.keyword">
                     <label for="search" >Search : </label>
                 </div>
             </div>
@@ -13,18 +13,18 @@
                 <div class="col m3">
                     <span><h6>Search By : </h6></span>
                     <div class="select-custom">
-                        <select class="browser-default" id="select-searchby">
-                            <option>Email</option>
-                            <option>Name</option>
-                            <option>Personal ID</option>
-                            <option>Mobile</option>
+                        <select class="browser-default" id="select-searchby" ng-model="searchData.searchBy" ng-init="searchData.searchBy = 'Name'">
+                            <option value="Email">Email</option>
+                            <option value="Name">Name</option>
+                            <option value="Personal ID">Personal ID</option>
+                            <option value="Mobile">Mobile</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="">
-                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)">Search</a>
+                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)" ng-click="searchEmployee()">Search</a>
                 </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
                 <div class="col m6">
                     <div class="right">
                         <span class="">Show Page : </span>
-                        <select class="browser-default" style="margin-top: 10px; margin-left:calc(3.8rem);width: 100px;" ng-model="row" ng-init="row = '10'">
+                        <select class="browser-default" ng-change="getEmployees()" style="margin-top: 10px; margin-left:calc(3.8rem);width: 100px;" ng-model="row" ng-init="row = '10'">
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="30">30</option>
@@ -65,7 +65,7 @@
                         <td>{{emp.email}}</td>
                         <td>{{emp.department.name}}</td>
                         <td>{{emp.workStatus}}</td>
-                        <td><a href="" class="activator">more detail</a></td>
+                        <td><a href="" ng-click="detailEmployee()" class="activator">more detail</a></td>
                     </tr>
                 </tbody>
             </table>
@@ -73,18 +73,18 @@
             <div class="row">
                 <div class="col m12">
                     <ul class="pagination right" style="margin-top: 10px;">
-                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">&Lt;</p></li>
-                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">&LT</p>;</li>
-                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">{{row}}</p></li>
-                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">&GT;</p></li>
-                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">&Gt;</p></li>
+                        <li class="btn waves-effect btn-pagination" id="first-page" ng-click="firstPage()"><p style="margin-top: 2px;">&Lt;</p></li>
+                        <li class="btn waves-effect btn-pagination" id="pre-page" ng-click="prePage()"><p style="margin-top: 2px;">&LT</p>;</li>
+                        <li class="btn waves-effect btn-pagination"><p style="margin-top: 2px;">{{currentPage}}</p></li>
+                        <li class="btn waves-effect btn-pagination" id="next-page" ng-click="nextPage()"><p style="margin-top: 2px;">&GT;</p></li>
+                        <li class="btn waves-effect btn-pagination" id="final-page" ng-click="finalPage()"><p style="margin-top: 2px;">&Gt;</p></li>
                     </ul>
                 </div>
             </div>
 
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Employee Detail<i class="material-icons right">close</i></span>
+            <span class="card-title grey-text text-darken-4">Employee Detail<i class="material-icons right" ng-click="toPreScroll()">close</i></span>
         </div>
     </div>
 </div>
