@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="card">
+    <div class="card" id="card-employee-detail">
         <div class="card-content">
             <div class="row">
                 <div class="col m6">
@@ -65,12 +65,12 @@
                         <td>{{emp.email}}</td>
                         <td>{{emp.department.name}}</td>
                         <td>{{emp.workStatus}}</td>
-                        <td><a href="" ng-click="detailEmployee()" class="activator">more detail</a></td>
+                        <td><a href="" ng-click="detailEmployee(emp)" class="activator" id="moredetail">more detail</a></td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="row">
+            <div class="row" id="card-employee">
                 <div class="col m12">
                     <ul class="pagination right" style="margin-top: 10px;">
                         <li class="btn waves-effect btn-pagination" id="first-page" ng-click="firstPage()"><p style="margin-top: 2px;">&Lt;</p></li>
@@ -81,10 +81,233 @@
                     </ul>
                 </div>
             </div>
-
         </div>
         <div class="card-reveal">
-            <span class="card-title grey-text text-darken-4">Employee Detail<i class="material-icons right" ng-click="toPreScroll()">close</i></span>
+            <div id="card-height">
+                <span class="card-title grey-text text-darken-4" id="close-card">Employee Detail<i class="material-icons right" ng-click="toPreScroll()">close</i></span>
+            <div style="margin-top: 40px;" class="center">
+                <img class="responsive-img" src="" id="img-employee">
+            </div>
+            <div style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">ID : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.id}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Email : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.email}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Personal ID : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.pid}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Name TH : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.nameTh}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Name ENG : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.nameEng}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Birth Date : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.birthDate}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Age : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.age}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Sex : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.sex}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Blood : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.blood}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Marry Status : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.marryStatus}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Nation : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.nation}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Race : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.race}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Soilder Sattus : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.soldierStatus}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Address Of PID : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.addressOfPid}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Current Address : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.currentAddress}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Tel : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.tel}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Mobile : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.mobile}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">Department : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.department.name}}</label>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Start Work : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.startWork}}</label>
+                    </div>
+                    <div class="col m2 s6">
+                        <label class="right topic-detail">End Work : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.endWork}}</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m3 s6">
+                        <label class="right topic-detail">Work Status : </label>
+                    </div>
+                    <div class="col m3 s6">
+                        <label class=" topic-detail">{{employeeDetail.workStatus}}</label>
+                    </div>
+                </div>
+            </div>
+            <span class="card-title grey-text text-darken-4" style="margin-top: 30px;">Authority</span>
+            <div class="row">
+                <div class="col m3 s6" ng-repeat="auth in employeeDetail.roles">
+                    <label class="topic-detail right">{{auth.role}}</label>
+                </div>
+            </div>
+            <span class="card-title grey-text text-darken-4" style="margin-top: 30px;">Bank</span>
+            <div class="row">
+                <div class="col m3 s6">
+                    <label class="right topic-detail">Bank Name : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.bank.bankName}}</label>
+                </div>
+                <div class="col m2 s6">
+                    <label class="right topic-detail">Account Name : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.bank.accountName}}</label>
+                </div>
+            </div>
+            <div class="row margin-top">
+                <div class="col m3 s6">
+                    <label class="right topic-detail">Account Number : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.bank.accountNumber}}</label>
+                </div>
+            </div>
+            <span class="card-title grey-text text-darken-4" style="margin-top: 30px;">Contact</span>
+            <div class="row">
+                <div class="col m3 s6">
+                    <label class="right topic-detail">Contact Name : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.contact.name}}</label>
+                </div>
+                <div class="col m2 s6">
+                    <label class="right topic-detail">Relation : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.contact.relation}}</label>
+                </div>
+            </div>
+            <div class="row margin-top">
+                <div class="col m3 s6">
+                    <label class="right topic-detail">Tel : </label>
+                </div>
+                <div class="col m3 s6">
+                    <label class=" topic-detail">{{employeeDetail.contact.tel}}</label>
+                </div>
+            </div>
+            <div class="row margin-top right">
+                <input type="submit" value="Update" ng-click="">
+                <input type="submit" value="Delete" class="btn btn-red" ng-click="clickDelete(employeeDetail)">
+            </div>
+            </div>
         </div>
+    </div>
+</div>
+
+<div id="modal-delete" class="modal" style="border-radius: 10px;">
+    <div class="modal-content">
+        <div class="row center">
+            <h4 style="background: red;color: white;padding: 20px;" class="margin-top-20 magin-buttom-20">Delete Employee</h4>
+        </div>
+        <h4 class="margin-left-20">Delete Employee : {{selectEmployee.name}}</h4>
+    </div>
+    <div class="model-footer right">
+        <a href="" class="magin-button btn btn-gray modal-action modal-close">Cancle</a>
+        <a href="" class="magin-button btn btn-red modal-action modal-close" ng-click="deleteEmployee()">Delete</a>
     </div>
 </div>

@@ -6,12 +6,18 @@ angular.module('employee-information').controller('employeeInformationController
     $scope.currentPage = 1;
     $scope.searchData = {};
     $scope.preScroll = 0;
-    var totalEmployees = totalEmployees;
+    $scope.employeeDetail = {};
+    $scope.selectEmployee = {};
+    var preCard = 0;
+    var employeeImage = {};
+    var totalEmployees = getTotalEmployee();
+
     checkMobile();
     function checkMobile() {
         var $mobile = $(window).outerWidth() < 995;
         if ($mobile) {
             $('th').removeAttr('style');
+            $('.topic-detail').css('fontSize', 13);
         }
     }
 
@@ -28,10 +34,12 @@ angular.module('employee-information').controller('employeeInformationController
     function getTotalEmployee() {
         $http.get('/totalemployee').success(function (data) {
             totalEmployees = data;
+            return data;
         });
     }
 
     function findTotalPages() {
+        console.log('Total employee' + totalEmployees);
         var totalPages = parseInt(totalEmployees / $scope.row);
         if ((totalEmployees % $scope.row) != 0) {
             totalPages++;
@@ -57,17 +65,63 @@ angular.module('employee-information').controller('employeeInformationController
         });
     };
 
-    $scope.toPreScroll = function () {
-        $('body,html').animate({scrollTop: $scope.preScroll}, "0");
+    $scope.detailEmployee = function (emp) {
+        $scope.preScroll = $(window).scrollTop();
+        $('body,html').animate({scrollTop: 500}, "400");
+        $scope.employeeDetail = emp;
+        //preCard = $('#card-employee-detail').outerHeight();
+        //$('#card-employee-detail').css('height',$('.card-reveal').outerHeight()+500);
+        $scope.employeeDetail.age = new Date().getFullYear() - new Date($scope.employeeDetail.birthDate).getFullYear();
+        var topic = document.getElementsByClassName('topic-detail');
+        for (var i = 0; i < topic.length; i++) {
+            if (topic[i].innerHTML == "") {
+                topic[i].innerHTML = '-';
+            }
+        }
+        if (!!emp.employeePicture.content) {
+            document.getElementById('img-employee').src = "data:image/jpg;base64," + emp.employeePicture.content;
+        }
+        else {
+            $http.get('/getnoimage').success(function (data) {
+                console.log(data);
+                document.getElementById('img-employee').src = "data:image/jpg;base64," + data.content;
+            });
+        }
+        console.log(emp.content);
     };
 
-    $scope.detailEmployee = function () {
-        $scope.preScroll = $(window).scrollTop()
-        $('body,html').animate({scrollTop: 500}, "400");
+   
+
+    $scope.clickDelete = function (emp){
+        $('#modal-delete').openModal({dismissible: false});
+        $scope.selectEmployee = emp;
     };
+    
+    $scope.deleteEmployee = function (){
+        console.log('delete'+$scope.selectEmployee);
+        $http.post('/deleteemployee',$scope.selectEmployee).success(function (data){
+            console.log('delete success');
+            $scope.selectEmployee = {};
+            getEmployees();
+            toPreScroll();
+            $('span#close-card').trigger('click');
+        }).error(function (data){
+            
+        });
+        $('i#close-card').trigger('click');
+    };
+    
+    function toPreScroll(){
+        $('body,html').animate({scrollTop: $scope.preScroll}, "0");
+    }
+
+    $scope.toPreScroll = function () {
+        toPreScroll();
+     };
 
     checkLoaderPage();
     function checkLoaderPage() {
+        console.log(findTotalPages());
         if ($scope.currentPage == 1 && findTotalPages() == $scope.currentPage) {
             $('#first-page').addClass('disabled');
             $('#pre-page').addClass('disabled');

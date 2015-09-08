@@ -33,7 +33,7 @@ public class EmployeeController {
     private EmployeeRepo employeeRepo;
     @Autowired
     private EmployeePictureRepo employeePictureRepo;
-    private EmployeePicture employeePicture;
+    private EmployeePicture employeePicture = new EmployeePicture();
     @Autowired
     private EmployeeSearchService employeeSearchService;
 
@@ -41,13 +41,14 @@ public class EmployeeController {
     public void saveEmployee(@Validated @RequestBody Employee employee) {
         if (employeePicture != null) {
             employee.setEmployeePicture(employeePicture);
-        }
+         }
         employeeRepo.save(employee);
         employeePicture = new EmployeePicture();
     }
 
     @RequestMapping(value = "/saveemployeeimage", method = RequestMethod.POST)
     public void saveEmployeePicture(MultipartRequest file) throws IOException {
+        System.out.println("==============================================>"+file.getFile("file").getOriginalFilename());
         employeePicture.setContent(file.getFile("file").getBytes());
         employeePicture.setName(file.getFile("file").getOriginalFilename());
         employeePicture.setType(file.getFile("file").getName());
@@ -69,30 +70,41 @@ public class EmployeeController {
         return employeeRepo.count();
     }
 
-    @RequestMapping(value = "/searchemployee" , method = RequestMethod.POST)
+    @RequestMapping(value = "/searchemployee", method = RequestMethod.POST)
     public Page<Employee> search(@RequestBody SearchData searchData, Pageable pageable) {
         String keyword = searchData.getKeyword();
         String searchBy = searchData.getSearchBy();
-        Page<Employee>  employees = null;
-        System.out.println("----------------------------------------------------------------------->"+keyword);
-        System.out.println("----------------------------------------------------------------------->"+searchBy);
-        if("Email".equals(searchBy)){
-           employees = employeeSearchService.searchByEmail(keyword, pageable);
+        Page<Employee> employees = null;
+        System.out.println("----------------------------------------------------------------------->" + keyword);
+        System.out.println("----------------------------------------------------------------------->" + searchBy);
+        if ("Email".equals(searchBy)) {
+            employees = employeeSearchService.searchByEmail(keyword, pageable);
             System.out.println("--------------------------------------->Email");
         }
-        if("Name".equals(searchBy)){
-        employees = employeeSearchService.searchByName(keyword, pageable);
+        if ("Name".equals(searchBy)) {
+            employees = employeeSearchService.searchByName(keyword, pageable);
             System.out.println("--------------------------------------------->Name");
         }
-        if("Mobile".equals(searchBy)){
-        employees = employeeSearchService.searchByMobile(keyword, pageable);
+        if ("Mobile".equals(searchBy)) {
+            employees = employeeSearchService.searchByMobile(keyword, pageable);
             System.out.println("-------------------------------------------------->Mobile");
         }
-        if("Personal ID".equals(searchBy)){
-        employees = employeeSearchService.searchByPid(keyword, pageable);
+        if ("Personal ID".equals(searchBy)) {
+            employees = employeeSearchService.searchByPid(keyword, pageable);
             System.out.println("---------------------------------------------------->Personal Id");
         }
         System.out.println(employees);
         return employees;
+    }
+
+    @RequestMapping(value = "/getemployeeimage" , method = RequestMethod.GET)
+    public EmployeePicture getEmployeePicture(Integer id) {
+        System.out.println("----------------------------------------------------------->"+id);
+        return employeePictureRepo.findOne(id);
+    }
+    
+    @RequestMapping(value = "/deleteemployee" , method = RequestMethod.POST)
+    public void deleteEmployee(@RequestBody Employee employee){
+    employeeRepo.delete(employee);
     }
 }

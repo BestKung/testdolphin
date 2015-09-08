@@ -19,6 +19,7 @@ var app = angular.module('employee')
                     $('#select-marrytatus').css('width', 'calc(100% - 3rem)');
                     $('#select-blood').css('width', 'calc(100% - 3rem)');
                     $('#select-department').css('width', 'calc(100% - 3rem)');
+                    $('#select-workstatus').css('width', 'calc(100% - 3rem)')
                 }
             }
 
@@ -90,6 +91,7 @@ var app = angular.module('employee')
                     $('body,html').animate({scrollTop: 0}, "600");
                 });
             }
+           
             function saveFile() {
                 var fd = new FormData();
                 fd.append('file', $scope.image);

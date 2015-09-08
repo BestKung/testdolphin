@@ -14,8 +14,8 @@ body{
 .row{
     margin-bottom: 5px;
 }
-#select-blood , #select-department , #select-marrytatus , #select-sex {
-     border-top: none;
+#select-blood , #select-department , #select-marrytatus , #select-sex , #select-workstatus {
+    border-top: none;
     border-bottom: solid 1px #9e9e9e;
     border-left: none;
     border-right: solid 1px #9e9e9e;
@@ -24,13 +24,13 @@ body{
     margin-left: 3.5rem;
 }
 table {
-table-layout: fixed;
-word-wrap: break-word;
-}
-option{
-    height: 30px;
+    table-layout: fixed;
+    word-wrap: break-word;
 }
 
+#moredetail:hover{
+    text-decoration: underline;
+}
 
 
 
