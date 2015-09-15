@@ -13,6 +13,11 @@ app.controller('homeController', function ($scope, $http) {
 
 });
 
+app.factory('employeeService',function (){
+    return {
+        employeeUpdate:{}
+    };
+});
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'homeController',

@@ -25,7 +25,7 @@ public class EmployeePicture implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Lob
-    private byte[] content;
+    private byte[] contentImage;
     private String name;
     private String type;
 
@@ -37,12 +37,12 @@ public class EmployeePicture implements Serializable{
         this.id = id;
     }
 
-    public byte[] getContent() {
-        return content;
+    public byte[] getContentImage() {
+        return contentImage;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setContentImage(byte[] content) {
+        this.contentImage = content;
     }
 
     public String getName() {
@@ -85,7 +85,7 @@ public class EmployeePicture implements Serializable{
 
     @Override
     public String toString() {
-        return "EmployeePicture{" + "id=" + id + ", content=" + content + ", name=" + name + ", type=" + type + '}';
+        return "EmployeePicture{" + "id=" + id + ", content=" + contentImage + ", name=" + name + ", type=" + type + '}';
     }
 
     }

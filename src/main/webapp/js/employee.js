@@ -1,14 +1,17 @@
 var app = angular.module('employee', []);
 var app = angular.module('employee')
-        .controller('employeeController', function ($scope, $http, $compile) {
+        .controller('employeeController', function (employeeService, $scope, $http, $compile) {
             $scope.authoritys = {};
             $scope.departments = {};
             $scope.department = "";
-            $scope.employee = {};
+            $scope.employee = employeeService.employeeUpdate;
+            $scope.employee.birthDate = new Date(employeeService.employeeUpdate.birthDate);
+            $scope.employee.startWork = new Date(employeeService.employeeUpdate.startWork);
+            $scope.employee.endWork = new Date(employeeService.employeeUpdate.endWork);
             $scope.image;
             $scope.error = {};
             $scope.password = "";
-            var byteArray;
+
             checkMobile();
             function  checkMobile() {
                 var $mobile = $(window).outerWidth() < 995;
@@ -23,6 +26,30 @@ var app = angular.module('employee')
                 }
             }
 
+            console.log(employeeService.employeeUpdate.id);
+            hasEmployeeService();
+            function hasEmployeeService() {
+                if (!!employeeService.employeeUpdate.id) {
+                    $('.update').addClass('active');
+                    $('.clear-prefix').css('color', '#00bcd4')
+                }
+                else {
+                    $('.update').removeClass('active');
+                }
+            }
+
+            function clearData() {
+                employeeService.employeeUpdate = {};
+                $scope.employee = {};
+                $scope.password = "";
+                NoImage();
+                $('.update').removeClass('active');
+                $('.clear-prefix').css('color', 'black');
+            }
+
+            $scope.clearData = function () {
+                clearData();
+            };
 
             $scope.comparePassword = function () {
                 if ((!!$scope.password) && (!!$scope.employee.password)) {
@@ -35,26 +62,35 @@ var app = angular.module('employee')
                         $('#confirm').html('clear');
                     }
                 }
-                else{
+                else {
                     $('#confirm').html('');
                 }
             };
-            
-                function confirmPassword (){
-                    if (($scope.password == $scope.employee.password) || (!$scope.password) || (!$scope.employee.password)) {
-                        return true;
-                    }
-                    if ($scope.password != $scope.employee.password) {
-                        return false;
-                    }
+
+
+            function confirmPassword() {
+                if (($scope.password == $scope.employee.password) || (!$scope.password) || (!$scope.employee.password)) {
+                    return true;
                 }
+                if ($scope.password != $scope.employee.password) {
+                    return false;
+                }
+            }
 
+            showDepartment();
+            function showDepartment() {
+                if (!!employeeService.employeeUpdate.department) {
+                    getDepartment(employeeService.employeeUpdate.department.id);
+                }
+                else {
+                    getDepartment(1);
+                }
+            }
 
-            getDepartment();
-            function getDepartment() {
+            function getDepartment(id) {
                 $http.get('/getdepartment').success(function (data) {
                     $scope.departments = data;
-                    $scope.employee.department = data.content[0];
+                    $scope.employee.department = data.content[id - 1];
                 });
             }
 
@@ -69,46 +105,58 @@ var app = angular.module('employee')
             }
 
             $scope.saveEmployee = function () {
-                if(confirmPassword()){
-                    if (!!$scope.image) {
-                    saveFile();
+                if (confirmPassword()) {
+                    $http.post('/saveemployee', $scope.employee)
+                            .success(function (data) {
+                                clearData();
+                            }).error(function (data) {
+                        $scope.error = data;
+                        $('body,html').animate({scrollTop: 0}, "600");
+                    });
+                    console.log('save success');
                 }
-                saveEmployee();
-                console.log('save success');
-                }
-                else{
+                else {
                     console.log('password error');
-                     $('body,html').animate({scrollTop: 0}, "600");
+                    $('body,html').animate({scrollTop: 0}, "600");
                 }
             };
 
-            function saveEmployee() {
-                $http.post('/saveemployee', $scope.employee)
-                        .success(function (data) {
 
-                        }).error(function (data) {
-                    $scope.error = data;
-                    $('body,html').animate({scrollTop: 0}, "600");
-                });
-            }
-           
-            function saveFile() {
+
+            $scope.saveFile = function () {
                 var fd = new FormData();
                 fd.append('file', $scope.image);
                 $http.post('/saveemployeeimage', fd, {
                     transformRequest: angular.identity,
                     headers: {'Content-Type': undefined}
+                })
+                        .success(function (data) {
+                            $scope.employee.employeePicture = data;
+                        });
+            };
+
+            if (!!employeeService.employeeUpdate.employeePicture) {
+                if (!!employeeService.employeeUpdate.employeePicture.contentImage) {
+                    console.log('true');
+                    document.getElementById('employee-picture').src = "data:image/jpg;base64," + employeeService.employeeUpdate.employeePicture.contentImage;
+                }
+                else {
+                    console.log('false');
+                    NoImage();
+                }
+            }
+            else {
+                console.log('no image');
+                NoImage();
+            }
+
+            function NoImage() {
+                $http.get('/getnoimage').success(function (data) {
+                    document.getElementById('employee-picture').src = "data:image/jpg;base64," + data.contentImage;
                 });
             }
             ;
 
-
-            NoImage();
-            function NoImage() {
-                $http.get('/getnoimage').success(function (data) {
-                    document.getElementById('employee-picture').src = "data:image/jpg;base64," + data.content;
-                });
-            };
 
             $scope.setBackgroundPrefixId = function () {
                 var email = $scope.employee.email;
@@ -146,6 +194,7 @@ var app = angular.module('employee')
                 }
             };
 
+
             $('.datepicker').pickadate({
                 selectMonths: true,
                 selectYears: 200,
@@ -168,9 +217,10 @@ var app = angular.module('employee')
                 }
             }
 
-            $("#input-employee-picture").change(function () {
+            $('#input-employee-picture').change(function () {
                 readURL(this);
             });
+
         });
 
 app.directive('fileModel', function ($parse) {
@@ -187,4 +237,13 @@ app.directive('fileModel', function ($parse) {
         }
     };
 });
-    
+
+app.directive('customOnChange', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            var onChangeHandler = scope.$eval(attrs.customOnChange);
+            element.bind('change', onChangeHandler);
+        }
+    };
+});

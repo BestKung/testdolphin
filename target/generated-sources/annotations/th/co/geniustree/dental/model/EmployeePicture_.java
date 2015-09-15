@@ -9,9 +9,9 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class EmployeePicture_ {
 
 	public static volatile SingularAttribute<EmployeePicture, String> name;
+	public static volatile SingularAttribute<EmployeePicture, byte[]> contentImage;
 	public static volatile SingularAttribute<EmployeePicture, Integer> id;
 	public static volatile SingularAttribute<EmployeePicture, String> type;
-	public static volatile SingularAttribute<EmployeePicture, byte[]> content;
 
 }
 

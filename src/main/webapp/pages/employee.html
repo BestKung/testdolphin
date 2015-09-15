@@ -7,59 +7,58 @@
 
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix" id="id">label</i>
+                    <i class="material-icons prefix clear-prefix" id="id">label</i>
                     <input type="text" id="id" disabled ng-model="employee.id">
-                    <label for="id">ID</label>
+                    <label for="id" class="update">ID</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">email</i>
-                    <input type="text" id="email" ng-model="employee.email" ng-change="error.violations.email.message = '';
-                                    setBackgroundPrefixId()">
-                    <label for="email">อีเมลล์<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
+                    <i class="material-icons prefix clear-prefix">email</i>
+                    <input type="text" id="email" ng-model="employee.email" ng-change="error.violations.email.message = '';setBackgroundPrefixId()">
+                    <label for="email" class="update">อีเมลล์<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">lock</i>
+                    <i class="material-icons prefix clear-prefix">lock</i>
                     <input type="password" id="password"  ng-model="password" ng-change="comparePassword();
                                     error.violations.password.message = ''">
-                    <label for="password">พาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
+                    <label for="password" class="update">พาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">lock</i>
+                    <i class="material-icons prefix clear-prefix">lock</i>
                     <input type="password" id="confirmpassword"  ng-model="employee.password" ng-change="comparePassword();
                                     error.violations.password.message = ''">
-                    <label for="confirmpassword">ยืนยังพาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
+                    <label for="confirmpassword" class="update">ยืนยังพาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                     <i class="material-icons right-input-custom" id="confirm"></i>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">credit_card</i>
+                    <i class="material-icons prefix clear-prefix">credit_card</i>
                     <input type="text" id="pid"  ng-model="employee.pid">
-                    <label  for="pid">รหัสประชาชน</label>
+                    <label  for="pid" class="update">รหัสประชาชน</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix clear-prefix">account_circle</i>
                     <input type="text" id="nameth"  ng-model="employee.nameTh" ng-change="error.violations.nameTh.message = ''">
-                    <label for="nameth">ชื่อ ภาษาไทย<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
+                    <label for="nameth" class="update">ชื่อ ภาษาไทย<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix clear-prefix">account_circle</i>
                     <input type="text" id="nameeng"  ng-model="employee.nameEng">
-                    <label for="nameeng">ชื่อ ภาษาอังกฤษ</label>
+                    <label for="nameeng" class="update">ชื่อ ภาษาอังกฤษ</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">cake</i>
+                    <i class="material-icons prefix clear-prefix">cake</i>
                     <input type="date" id="birthdate" class="datepicker" ng-model="employee.birthDate">
-                    <label for="birthdate">วันเกิด</label>
+                    <label for="birthdate" class="update">วันเกิด</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix" id="sex">wc</i>
+                    <i class="material-icons prefix clear-prefix" id="sex">wc</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-sex" ng-model="employee.sex" ng-init="employee.sex = 'ชาย'"> 
                             <option value="ชาย">ชาย</option>
@@ -69,7 +68,7 @@
                     <label class="active" id="label-sex">เพศ</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix" id="blood">format_bold</i>
+                    <i class="material-icons prefix clear-prefix" id="blood">format_bold</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-blood" ng-model="employee.blood" ng-init="employee.blood = 'A'">
                             <option value="A">A</option>
@@ -83,7 +82,7 @@
             </div>
             <div class="row" >
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix" id="marrystatus">favorite</i>
+                    <i class="material-icons prefix clear-prefix" id="marrystatus">favorite</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-marrytatus" ng-model="employee.marryStatus" ng-init="employee.marryStatus = 'โสด'">
                             <option value="โสด">โสด</option>
@@ -96,52 +95,52 @@
                     <label class="active" id="label-marrystatus">สถานภาพสมรส</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">language</i>
+                    <i class="material-icons prefix clear-prefix">language</i>
                     <input type="text" id="nation"  ng-model="employee.nation">
-                    <label for="nation">สัญชาติ</label>
+                    <label for="nation" class="update">สัญชาติ</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">language</i>
+                    <i class="material-icons prefix clear-prefix">language</i>
                     <input type="text" id="race" ng-model="employee.race">
-                    <label for="race">เชื้อชาติ</label>
+                    <label for="race" class="update">เชื้อชาติ</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">account_box</i>
+                    <i class="material-icons prefix clear-prefix">account_box</i>
                     <input type="text" id="soilderstatus"  ng-model="employee.soldierStatus">
-                    <label for="soilderstatus">สถานะทางทหาร</label>
+                    <label for="soilderstatus" class="update">สถานะทางทหาร</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">home</i>
+                    <i class="material-icons prefix clear-prefix">home</i>
                     <textarea type="text" id="addressofpid" class="materialize-textarea"  ng-model="employee.addressOfPid"></textarea>
-                    <label for="addressofpid">ที่อยู่ตามบัตรประชาชน</label>
+                    <label for="addressofpid" class="update">ที่อยู่ตามบัตรประชาชน</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">home</i>
+                    <i class="material-icons prefix clear-prefix">home</i>
                     <textarea type="text" id="currentaddress" class="materialize-textarea" ng-model="employee.currentAddress" ng-change="error.violations.currentAddress.message = '';
                                     setBackgroundPrefixSexBloodMarryStatus()"></textarea>
-                    <label for="currentaddress">ที่อยู่ปัจจุบัน<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.currentAddress.message}}</span></label>
+                    <label for="currentaddress" class="update">ที่อยู่ปัจจุบัน<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.currentAddress.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">phone</i>
+                    <i class="material-icons prefix clear-prefix">phone</i>
                     <input type="text" id="tel" ng-model="employee.tel">
-                    <label for="tel">เบอร์โทร</label>
+                    <label for="tel" class="update">เบอร์โทร</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">stay_current_portrait</i>
+                    <i class="material-icons prefix clear-prefix">stay_current_portrait</i>
                     <input type="text" id="mobile" ng-model="employee.mobile" ng-change="error.violations.mobile.message = '';
                                     setBackgroundPrefixDepartmentWorkstatus()">
-                    <label for="mobile">เบอร์โทรศัพท์มือถือ<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.mobile.message}}</span></label>
+                    <label for="mobile" class="update">เบอร์โทรศัพท์มือถือ<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.mobile.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix" id="department">star_rate</i>
+                    <i class="material-icons prefix clear-prefix" id="department">star_rate</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-department" ng-model="employee.department" ng-options="dep.name for dep in departments.content">
                         </select>
@@ -149,19 +148,19 @@
                     <label id="label-department" class="active">เเผนก</label>
                 </div>
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">insert_invitation</i>
+                    <i class="material-icons prefix clear-prefix">insert_invitation</i>
                     <input type="date" id="startwork" class="datepicker" ng-model="employee.startWork">
-                    <label for="startwork">วันที่เริ่มทำงาน</label>
+                    <label for="startwork" class="update">วันที่เริ่มทำงาน</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 input-field">
-                    <i class="material-icons prefix">insert_invitation</i>
+                    <i class="material-icons prefix clear-prefix">insert_invitation</i>
                     <input type="date" id="endwork" class="datepicker" ng-model="employee.endWork">
-                    <label for="endwork">วันที่ออกจากงาน</label>
+                    <label for="endwork" class="update">วันที่ออกจากงาน</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix" id="workstatus">content_paste</i>
+                    <i class="material-icons prefix clear-prefix" id="workstatus">content_paste</i>
                     <div class="select-custom">
                         <select class="browser-default" id="select-workstatus" ng-model="employee.workStatus" ng-init="employee.workStatus = 'ปกติ'">
                             <option value="ปกติ">ปกติ</option>
@@ -173,12 +172,12 @@
                 </div>
 
             </div>
-         </div>
+        </div>
     </div>
-    
-    
-    
-    
+
+
+
+
     <div class="card">
         <div class="card-content">
             <span class="card-title"><h4 style="color: #000">กำหนดสิทธิ์</h4></span>
@@ -200,7 +199,7 @@
                     <img id="employee-picture" class="responsive-img" ng-src="">
                 </div>
                 <div class="center">
-                    <input type="file" id="input-employee-picture" file-model="image" ng-click="saveFile()" style="margin-top: 20px">
+                    <input type="file" id="input-employee-picture" custom-on-change="saveFile" file-model="image" style="margin-top: 20px">
                 </div>
             </div>
         </div>
@@ -213,19 +212,19 @@
                 <div class="card-content">
                     <span class="card-title"><h5 style="color: #000">บัญชีธนาคาร</h5></span>
                     <div class="input-field">
-                        <i class="material-icons prefix">account_balance</i>
+                        <i class="material-icons prefix clear-prefix">account_balance</i>
                         <input type="text" id="bankname" ng-model="employee.bank.bankName">
-                        <label for="bankname">ชื่อธนาคาร</label>
+                        <label for="bankname" class="update">ชื่อธนาคาร</label>
                     </div>
                     <div class="input-field">
-                        <i class="material-icons prefix">assignment_ind</i>
+                        <i class="material-icons prefix clear-prefix">assignment_ind</i>
                         <input type="text" id="accountname" ng-model="employee.bank.accountName">
-                        <label for="accountname">ชื่อบัญชี</label>
+                        <label for="accountname" class="update">ชื่อบัญชี</label>
                     </div>
                     <div class="input-field">
-                        <i class="material-icons prefix">book</i>
+                        <i class="material-icons prefix clear-prefix">book</i>
                         <input type="text" id="accountnumber" ng-model="employee.bank.accountNumber">
-                        <label for="accountnumber">หมายเลขบัญชี</label>
+                        <label for="accountnumber" class="update">หมายเลขบัญชี</label>
                     </div>
                 </div>
             </div>
@@ -236,19 +235,19 @@
                 <div class="card-content">
                     <span class="card-title"><h5 style="color: #000">ผู้ติดต่อ</h5></span>
                     <div class="input-field">
-                        <i class="material-icons prefix">accessibility</i>
+                        <i class="material-icons prefix clear-prefix">accessibility</i>
                         <input type="text" id="contactname" ng-model="employee.contact.name">
-                        <label for="contactname">ชื่อผู้ติดต่อ</label>
+                        <label for="contactname" class="update">ชื่อผู้ติดต่อ</label>
                     </div>
                     <div class="input-field">
-                        <i class="material-icons prefix">face</i>
+                        <i class="material-icons prefix clear-prefix">face</i>
                         <input type="text" id="relation" ng-model="employee.contact.relation">
-                        <label for="relation">ความสัมพันธ์</label>
+                        <label for="relation" class="update">ความสัมพันธ์</label>
                     </div>
                     <div class="input-field">
-                        <i class="material-icons prefix">phone</i>
+                        <i class="material-icons prefix clear-prefix">phone</i>
                         <input type="text" id="contacttel" ng-model="employee.contact.tel">
-                        <label for="contacttel">เบอร์โทร</label>
+                        <label for="contacttel" class="update">เบอร์โทร</label>
                     </div>
                 </div>
             </div>
@@ -260,7 +259,9 @@
         <div class="row">
             <div class="offset m12" style="margin-right: 10px;">
                 <button class="btn right waves-effect waves-light" ng-click="saveEmployee()" type="submit">Save<i class="mdi-content-send right"></i></button>
+                <input class="btn btn-gray waves-effect waves-light right" style="margin-right: 10px;"  type="submit" value="Clear" ng-click="clearData()">
             </div>
         </div>
     </div>
 </div>
+

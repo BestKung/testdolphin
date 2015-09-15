@@ -33,25 +33,31 @@ public class EmployeeController {
     private EmployeeRepo employeeRepo;
     @Autowired
     private EmployeePictureRepo employeePictureRepo;
-    private EmployeePicture employeePicture = new EmployeePicture();
     @Autowired
     private EmployeeSearchService employeeSearchService;
 
     @RequestMapping(value = "/saveemployee", method = RequestMethod.POST)
     public void saveEmployee(@Validated @RequestBody Employee employee) {
-        if (employeePicture != null) {
-            employee.setEmployeePicture(employeePicture);
-         }
+//        if (employeePicture.getContentImage() != null) {
+//            employee.setEmployeePicture(employeePicture);
+//        }
+//        else if(employee.getEmployeePicture() != null){
+//            
+//        }
         employeeRepo.save(employee);
-        employeePicture = new EmployeePicture();
+       // employeePicture = new EmployeePicture();
     }
 
     @RequestMapping(value = "/saveemployeeimage", method = RequestMethod.POST)
-    public void saveEmployeePicture(MultipartRequest file) throws IOException {
-        System.out.println("==============================================>"+file.getFile("file").getOriginalFilename());
-        employeePicture.setContent(file.getFile("file").getBytes());
+    public EmployeePicture saveEmployeePicture(MultipartRequest file) throws IOException {
+        System.out.println("--------------------------------------------------------->"+file.getFileNames());
+         //System.out.println("--------------------------------------------------------->"+file.getFileNames());
+          System.out.println("--------------------------------------------------------->"+file.getFileMap());
+        EmployeePicture employeePicture = new EmployeePicture();
+        employeePicture.setContentImage(file.getFile("file").getBytes());
         employeePicture.setName(file.getFile("file").getOriginalFilename());
         employeePicture.setType(file.getFile("file").getName());
+        return employeePicture;
     }
 
     @RequestMapping(value = "/getnoimage", method = RequestMethod.GET)
@@ -97,14 +103,14 @@ public class EmployeeController {
         return employees;
     }
 
-    @RequestMapping(value = "/getemployeeimage" , method = RequestMethod.GET)
+    @RequestMapping(value = "/getemployeeimage", method = RequestMethod.GET)
     public EmployeePicture getEmployeePicture(Integer id) {
-        System.out.println("----------------------------------------------------------->"+id);
+        System.out.println("----------------------------------------------------------->" + id);
         return employeePictureRepo.findOne(id);
     }
-    
-    @RequestMapping(value = "/deleteemployee" , method = RequestMethod.POST)
-    public void deleteEmployee(@RequestBody Employee employee){
-    employeeRepo.delete(employee);
+
+    @RequestMapping(value = "/deleteemployee", method = RequestMethod.POST)
+    public void deleteEmployee(@RequestBody Employee employee) {
+        employeeRepo.delete(employee);
     }
 }

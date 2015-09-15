@@ -83,7 +83,7 @@
             </div>
         </div>
         <div class="card-reveal">
-            <div id="card-height">
+            <div id="card-height" class="card-height">
                 <span class="card-title grey-text text-darken-4" id="close-card">Employee Detail<i class="material-icons right" ng-click="toPreScroll()">close</i></span>
             <div style="margin-top: 40px;" class="center">
                 <img class="responsive-img" src="" id="img-employee">
@@ -241,7 +241,7 @@
             <span class="card-title grey-text text-darken-4" style="margin-top: 30px;">Authority</span>
             <div class="row">
                 <div class="col m3 s6" ng-repeat="auth in employeeDetail.roles">
-                    <label class="topic-detail right">{{auth.role}}</label>
+                    <label class="topic-detail">{{auth.role}}</label>
                 </div>
             </div>
             <span class="card-title grey-text text-darken-4" style="margin-top: 30px;">Bank</span>
@@ -291,8 +291,9 @@
                 </div>
             </div>
             <div class="row margin-top right">
-                <input type="submit" value="Update" ng-click="">
-                <input type="submit" value="Delete" class="btn btn-red" ng-click="clickDelete(employeeDetail)">
+                <input type="submit" value="Cancel" class="btn btn-gray waves-effect waves-light" ng-click="cancel()">
+                <input type="submit" value="Update" class="btn btn-blue2 waves-effect waves-light" ng-click="updateEmployee(employeeDetail)">
+                <input type="submit" value="Delete" class="btn btn-red waves-effect waves-light" ng-click="clickDelete(employeeDetail)">
             </div>
             </div>
         </div>
@@ -304,10 +305,12 @@
         <div class="row center">
             <h4 style="background: red;color: white;padding: 20px;" class="margin-top-20 magin-buttom-20">Delete Employee</h4>
         </div>
-        <h4 class="margin-left-20">Delete Employee : {{selectEmployee.name}}</h4>
+        <h5 class="margin-left-20">Delete Employee : {{selectEmployee.nameTh}}</h5>
     </div>
     <div class="model-footer right">
         <a href="" class="magin-button btn btn-gray modal-action modal-close">Cancle</a>
         <a href="" class="magin-button btn btn-red modal-action modal-close" ng-click="deleteEmployee()">Delete</a>
     </div>
 </div>
+
+

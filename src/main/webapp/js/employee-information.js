@@ -1,5 +1,5 @@
 angular.module('employee-information', []);
-angular.module('employee-information').controller('employeeInformationController', function ($scope, $http) {
+angular.module('employee-information').controller('employeeInformationController', function (employeeService, $scope, $http) {
     $scope.employees = {};
     $scope.page = 0;
     $scope.row = 10;
@@ -69,8 +69,7 @@ angular.module('employee-information').controller('employeeInformationController
         $scope.preScroll = $(window).scrollTop();
         $('body,html').animate({scrollTop: 500}, "400");
         $scope.employeeDetail = emp;
-        //preCard = $('#card-employee-detail').outerHeight();
-        //$('#card-employee-detail').css('height',$('.card-reveal').outerHeight()+500);
+        console.log(emp.employeePicture);
         $scope.employeeDetail.age = new Date().getFullYear() - new Date($scope.employeeDetail.birthDate).getFullYear();
         var topic = document.getElementsByClassName('topic-detail');
         for (var i = 0; i < topic.length; i++) {
@@ -78,46 +77,58 @@ angular.module('employee-information').controller('employeeInformationController
                 topic[i].innerHTML = '-';
             }
         }
-        if (!!emp.employeePicture.content) {
-            document.getElementById('img-employee').src = "data:image/jpg;base64," + emp.employeePicture.content;
+        console.log(emp.employeePicture);
+        if (!!emp.employeePicture) {
+            console.log('has image');
+            document.getElementById('img-employee').src = "data:image/jpg;base64," + emp.employeePicture.contentImage;
         }
         else {
             $http.get('/getnoimage').success(function (data) {
                 console.log(data);
-                document.getElementById('img-employee').src = "data:image/jpg;base64," + data.content;
+                console.log('error');
+                document.getElementById('img-employee').src = "data:image/jpg;base64," + data.contentImage;
             });
         }
-        console.log(emp.content);
     };
 
-   
 
-    $scope.clickDelete = function (emp){
+    $scope.clickDelete = function (emp) {
         $('#modal-delete').openModal({dismissible: false});
+        console.log('click Delete : ' + emp);
         $scope.selectEmployee = emp;
     };
-    
-    $scope.deleteEmployee = function (){
-        console.log('delete'+$scope.selectEmployee);
-        $http.post('/deleteemployee',$scope.selectEmployee).success(function (data){
+
+    $scope.updateEmployee = function (emp) {
+        employeeService.employeeUpdate = emp;
+        location.href = '#/employee';
+    };
+
+    $scope.deleteEmployee = function () {
+        console.log('delete' + $scope.selectEmployee);
+        $http.post('/deleteemployee', $scope.selectEmployee).success(function (data) {
             console.log('delete success');
             $scope.selectEmployee = {};
             getEmployees();
             toPreScroll();
             $('span#close-card').trigger('click');
-        }).error(function (data){
-            
+        }).error(function (data) {
+
         });
         $('i#close-card').trigger('click');
     };
-    
-    function toPreScroll(){
+
+    $scope.cancel = function () {
+        toPreScroll();
+        $('span#close-card').trigger('click');
+    };
+
+    function toPreScroll() {
         $('body,html').animate({scrollTop: $scope.preScroll}, "0");
     }
 
     $scope.toPreScroll = function () {
         toPreScroll();
-     };
+    };
 
     checkLoaderPage();
     function checkLoaderPage() {
