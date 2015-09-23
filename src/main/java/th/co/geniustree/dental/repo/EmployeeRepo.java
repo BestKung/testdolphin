@@ -5,14 +5,16 @@
  */
 package th.co.geniustree.dental.repo;
 
+import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import th.co.geniustree.dental.model.Employee;
 
 /**
  *
  * @author Best
  */
-public interface EmployeeRepo extends JpaRepository<Employee, Integer>,JpaSpecificationExecutor<Employee>{
-   
+public interface EmployeeRepo extends JpaRepository<Employee, Integer>{
+
+    public Employee findByEmail(String email);
+    
 }

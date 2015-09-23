@@ -35,7 +35,7 @@ public class Department implements Serializable {
 
     @OneToMany(mappedBy = "department")
     @JsonIgnore
-    private List<Employee> employees;
+    private List<Staff> staff;
 
     public Integer getId() {
         return id;
@@ -53,12 +53,12 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public List<Employee> getEmployees() {
-        return employees;
+    public List<Staff> getStaff() {
+        return staff;
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public void setEmployees(List<Staff> staff) {
+        this.staff = staff;
     }
 
     

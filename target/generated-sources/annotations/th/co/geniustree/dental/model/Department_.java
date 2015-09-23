@@ -10,8 +10,8 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Department_ {
 
 	public static volatile SingularAttribute<Department, String> name;
+	public static volatile ListAttribute<Department, Staff> staff;
 	public static volatile SingularAttribute<Department, Integer> id;
-	public static volatile ListAttribute<Department, Employee> employees;
 
 }
 

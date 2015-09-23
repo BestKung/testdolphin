@@ -6,25 +6,25 @@
             <span class="card-title" style="color: black;"><h4>เพิ่มพนักงาน</h4></span>
 
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix" id="id">label</i>
                     <input type="text" id="id" disabled ng-model="employee.id">
                     <label for="id" class="update">ID</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">email</i>
                     <input type="text" id="email" ng-model="employee.email" ng-change="error.violations.email.message = '';setBackgroundPrefixId()">
                     <label for="email" class="update">อีเมลล์<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">lock</i>
                     <input type="password" id="password"  ng-model="password" ng-change="comparePassword();
                                     error.violations.password.message = ''">
                     <label for="password" class="update">พาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">lock</i>
                     <input type="password" id="confirmpassword"  ng-model="employee.password" ng-change="comparePassword();
                                     error.violations.password.message = ''">
@@ -33,24 +33,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">credit_card</i>
                     <input type="text" id="pid"  ng-model="employee.pid">
                     <label  for="pid" class="update">รหัสประชาชน</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_circle</i>
                     <input type="text" id="nameth"  ng-model="employee.nameTh" ng-change="error.violations.nameTh.message = ''">
                     <label for="nameth" class="update">ชื่อ ภาษาไทย<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_circle</i>
                     <input type="text" id="nameeng"  ng-model="employee.nameEng">
                     <label for="nameeng" class="update">ชื่อ ภาษาอังกฤษ</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">cake</i>
                     <input type="date" id="birthdate" class="datepicker" ng-model="employee.birthDate">
                     <label for="birthdate" class="update">วันเกิด</label>
@@ -94,31 +94,31 @@
                     </div>
                     <label class="active" id="label-marrystatus">สถานภาพสมรส</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">language</i>
                     <input type="text" id="nation"  ng-model="employee.nation">
                     <label for="nation" class="update">สัญชาติ</label>
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">language</i>
                     <input type="text" id="race" ng-model="employee.race">
                     <label for="race" class="update">เชื้อชาติ</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_box</i>
                     <input type="text" id="soilderstatus"  ng-model="employee.soldierStatus">
                     <label for="soilderstatus" class="update">สถานะทางทหาร</label>
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">home</i>
                     <textarea type="text" id="addressofpid" class="materialize-textarea"  ng-model="employee.addressOfPid"></textarea>
                     <label for="addressofpid" class="update">ที่อยู่ตามบัตรประชาชน</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">home</i>
                     <textarea type="text" id="currentaddress" class="materialize-textarea" ng-model="employee.currentAddress" ng-change="error.violations.currentAddress.message = '';
                                     setBackgroundPrefixSexBloodMarryStatus()"></textarea>
@@ -126,12 +126,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">phone</i>
                     <input type="text" id="tel" ng-model="employee.tel">
                     <label for="tel" class="update">เบอร์โทร</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">stay_current_portrait</i>
                     <input type="text" id="mobile" ng-model="employee.mobile" ng-change="error.violations.mobile.message = '';
                                     setBackgroundPrefixDepartmentWorkstatus()">
@@ -147,14 +147,14 @@
                     </div>
                     <label id="label-department" class="active">เเผนก</label>
                 </div>
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">insert_invitation</i>
                     <input type="date" id="startwork" class="datepicker" ng-model="employee.startWork">
                     <label for="startwork" class="update">วันที่เริ่มทำงาน</label>
                 </div>
             </div>
             <div class="row">
-                <div class="col m6 input-field">
+                <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">insert_invitation</i>
                     <input type="date" id="endwork" class="datepicker" ng-model="employee.endWork">
                     <label for="endwork" class="update">วันที่ออกจากงาน</label>

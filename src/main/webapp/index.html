@@ -3,7 +3,7 @@
     <head>
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="materialize/css/materialize.min.css">
+        <link rel="stylesheet" href="materialize/css/materialize.css">
         <link rel="stylesheet" href="css/font.css">
         <link rel="stylesheet" href="css/handle.css">
         <link rel="stylesheet" href="css/custom.css">
@@ -14,7 +14,8 @@
             <nav style="background: #00bcd4" ng-controller="homeController">
                 <a href="#" class="band-logo" style="margin-left: 10px;">Dolphin</a>
                 <ul class="right margin-right hide-on-med-and-down">
-                    <a href="#" class="btn waves-effect waves-light btn-blue btn-border-white">Login</a>
+                    <span style="margin-right: 10px;">{{login.nameTh}}</span>
+                    <a  id="login" class="btn waves-effect waves-light btn-blue btn-border-white" ng-click="clickLogout()">Login</a>
                 </ul>
                 <ul id="slide-out" class="side-nav">
                     <li style="height: 100px;background: #00bcd4">
