@@ -6,6 +6,7 @@
 package th.co.geniustree.dental.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -21,6 +22,7 @@ import javax.persistence.ManyToMany;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import static th.co.geniustree.dental.model.Staff_.email;
 
@@ -47,11 +49,15 @@ public class Employee implements Serializable,UserDetails {
 
     private String type;
     private boolean enable = true;
-    
+   
      @ManyToMany
-    @Column(name = "ROLE")
+    @Column(name = "ROLES")
     private List<Authority> roles;
-
+     
+     
+     
+     
+     
     public Integer getId() {
         return id;
     }
@@ -126,6 +132,7 @@ public class Employee implements Serializable,UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+//        return roles;
         return Collections.emptySet();
     }
 
