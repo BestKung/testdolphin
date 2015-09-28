@@ -47,16 +47,24 @@ public class Employee implements Serializable,UserDetails {
     @NotBlank(message = "Password not Empty")
     private String password;
 
+    @Column(name = "NAME_TH", nullable = false)
+    @NotBlank(message = "Name(TH) not Empty")
+    private String nameTh;
+    
     private String type;
     private boolean enable = true;
    
      @ManyToMany
     @Column(name = "ROLES")
     private List<Authority> roles;
-     
-     
-     
-     
+
+    public String getNameTh() {
+        return nameTh;
+    }
+
+    public void setNameTh(String nameTh) {
+        this.nameTh = nameTh;
+    }
      
     public Integer getId() {
         return id;

@@ -9,7 +9,6 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Staff.class)
 public abstract class Staff_ extends th.co.geniustree.dental.model.Employee_ {
 
-	public static volatile SingularAttribute<Staff, String> nameTh;
 	public static volatile SingularAttribute<Staff, String> workStatus;
 	public static volatile SingularAttribute<Staff, String> race;
 	public static volatile SingularAttribute<Staff, String> nation;

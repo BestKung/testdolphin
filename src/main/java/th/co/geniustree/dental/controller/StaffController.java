@@ -47,9 +47,6 @@ public class StaffController {
 
     @RequestMapping(value = "/savestaffimage", method = RequestMethod.POST)
     public StaffPicture saveStaffPicture(MultipartRequest file) throws IOException {
-        System.out.println("--------------------------------------------------------->" + file.getFileNames());
-        //System.out.println("--------------------------------------------------------->"+file.getFileNames());
-        System.out.println("--------------------------------------------------------->" + file.getFileMap());
         StaffPicture staffPicture = new StaffPicture();
         staffPicture.setContentImage(file.getFile("file").getBytes());
         staffPicture.setName(file.getFile("file").getOriginalFilename());
@@ -78,31 +75,23 @@ public class StaffController {
         String keyword = searchData.getKeyword();
         String searchBy = searchData.getSearchBy();
         Page<Staff> staff = null;
-        System.out.println("----------------------------------------------------------------------->" + keyword);
-        System.out.println("----------------------------------------------------------------------->" + searchBy);
         if ("Email".equals(searchBy)) {
             staff = employeeSearchService.searchByEmail(keyword, pageable);
-            System.out.println("--------------------------------------->Email");
         }
         if ("Name".equals(searchBy)) {
             staff = employeeSearchService.searchByName(keyword, pageable);
-            System.out.println("--------------------------------------------->Name");
         }
         if ("Mobile".equals(searchBy)) {
             staff = employeeSearchService.searchByMobile(keyword, pageable);
-            System.out.println("-------------------------------------------------->Mobile");
-        }
+         }
         if ("Personal ID".equals(searchBy)) {
             staff = employeeSearchService.searchByPid(keyword, pageable);
-            System.out.println("---------------------------------------------------->Personal Id");
         }
-        System.out.println(staff);
         return staff;
     }
 
     @RequestMapping(value = "/getstaffimage", method = RequestMethod.GET)
     public StaffPicture getStaffPicture(Integer id) {
-        System.out.println("----------------------------------------------------------->" + id);
         return staffPictureRepo.findOne(id);
     }
 
@@ -112,11 +101,9 @@ public class StaffController {
     }
     
       @RequestMapping(value = "/startpagestaff", method = RequestMethod.GET)
-    public Staff getCurrentLogin() {
+    public Employee getCurrentLogin() {
         Employee employee = (Employee) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Integer id = employeeRepo.findByEmail(employee.getEmail()).getId();
-          System.out.println("--------------------------------------->"+id);
-          System.out.println("---------------------------------------->"+staffRepo.findOne(id));
-        return staffRepo.findOne(id);
+       return employeeRepo.findOne(id);
     }
 }

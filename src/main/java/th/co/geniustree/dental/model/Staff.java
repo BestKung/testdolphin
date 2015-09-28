@@ -39,10 +39,7 @@ public class Staff extends Employee implements Serializable{
     @Column(name = "PERSONAL_ID")
     private String pid;
     
-    @Column(name = "NAME_TH", nullable = false)
-    @NotBlank(message = "Name(TH) not Empty")
-    private String nameTh;
-   
+    
     @Column(name = "NAME_ENG")
     private String nameEng;
    
@@ -115,14 +112,6 @@ public class Staff extends Employee implements Serializable{
 
     public void setPid(String pid) {
         this.pid = pid;
-    }
-
-    public String getNameTh() {
-        return nameTh;
-    }
-
-    public void setNameTh(String nameTh) {
-        this.nameTh = nameTh;
     }
 
     public String getNameEng() {
