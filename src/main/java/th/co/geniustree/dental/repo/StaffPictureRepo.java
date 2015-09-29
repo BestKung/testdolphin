@@ -13,5 +13,6 @@ import th.co.geniustree.dental.model.StaffPicture;
  * @author Best
  */
 public interface StaffPictureRepo extends JpaRepository<StaffPicture,Integer>{
-   
+ 
+    
 }

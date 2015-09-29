@@ -8,6 +8,7 @@ angular.module('employee-information').controller('employeeInformationController
     $scope.preScroll = 0;
     $scope.employeeDetail = {};
     $scope.selectEmployee = {};
+    var totalPage = 0;
     var preCard = 0;
     var employeeImage = {};
     var totalEmployees = getTotalEmployee();
@@ -25,8 +26,6 @@ angular.module('employee-information').controller('employeeInformationController
     function getEmployees() {
         $http.get('/staffs', {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
             $scope.employees = data;
-        }).error(function (data) {
-
         });
     }
 
@@ -34,40 +33,66 @@ angular.module('employee-information').controller('employeeInformationController
     function getTotalEmployee() {
         $http.get('/totalstaff').success(function (data) {
             totalEmployees = data;
-            return data;
+            totalPages();
+           
         });
     }
+    
+    function searchStaffCount (){
+        $http.post('/searchstaff/count',$scope.searchData).success(function (data){
+             totalEmployees = data;
+            totalPages();
+            console.log('count search'+data);
+        });
+    };
 
-    function findTotalPages() {
+
+    function totalPages() {
         console.log('Total employee' + totalEmployees);
         var totalPages = parseInt(totalEmployees / $scope.row);
         if ((totalEmployees % $scope.row) != 0) {
             totalPages++;
         }
-        return totalPages;
+        totalPage = totalPages;
+        console.log("totalpage = "+totalPage);
+        if($scope.currentPage == 1){
+            $('#first-page').addClass('disabled');
+            $('#pre-page').addClass('disabled');
+        }
+        if($scope.currentPage  == totalPage){
+            $('#next-page').addClass('disabled');
+            $('#final-page').addClass('disabled');
+        }
+
     }
 
     $scope.getEmployees = function () {
         $scope.page = 0;
         $scope.currentPage = 1;
         getEmployees();
-        checkLoaderPage();
+        totalPages();
     };
 
     $scope.searcEmployee = function () {
-        $http.post('/searchstaff', $scope.searchData).success(function (data) {
+        console.log('search');
+        $http.post('/searchstaff' ,$scope.searchData , {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
             $scope.employees = data;
-            if (!!data.hasLength) {
-                $scope.employees = data;
-            }
+             searchStaffCount();
+             console.log(data);
         }).error(function (data) {
 
         });
     };
 
+    function searcEmployee(){
+        $http.post('/searchstaff' ,$scope.searchData , {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
+            $scope.employees = data;
+        });
+    }
+    
     $scope.detailEmployee = function (emp) {
         $scope.preScroll = $(window).scrollTop();
-        $('body,html').animate({scrollTop: 500}, "400");
+        $('body,html').animate({scrollTop: 400}, "00");
         $scope.employeeDetail = emp;
         console.log(emp.staffPicture);
         $scope.employeeDetail.age = new Date().getFullYear() - new Date($scope.employeeDetail.birthDate).getFullYear();
@@ -101,7 +126,6 @@ angular.module('employee-information').controller('employeeInformationController
     $scope.updateEmployee = function (emp) {
         employeeService.employeeUpdate = emp;
         console.log(emp);
-      //  console.log('--------------------------++++'+employeeService.employeeUpdate.staffPicture.contentImage);
         location.href = '#/employee';
     };
 
@@ -132,27 +156,24 @@ angular.module('employee-information').controller('employeeInformationController
         toPreScroll();
     };
 
-    checkLoaderPage();
-    function checkLoaderPage() {
-        console.log(findTotalPages());
-        if ($scope.currentPage == 1 && findTotalPages() == $scope.currentPage) {
-            $('#first-page').addClass('disabled');
-            $('#pre-page').addClass('disabled');
-            $('#next-page').addClass('disabled');
-            $('#final-page').addClass('disabled');
 
+    $scope.selectGetOrSearch = function (){
+        selectGetOrSearch();
+    };
+
+    function selectGetOrSearch(){
+        if(!!$scope.searchData.keyword){
+            searcEmployee();
         }
-        else if ($scope.currentPage == 1 && findTotalPages() > $scope.currentPage) {
-            $('#first-page').addClass('disabled');
-            $('#pre-page').addClass('disabled');
-            $('#next-page').removeClass('disabled');
-            $('#final-page').removeClass('disabled');
+        else{
+            getEmployees();
         }
     }
+
     $scope.firstPage = function () {
         if (!$('#first-page').hasClass('disabled')) {
             $scope.page = 0;
-            getEmployees();
+            selectGetOrSearch();
             $scope.currentPage = 1;
             $('#first-page').addClass('disabled');
             $('#pre-page').addClass('disabled');
@@ -162,11 +183,11 @@ angular.module('employee-information').controller('employeeInformationController
     };
 
     $scope.prePage = function () {
-        if (!$('#pre-page').hasClass('disabled')) {
+        if (!$('#first-page').hasClass('disabled')) {
             $scope.page--;
-            getEmployees();
+           selectGetOrSearch();
             $scope.currentPage = $scope.page + 1;
-            if ($scope.currentPage == 1) {
+            if ($scope.page == 0) {
                 $('#first-page').addClass('disabled');
                 $('#pre-page').addClass('disabled');
             }
@@ -176,28 +197,31 @@ angular.module('employee-information').controller('employeeInformationController
     };
 
     $scope.nextPage = function () {
-        if (!$('#next-page').hasClass('disabled')) {
+        if (!$('#final-page').hasClass('disabled')) {
             $scope.page++;
-            getEmployees();
+            selectGetOrSearch();
             $scope.currentPage = $scope.page + 1;
-            if ($scope.currentPage == findTotalPages()) {
+            console.log($scope.page + " || " + totalPage);
+            if ($scope.page == totalPage - 1) {
                 $('#next-page').addClass('disabled');
                 $('#final-page').addClass('disabled');
             }
             $('#first-page').removeClass('disabled');
             $('#pre-page').removeClass('disabled');
         }
+
     };
 
     $scope.finalPage = function () {
         if (!$('#final-page').hasClass('disabled')) {
-            $scope.page = findTotalPages() - 1;
-            getEmployees();
-            $scope.currentPage = findTotalPages();
-            $('#next-page').addClass('disabled');
-            $('#final-page').addClass('disabled');
+            console.log('final' + totalPage);
+            $scope.page = totalPage - 1;
+            selectGetOrSearch();
+            $scope.currentPage = totalPage;
             $('#first-page').removeClass('disabled');
             $('#pre-page').removeClass('disabled');
+            $('#next-page').addClass('disabled');
+            $('#final-page').addClass('disabled');
         }
     };
 

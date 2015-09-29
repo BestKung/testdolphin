@@ -24,6 +24,7 @@ import th.co.geniustree.dental.repo.EmployeeRepo;
 import th.co.geniustree.dental.repo.StaffPictureRepo;
 import th.co.geniustree.dental.repo.StaffRepo;
 import th.co.geniustree.dental.service.StaffSearchService;
+import th.co.geniustree.dental.spec.StaffSpec;
 
 /**
  *
@@ -69,7 +70,29 @@ public class StaffController {
     public Long getTotalStaff() {
         return staffRepo.count();
     }
+    
+   
+     @RequestMapping(value = "/searchstaff/count" , method = RequestMethod.POST)
+    public Long getTotalSearch(@RequestBody SearchData searchData){
+    String searchBy = searchData.getSearchBy();
+    String keyword = searchData.getKeyword();
+    Long count = null;
+    if ("Email".equals(searchBy)) {
+            count = staffRepo.count(StaffSpec.emailLike("%"+keyword+"%"));
+        }
+        if ("Name".equals(searchBy)) {
+            count = staffRepo.count(StaffSpec.nameLike("%"+keyword+"%"));
+        }
+        if ("Mobile".equals(searchBy)) {
+            count = staffRepo.count(StaffSpec.mobileLike("%"+keyword+"%"));
+         }
+        if ("Personal ID".equals(searchBy)) {
+            count = staffRepo.count(StaffSpec.pidLike("%"+keyword+"%"));
+        }
+        return count;
+    }
 
+    
     @RequestMapping(value = "/searchstaff", method = RequestMethod.POST)
     public Page<Staff> search(@RequestBody SearchData searchData, Pageable pageable) {
         String keyword = searchData.getKeyword();

@@ -11,7 +11,8 @@
         <script src="js/jquery-2.1.4.min.js"></script>
     </head>
     <body>
-        <div class="fixed-navbar">
+        <div class="navbar-fixed">
+            <div class="fixed-navbar">
             <nav style="background: #00bcd4" ng-controller="homeController">
                 <a href="#" class="band-logo" style="margin-left: 10px;">Dolphin</a>
                 <ul class="right margin-right hide-on-med-and-down">
@@ -43,8 +44,8 @@
                                 <a class="collapsible-header"><span>Doctor</span><i class="mdi-navigation-arrow-drop-down"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-                                        <li class="li-height"><a href="#/dector">Add Doctor</a></li>
-                                        <li class="li-height"><a href="#">Doctor Information</a></li>
+                                        <li class="li-height"><a href="#/doctor">Add Doctor</a></li>
+                                        <li class="li-height"><a href="#/doctor/information">Doctor Information</a></li>
                                     </ul>
                                 </div>
                             </li>
@@ -95,9 +96,10 @@
                 <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             </nav> 
         </div>
+        </div>
 
         <div class="fixed-navbar">
-            <nav style="background: #ffffff" id="nav-topic">
+            <nav style="background: #ffffff;position: fixed;z-index: 1000" id="nav-topic">
                 <div class="container">
                     <ul class="hide-on-med-and-down">
                         <li><a href="#" class="text-sky"><i class="margin-right-5 mdi-action-home"></i><span>Home</span></a></li>
@@ -110,7 +112,7 @@
                         <li><a class="dropdown-button text-sky" href="#" data-activates="doctor" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-action-face-unlock"></i><span>Doctor</span><i class="mdi-navigation-arrow-drop-down right"></i></a></li>
                         <ul id="doctor" class="dropdown-content">
                             <li><a href="#/doctor">Add Doctor</a></li>
-                            <li><a href="#">Doctor Information</a></li>
+                            <li><a href="#/doctor/information">Doctor Information</a></li>
                         </ul>
                         <li><a href="#" class="dropdown-button text-sky" data-activates="customer" data-beloworigin="true" data-constrainwidth="false"><i class="margin-right-5 mdi-social-people"></i><span>Customer</span><i class="mdi-navigation-arrow-drop-down"></i></a></li>
                         <ul id="customer" class="dropdown-content">
@@ -161,5 +163,6 @@
         <script src="js/department.js"></script>
         <script src="js/employee-information.js"></script>
         <script src="js/doctor.js"></script>
+        <script src="js/doctor-information.js"></script>
     </body>
 </html>

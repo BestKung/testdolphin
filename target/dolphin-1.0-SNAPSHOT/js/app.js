@@ -1,4 +1,4 @@
-var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information','doctor']);
+var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information','doctor','doctor-information']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     $scope.login = {};
@@ -61,6 +61,9 @@ app.config(function ($routeProvider) {
     }).when('/doctor', {
         controller:'doctorController',
         templateUrl: 'pages/doctor.html'
+    }).when('/doctor/information',{
+        controller:'doctorInformationController',
+        templateUrl:'pages/doctor-information.html'
     }).otherwise({
         redirectTo: '/'
     });
