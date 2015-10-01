@@ -1,13 +1,13 @@
 angular.module('employee-information', []);
 angular.module('employee-information').controller('employeeInformationController', function (employeeService, $scope, $http) {
     $scope.employees = {};
-    $scope.page = 0;
     $scope.row = 10;
     $scope.currentPage = 1;
     $scope.searchData = {};
     $scope.preScroll = 0;
     $scope.employeeDetail = {};
     $scope.selectEmployee = {};
+    var page = 0;
     var totalPage = 0;
     var preCard = 0;
     var employeeImage = {};
@@ -24,10 +24,12 @@ angular.module('employee-information').controller('employeeInformationController
 
     getEmployees();
     function getEmployees() {
-        $http.get('/staffs', {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
+        $http.get('/staffs', {params: {page: page, size: $scope.row}}).success(function (data) {
             $scope.employees = data;
         });
     }
+
+      
 
     getTotalEmployee();
     function getTotalEmployee() {
@@ -134,7 +136,7 @@ angular.module('employee-information').controller('employeeInformationController
         $http.post('/deletestaff', $scope.selectEmployee).success(function (data) {
             console.log('delete success');
             $scope.selectEmployee = {};
-            getEmployees();
+            selectGetOrSearch();
             toPreScroll();
             $('span#close-card').trigger('click');
         }).error(function (data) {

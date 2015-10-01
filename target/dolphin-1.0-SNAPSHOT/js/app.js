@@ -1,4 +1,4 @@
-var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information','doctor','doctor-information']);
+var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information','doctor','doctor-information','patient']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     $scope.login = {};
@@ -8,6 +8,7 @@ app.controller('homeController', function ($scope, $http) {
         if ($mobile) {
             $('#nav-topic').css('display', 'none');
             $('body').css('overflow-y', 'hidden');
+            $('#view').removeAttr('style').addClass('.margin-top');
             console.log('mobile');
         }
     }
@@ -40,7 +41,7 @@ app.controller('homeController', function ($scope, $http) {
 
 app.factory('employeeService', function () {
     return {
-        employeeUpdate: {}
+        employeeUpdate: {}, doctorUpdate : {}
     };
 });
 app.config(function ($routeProvider) {
@@ -64,6 +65,9 @@ app.config(function ($routeProvider) {
     }).when('/doctor/information',{
         controller:'doctorInformationController',
         templateUrl:'pages/doctor-information.html'
+    }).when('/patient',{
+        controller:'patientController',
+        templateUrl:'pages/patient.html'
     }).otherwise({
         redirectTo: '/'
     });

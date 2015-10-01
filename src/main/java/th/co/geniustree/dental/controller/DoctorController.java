@@ -21,6 +21,7 @@ import th.co.geniustree.dental.model.DoctorPicture;
 import th.co.geniustree.dental.model.SearchData;
 import th.co.geniustree.dental.repo.DoctorRepo;
 import th.co.geniustree.dental.service.DoctorSearchService;
+import th.co.geniustree.dental.spec.DoctorSpec;
 
 /**
  *
@@ -28,53 +29,82 @@ import th.co.geniustree.dental.service.DoctorSearchService;
  */
 @RestController
 public class DoctorController {
-    
+
     @Autowired
     private DoctorRepo doctorRepo;
-    
+
     @Autowired
     private DoctorSearchService doctorSearchService;
-    
-    @RequestMapping(value = "/savedoctor" , method = RequestMethod.POST)
-    private void saveDoctor(@Validated @RequestBody Doctor doctor){
-    doctorRepo.save(doctor);
+
+    @RequestMapping(value = "/savedoctor", method = RequestMethod.POST)
+    private void saveDoctor(@Validated @RequestBody Doctor doctor) {
+        doctorRepo.save(doctor);
     }
-    
-    @RequestMapping(value = "/selectpicture" , method = RequestMethod.POST)
-    private DoctorPicture selectPicture(MultipartRequest file) throws IOException{
-    DoctorPicture doctorPicture = new DoctorPicture();
-    doctorPicture.setName(file.getFile("file").getOriginalFilename());
-    doctorPicture.setContent(file.getFile("file").getBytes());
-    doctorPicture.setMimeType(file.getFile("file").getName());
-    return doctorPicture;
+
+    @RequestMapping(value = "/selectpicture", method = RequestMethod.POST)
+    private DoctorPicture selectPicture(MultipartRequest file) throws IOException {
+        DoctorPicture doctorPicture = new DoctorPicture();
+        doctorPicture.setName(file.getFile("file").getOriginalFilename());
+        doctorPicture.setContent(file.getFile("file").getBytes());
+        doctorPicture.setMimeType(file.getFile("file").getName());
+        return doctorPicture;
     }
-    
-    @RequestMapping(value = "/getdoctor" , method = RequestMethod.GET)
-    private Page<Doctor> getDoctor(Pageable pageable){
-    return doctorRepo.findAll(pageable);
+
+    @RequestMapping(value = "/getdoctor", method = RequestMethod.GET)
+    private Page<Doctor> getDoctor(Pageable pageable) {
+        return doctorRepo.findAll(pageable);
     }
-    
-    @RequestMapping(value = "/searchdoctor" , method = RequestMethod.POST)
-    private Page<Doctor> searchDoctor(@RequestBody SearchData searchData , Pageable pageable){
-    String keyword = searchData.getKeyword();
-    String searchBy = searchData.getSearchBy();
-     System.out.println("-------------------------------->"+keyword);
-      System.out.println("-------------------------------->"+searchBy);
-    Page<Doctor> doctors = null ;
-    if("อีเมลล์".equals(searchBy)){
-        System.out.println("-------------------------------->mail");
-    doctors = doctorSearchService.searchByEmail(keyword, pageable);
+
+    @RequestMapping(value = "/searchdoctor", method = RequestMethod.POST)
+    private Page<Doctor> searchDoctor(@RequestBody SearchData searchData, Pageable pageable) {
+        String keyword = searchData.getKeyword();
+        String searchBy = searchData.getSearchBy();
+        System.out.println("-------------------------------->" + keyword);
+        System.out.println("-------------------------------->" + searchBy);
+        Page<Doctor> doctors = null;
+        if ("อีเมลล์".equals(searchBy)) {
+            System.out.println("-------------------------------->mail");
+            doctors = doctorSearchService.searchByEmail(keyword, pageable);
+        }
+        if ("ชื่อ".equals(searchBy)) {
+            System.out.println("-------------------------------->name");
+            doctors = doctorSearchService.searchByName(keyword, pageable);
+        }
+        if ("เบอร์โทร".equals(searchBy)) {
+            System.out.println("-------------------------------->mobile");
+            doctors = doctorSearchService.searchByMobile(keyword, pageable);
+        }
+        return doctors;
     }
-    if("ชื่อ".equals(searchBy)){
-         System.out.println("-------------------------------->name");
-    doctors = doctorSearchService.searchByName(keyword, pageable);
+
+    @RequestMapping(value = "/countdoctor", method = RequestMethod.GET)
+    private Long countDoctor() {
+        return doctorRepo.count();
     }
-    if("เบอร์โทร".equals(searchBy)){
-         System.out.println("-------------------------------->mobile");
-    doctors = doctorSearchService.searchByMobile(keyword, pageable);
+
+    @RequestMapping(value = "/countsearchdoctor")
+    private Long countSearchDoctor(@RequestBody SearchData searchData) {
+        String keyword = searchData.getKeyword();
+        String searchBy = searchData.getSearchBy();
+        Long count = null;
+        if ("อีเมลล์".equals(searchBy)) {
+            System.out.println("-------------------------------->mail");
+            count = doctorRepo.count(DoctorSpec.emailLike("%" + keyword + "%"));
+        }
+        if ("ชื่อ".equals(searchBy)) {
+            System.out.println("-------------------------------->name");
+            count = doctorRepo.count(DoctorSpec.nameLike("%" + keyword + "%"));
+        }
+        if ("เบอร์โทร".equals(searchBy)) {
+            System.out.println("-------------------------------->mobile");
+            count = doctorRepo.count(DoctorSpec.mobileLike("%" + keyword + "%"));
+        }
+        return count;
     }
-    return doctors;
+
+    @RequestMapping(value = "/deletedoctor" , method = RequestMethod.POST)
+    private void deleteDoctor(@RequestBody Doctor doctor) {
+        doctorRepo.delete(doctor);
     }
-    
-   
+
 }

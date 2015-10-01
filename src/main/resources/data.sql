@@ -16,6 +16,29 @@ INSERT INTO STAFF_PICTURE(id,content_image,name,type) values(null,'ffd8ffe112a14
 INSERT INTO EMPLOYEE(id,email,password,type,enable,name_TH) values(null,'admin@admin','admin','employee',1,'Admin');
 insert into staff (current_address , mobile , id) values ('xxxxxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx',1);
 Insert into EMPLOYEE_ROLES(EMPLOYEE_ID,	ROLES_ROLE)  values(1,'Insert Employee');
+
+INSERT INTO MEDICAL_HISTORY(disease) values('ปกติ');
+INSERT INTO MEDICAL_HISTORY(disease) values('ความดันโลหิตสูง');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคโลหิตจาง');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคเลือด');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคเบาหวาน');
+INSERT INTO MEDICAL_HISTORY(disease) values('ทานยาละลายลิ่มเลือด');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคหัวใจ , โรคลิ้นหัวใจรั่ว');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคไวรัสตับอักเสบ');
+INSERT INTO MEDICAL_HISTORY(disease) values('ประวัติเเพ้ยา');
+INSERT INTO MEDICAL_HISTORY(disease) values('โรคประจำตัวอื่นๆ');
+
+-- INSERT INTO MEDICAL_HISTORY values('Normal');
+-- INSERT INTO MEDICAL_HISTORY values('Hypertension');
+-- INSERT INTO MEDICAL_HISTORY values('Anemia');
+-- INSERT INTO MEDICAL_HISTORY values('Blood disease');
+-- INSERT INTO MEDICAL_HISTORY values('Diabetes');
+-- INSERT INTO MEDICAL_HISTORY values('');
+-- INSERT INTO MEDICAL_HISTORY values('');
+-- INSERT INTO MEDICAL_HISTORY values('');
+-- INSERT INTO MEDICAL_HISTORY values('');
+-- INSERT INTO MEDICAL_HISTORY values('');
+
 -- INSERT INTO STAFF(id,nameTh,currentAddress,mobile) values(null,'Admin','xxxxxxxxxxxxxxxxxxxxxxxxxxx','123456789');
 -- INSERT INTO DEPARTMENT(name) values('a');
 -- INSERT INTO DEPARTMENT(name) values('b');

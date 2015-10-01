@@ -1,7 +1,8 @@
 angular.module('doctor', []);
-angular.module('doctor').controller('doctorController', function ($scope, $http) {
+angular.module('doctor').controller('doctorController', function (employeeService, $scope, $http) {
     $scope.error = {};
-    $scope.doctor = {};
+    $scope.doctor = employeeService.doctorUpdate;
+    $scope.doctor.birthDate = new Date(employeeService.doctorUpdate.birthDate);
     $scope.password = "";
     $scope.image;
 
@@ -28,11 +29,22 @@ angular.module('doctor').controller('doctorController', function ($scope, $http)
                 $('body,html').animate({scrollTop: 0}, "600");
             });
         }
-        else{
+        else {
             console.log('error valid password!');
             $('body,html').animate({scrollTop: 0}, "600");
         }
     };
+
+    hasDoctorService();
+    function    hasDoctorService() {
+        if (!!employeeService.doctorUpdate.id) {
+            $('.update').addClass('active');
+            $('.clear-prefix').css('color', '#00bcd4')
+        }
+        else {
+            $('.update').removeClass('active');
+        }
+    }
 
 
     $scope.selectPicture = function () {
@@ -47,6 +59,28 @@ angular.module('doctor').controller('doctorController', function ($scope, $http)
                 });
     };
 
+    hasImage();
+    function hasImage (){
+     if (!!$scope.doctor.doctorPicture) {
+        if (!!$scope.doctor.doctorPicture.content) {
+            document.getElementById('employee-picture').src = "data:image/jpg;base64," + $scope.doctor.doctorPicture.content;
+        }
+        else {
+            NoImage();
+        }
+
+    }
+    else {
+        NoImage();
+    }
+    }
+
+    function NoImage() {
+        $http.get('/getnoimage').success(function (data) {
+            document.getElementById('employee-picture').src = "data:image/jpg;base64," + data.contentImage;
+        });
+    }
+    ;
 
     $scope.comparePassword = function () {
         if ((!!$scope.password) && (!!$scope.doctor.password)) {
@@ -72,6 +106,7 @@ angular.module('doctor').controller('doctorController', function ($scope, $http)
             return false;
         }
     }
+
 
     $scope.setBackgroundPrefixId = function () {
         var email = $scope.doctor.email;
@@ -130,14 +165,6 @@ angular.module('doctor').controller('doctorController', function ($scope, $http)
     $('#input-employee-picture').change(function () {
         readURL(this);
     });
-
-    NoImage();
-    function NoImage() {
-        $http.get('/getnoimage').success(function (data) {
-            document.getElementById('employee-picture').src = "data:image/jpg;base64," + data.contentImage;
-        });
-    }
-    ;
 
 
 });

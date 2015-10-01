@@ -13,19 +13,19 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">email</i>
-                    <input type="text" id="email" ng-model="doctor.email" ng-change="setBackgroundPrefixId()">
+                    <input type="text" id="email" ng-model="doctor.email" ng-change="setBackgroundPrefixId();error.violations.email.message = ''">
                     <label for="email" class="update">อีเมลล์<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">lock</i>
-                    <input type="password" id="password"  ng-model="password" ng-change="comparePassword()">
+                    <input type="password" id="password"  ng-model="password" ng-change="comparePassword();error.violations.password.message = ''">
                     <label for="password" class="update">พาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">lock</i>
-                    <input type="password" id="confirmpassword"  ng-model="doctor.password" ng-change="comparePassword()">
+                    <input type="password" id="confirmpassword"  ng-model="doctor.password" ng-change="comparePassword();error.violations.password.message = ''">
                     <label for="confirmpassword" class="update">ยืนยังพาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                     <i class="material-icons right-input-custom" id="confirm"></i>
                 </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_circle</i>
-                    <input type="text" id="nameth"  ng-model="doctor.nameTh">
+                    <input type="text" id="nameth"  ng-model="doctor.nameTh" ng-change="error.violations.nameTh.message = ''">
                     <label for="nameth" class="update">ชื่อ ภาษาไทย<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <div class="row">
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">stay_current_portrait</i>
-                    <input type="text" id="mobile" ng-model="doctor.mobile" ng-change="setBackgroundPrefixSexBlood();setBackgroundPrefixWorkstatus()">
+                    <input type="text" id="mobile" ng-model="doctor.mobile" ng-change="setBackgroundPrefixSexBlood();setBackgroundPrefixWorkstatus();error.violations.mobile.message = ''">
                     <label for="mobile" class="update">เบอร์โทรศัพท์มือถือ<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.mobile.message}}</span></label>
                 </div>
                  <div class="col m6 s12 input-field">
