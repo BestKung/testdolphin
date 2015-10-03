@@ -1,4 +1,6 @@
-var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department', 'employee-information','doctor','doctor-information','patient']);
+var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department'
+    , 'employee-information','doctor','doctor-information','patient'
+,'bill','detailHeal','listSelectHeal','priceAndExpireProduct','product','typeProduct','unitProduct','lot']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     $scope.login = {};
@@ -68,6 +70,32 @@ app.config(function ($routeProvider) {
     }).when('/patient',{
         controller:'patientController',
         templateUrl:'pages/patient.html'
+    
+    
+    }).when('/listselectheal',{
+        controller:'listSelectHealController',
+        templateUrl:'pages/listselectheal.html'
+    }).when('/detailheal',{
+        controller:'detailHealController',
+        templateUrl:'pages/detailheal.html'
+    }).when('/unitproduct',{
+        controller:'unitProductController',
+        templateUrl:'pages/unitproduct.html'
+    }).when('/typeproduct',{
+        controller:'typeProductController',
+        templateUrl:'pages/typeproduct.html'
+    }).when('/lot',{
+        controller:'lotController',
+        templateUrl:'pages/lot.html'
+    }).when('/product',{
+        controller:'productController',
+        templateUrl:'pages/product.html'
+    }).when('/price-and-expire-prooduct',{
+        controller:'priceAndExpireProductController',
+        templateUrl:'pages/price-and-expire-prooduct.html'
+    }).when('/bill',{
+        controller:'billController',
+        templateUrl:'pages/bill.html'
     }).otherwise({
         redirectTo: '/'
     });
