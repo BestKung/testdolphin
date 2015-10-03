@@ -17,27 +17,25 @@ INSERT INTO EMPLOYEE(id,email,password,type,enable,name_TH) values(null,'admin@a
 insert into staff (current_address , mobile , id) values ('xxxxxxxxxxxxxxxxxxxx','xxxxxxxxxxxxx',1);
 Insert into EMPLOYEE_ROLES(EMPLOYEE_ID,	ROLES_ROLE)  values(1,'Insert Employee');
 
-INSERT INTO MEDICAL_HISTORY(disease) values('ปกติ');
-INSERT INTO MEDICAL_HISTORY(disease) values('ความดันโลหิตสูง');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคโลหิตจาง');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคเลือด');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคเบาหวาน');
-INSERT INTO MEDICAL_HISTORY(disease) values('ทานยาละลายลิ่มเลือด');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคหัวใจ , โรคลิ้นหัวใจรั่ว');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคไวรัสตับอักเสบ');
-INSERT INTO MEDICAL_HISTORY(disease) values('ประวัติเเพ้ยา');
-INSERT INTO MEDICAL_HISTORY(disease) values('โรคประจำตัวอื่นๆ');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('ปกติ');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('ความดันโลหิตสูง');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคโลหิตจาง');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคเลือด');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคเบาหวาน');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('ทานยาละลายลิ่มเลือด');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคหัวใจ , โรคลิ้นหัวใจรั่ว');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคไวรัสตับอักเสบ');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('ประวัติเเพ้ยา');
+-- INSERT INTO MEDICAL_HISTORY(disease) values('โรคประจำตัวอื่นๆ');
 
--- INSERT INTO MEDICAL_HISTORY values('Normal');
--- INSERT INTO MEDICAL_HISTORY values('Hypertension');
--- INSERT INTO MEDICAL_HISTORY values('Anemia');
--- INSERT INTO MEDICAL_HISTORY values('Blood disease');
--- INSERT INTO MEDICAL_HISTORY values('Diabetes');
--- INSERT INTO MEDICAL_HISTORY values('');
--- INSERT INTO MEDICAL_HISTORY values('');
--- INSERT INTO MEDICAL_HISTORY values('');
--- INSERT INTO MEDICAL_HISTORY values('');
--- INSERT INTO MEDICAL_HISTORY values('');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Normal');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hypertension');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Anemia');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Blood disease');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Dissolves blood clots');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Heart disease');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hepatitis');
+INSERT INTO MEDICAL_HISTORY(DISEASE) values('Losers drug history');
 
 -- INSERT INTO STAFF(id,nameTh,currentAddress,mobile) values(null,'Admin','xxxxxxxxxxxxxxxxxxxxxxxxxxx','123456789');
 -- INSERT INTO DEPARTMENT(name) values('a');

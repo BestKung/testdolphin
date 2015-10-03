@@ -111,9 +111,9 @@
         <div class="card">
             <div class="card-content">
                 <span class="card-title" style="color: black"><h5>ประวัติทางการเเพทย์</h5></span>
-               <div class="row" id="authority">
+               <div class="row">
                 <div class="col m3 s12" ng-repeat="medi in medicalHistory.content">
-                    <input type="checkbox" checklist-model="employee.roles" checklist-value="auth" id="{{medi.disease}}">
+                    <input type="checkbox" checklist-model="patient.medicalHistory" checklist-value="medi" id="{{medi.disease}}">
                     <label for="{{medi.disease}}">{{medi.disease}}</label>
                 </div>
             </div>
@@ -190,7 +190,7 @@
     <div class="container">
         <div class="row">
             <div class="offset m12" style="margin-right: 10px;">
-                <button class="btn right waves-effect waves-light" ng-click="saveDoctor()" type="submit">Save<i class="mdi-content-send right"></i></button>
+                <button class="btn right waves-effect waves-light" ng-click="savePatient()" type="submit">Save<i class="mdi-content-send right"></i></button>
                 <input class="btn btn-gray waves-effect waves-light right" style="margin-right: 10px;"  type="submit" value="Clear" ng-click="clearData()">
             </div>
         </div>

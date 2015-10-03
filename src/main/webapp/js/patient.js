@@ -11,6 +11,12 @@ angular.module('patient').controller('patientController',function($scope , $http
         });
     }    
     
+    $scope.savePatient = function (){
+        $http.post('/savepatient',$scope.patient).success(function (data){
+            console.log('success');
+        });
+    };
+    
     
      $('.datepicker').pickadate({
         selectMonths: true,
