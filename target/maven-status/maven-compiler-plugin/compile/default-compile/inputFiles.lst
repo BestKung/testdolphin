@@ -3,7 +3,6 @@ C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniust
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Product.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\config\SecurityConfig.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\DepartmentController.java
-C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\repo\CustomerRepo.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\TypeProduct.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Staff.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\DoctorController.java
@@ -36,7 +35,6 @@ C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniust
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\StaffPicture.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\service\CustomUserService.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\spec\StaffSpec.java
-C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Customer.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\ValidationErrorMessage.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\repo\EmployeeRepo.java
 C:\Users\User\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Authority.java

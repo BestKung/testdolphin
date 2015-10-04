@@ -44,17 +44,17 @@ public class DetailHeal implements Serializable {
     private Date dateHeal;
 
     @ManyToOne
-    @JoinColumn(name = "CUSTOMER_ID")
-    private Customer customer;
+    @JoinColumn(name = "PATIENT_ID")
+    private Patient patient;
 
     @ManyToOne
     @JoinColumn(name = "DUCTOR_ID")
     private Doctor doctor;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "detailHeal",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "detailHeal", cascade = CascadeType.ALL)
     private List<OrderHeal> OrderHeal_DetailHeal;
-    
+
     public List<OrderHeal> getPayHeals_DetailHeal() {
         return OrderHeal_DetailHeal;
     }
@@ -63,12 +63,20 @@ public class DetailHeal implements Serializable {
         this.OrderHeal_DetailHeal = OrderHeal_DetailHeal;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public List<OrderHeal> getOrderHeal_DetailHeal() {
+        return OrderHeal_DetailHeal;
+    }
+
+    public void setOrderHeal_DetailHeal(List<OrderHeal> OrderHeal_DetailHeal) {
+        this.OrderHeal_DetailHeal = OrderHeal_DetailHeal;
     }
 
     public Doctor getDoctor() {

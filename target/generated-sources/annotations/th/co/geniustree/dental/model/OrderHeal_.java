@@ -8,10 +8,10 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(OrderHeal.class)
 public abstract class OrderHeal_ {
 
+	public static volatile SingularAttribute<OrderHeal, ListSelectHeal> listSelectHeal;
 	public static volatile SingularAttribute<OrderHeal, Integer> id;
 	public static volatile SingularAttribute<OrderHeal, DetailHeal> detailHeal;
 	public static volatile SingularAttribute<OrderHeal, Integer> value;
-	public static volatile SingularAttribute<OrderHeal, ListSelectHeal> ListSelectHeal;
 
 }
 
