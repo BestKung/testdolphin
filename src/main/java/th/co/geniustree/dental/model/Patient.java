@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,6 +33,8 @@ public class Patient implements Serializable {
     private String hn;
     private String pid;
     private String name;
+    
+    @Column(name="BIRTHDATE")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     private String sex;

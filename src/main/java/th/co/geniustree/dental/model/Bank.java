@@ -33,6 +33,17 @@ public class Bank implements Serializable {
     @Column(name = "ACCOUNT_NUMBER")
     private String accountNumber;
 
+    @Column(name = "ACCOUNT_TYPE")
+    private String accountType;
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
     public Integer getId() {
         return id;
     }

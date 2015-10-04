@@ -38,7 +38,7 @@ public class DetailHeal implements Serializable {
 
     @Column(name = "DETAIL")
     private String detail;
-
+ 
     @Column(name = "DATEHEAL")
     @Temporal(TemporalType.DATE)
     private Date dateHeal;

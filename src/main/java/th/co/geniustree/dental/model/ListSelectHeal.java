@@ -34,7 +34,7 @@ public class ListSelectHeal implements Serializable {
 
     @Column(name = "PRICE")
     private Double price;
-
+  
     @JsonIgnore
     @OneToMany(mappedBy = "listSelectHeal")
     private List<OrderHeal> OrderHeal_ListSelectHeal;

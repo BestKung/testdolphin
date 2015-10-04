@@ -16,3 +16,4 @@ import th.co.geniustree.dental.model.ListSelectHeal;
 public interface ListSelectHealRepo extends JpaRepository<ListSelectHeal, Integer>{
     
 }
+ 

@@ -28,14 +28,14 @@ Insert into EMPLOYEE_ROLES(EMPLOYEE_ID,	ROLES_ROLE)  values(1,'Insert Employee')
 -- INSERT INTO MEDICAL_HISTORY(disease) values('ประวัติเเพ้ยา');
 -- INSERT INTO MEDICAL_HISTORY(disease) values('โรคประจำตัวอื่นๆ');
 
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Normal');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hypertension');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Anemia');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Blood disease');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Dissolves blood clots');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Heart disease');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hepatitis');
-INSERT INTO MEDICAL_HISTORY(DISEASE) values('Losers drug history');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Normal');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hypertension');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Anemia');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Blood disease');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Dissolves blood clots');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Heart disease');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Hepatitis');
+-- INSERT INTO MEDICAL_HISTORY(DISEASE) values('Losers drug history');
 
 -- INSERT INTO STAFF(id,nameTh,currentAddress,mobile) values(null,'Admin','xxxxxxxxxxxxxxxxxxxxxxxxxxx','123456789');
 -- INSERT INTO DEPARTMENT(name) values('a');
@@ -60,3 +60,16 @@ INSERT INTO MEDICAL_HISTORY(DISEASE) values('Losers drug history');
 -- 
 -- INSERT INTO EMPLOYEE(email,password,CURRENT_ADDRESS,name_th,mobile,enable) values('best@best','1234','xxxxxxxxxxxxxxxx',
 -- 'best','0987654321',1);
+
+
+
+
+
+-- test ของ โอนะ   
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ปกติ');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ความดันโลหิตสูง');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('โรคโลหิตจาง');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ละลายลิ่มเลือด');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('โรคหัวใจ');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ไวรัสตับอักเสบ');
+INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ประวัติแพ้ยาเสพติด');

@@ -7,20 +7,26 @@ package th.co.geniustree.dental.model;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Best
  */
 @Entity
-public class MedicalHistory implements Serializable{
+@Table(name = "MEDICALHISTORY")
+public class MedicalHistory implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name = "DISEASE")
     private String disease;
 
     public Integer getId() {
@@ -60,8 +66,5 @@ public class MedicalHistory implements Serializable{
         }
         return true;
     }
-    
-    
 
-   
 }

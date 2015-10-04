@@ -8,7 +8,7 @@ package th.co.geniustree.dental.repo;
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import th.co.geniustree.dental.model.DetailHeal;
-
+ 
 /**
  *
  * @author User

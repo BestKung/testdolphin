@@ -16,3 +16,4 @@ import th.co.geniustree.dental.model.OrderHeal;
 public interface OrderHealRepo extends JpaRepository<OrderHeal, Integer>{
     
 }
+ 
