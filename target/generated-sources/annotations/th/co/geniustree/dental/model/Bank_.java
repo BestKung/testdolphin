@@ -9,6 +9,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Bank_ {
 
 	public static volatile SingularAttribute<Bank, String> accountName;
+	public static volatile SingularAttribute<Bank, String> accountType;
 	public static volatile SingularAttribute<Bank, String> bankName;
 	public static volatile SingularAttribute<Bank, Integer> id;
 	public static volatile SingularAttribute<Bank, String> accountNumber;

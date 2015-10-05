@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -24,17 +25,27 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Doctor extends Employee implements Serializable{
   
     private String pid;
+    @Column(name = "PERMITNO")
     private String permitNo;
+    @Column(name = "PERMITTYPE")
     private String permitType;
+    @Column(name = "NAMEENG")
     private String nameEng;
+    @Column(name = "BIRTHDATE")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+    @Column(name = "SEX")
     private String sex;
+    @Column(name = "BLOOD")
     private String blood;
+    @Column(name = "ADDRESS")
     private String address;
+    @Column(name = "TEL")
     private String tel;
+    @Column(name = "MOBILE")
     @NotBlank(message = "เบอร์โทรห้ามว่าง")
     private String mobile;
+    @Column(name = "WORKSTATUS")
     private String workStatus;
     
     @OneToOne(cascade = CascadeType.ALL)

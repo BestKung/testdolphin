@@ -44,7 +44,7 @@ public class OrderHeal implements Serializable {
     private DetailHeal detailHeal;
 
     @ManyToOne
-    @JoinColumn(name = "LISTPAYHEAL_ID")
+    @JoinColumn(name = "LISTSELECTHEAL_ID")
     private ListSelectHeal listSelectHeal;
  
     public DetailHeal getDetailHeal() {
