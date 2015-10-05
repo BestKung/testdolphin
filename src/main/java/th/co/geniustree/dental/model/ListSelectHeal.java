@@ -34,18 +34,10 @@ public class ListSelectHeal implements Serializable {
 
     @Column(name = "PRICE")
     private Double price;
-  
+
     @JsonIgnore
     @OneToMany(mappedBy = "listSelectHeal")
     private List<OrderHeal> OrderHeal_ListSelectHeal;
-
-    public List<OrderHeal> getPayHeals_ListPayHeal() {
-        return OrderHeal_ListSelectHeal;
-    }
-
-    public void setPayHeals_ListPayHeal(List<OrderHeal> OrderHeal_ListPayHeal) {
-        this.OrderHeal_ListSelectHeal = OrderHeal_ListPayHeal;
-    }
 
     public Integer getId() {
         return id;
@@ -71,10 +63,18 @@ public class ListSelectHeal implements Serializable {
         this.price = price;
     }
 
+    public List<OrderHeal> getOrderHeal_ListSelectHeal() {
+        return OrderHeal_ListSelectHeal;
+    }
+
+    public void setOrderHeal_ListSelectHeal(List<OrderHeal> OrderHeal_ListSelectHeal) {
+        this.OrderHeal_ListSelectHeal = OrderHeal_ListSelectHeal;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 71 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -92,7 +92,5 @@ public class ListSelectHeal implements Serializable {
         }
         return true;
     }
-
-
 
 }

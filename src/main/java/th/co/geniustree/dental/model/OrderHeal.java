@@ -46,21 +46,21 @@ public class OrderHeal implements Serializable {
     @ManyToOne
     @JoinColumn(name = "LISTSELECTHEAL_ID")
     private ListSelectHeal listSelectHeal;
- 
+
+    public ListSelectHeal getListSelectHeal() {
+        return listSelectHeal;
+    }
+
+    public void setListSelectHeal(ListSelectHeal listSelectHeal) {
+        this.listSelectHeal = listSelectHeal;
+    }
+
     public DetailHeal getDetailHeal() {
         return detailHeal;
     }
 
     public void setDetailHeal(DetailHeal detailHeal) {
         this.detailHeal = detailHeal;
-    }
-
-    public ListSelectHeal getListPayHeal() {
-        return listSelectHeal;
-    }
-
-    public void setListPayHeal(ListSelectHeal listSelectHeal) {
-        this.listSelectHeal = listSelectHeal;
     }
 
     public Integer getId() {
@@ -100,7 +100,5 @@ public class OrderHeal implements Serializable {
         }
         return true;
     }
-
-    
 
 }

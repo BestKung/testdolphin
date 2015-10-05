@@ -36,6 +36,7 @@ th\co\geniustree\dental\model\Patient_.class
 th\co\geniustree\dental\model\TypeProduct_.class
 th\co\geniustree\dental\model\ListSelectHeal_.class
 th\co\geniustree\dental\model\StaffPicture.class
+th\co\geniustree\dental\controller\ListSelectHealController.class
 th\co\geniustree\dental\model\OrderBill.class
 th\co\geniustree\dental\spec\StaffSpec$2.class
 th\co\geniustree\dental\repo\StaffPictureRepo.class

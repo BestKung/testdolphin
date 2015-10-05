@@ -72,7 +72,7 @@ INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ไวรัสตับอักเ
 INSERT INTO MEDICALHISTORY(DISEASE) VALUES('ประวัติแพ้ยาเสพติด');
 
 INSERT INTO PATIENT(HN,PID,NAME,BIRTHDATE,SEX,BLOOD,NATION,RACE,ADDRESS,TEL,MOBILE,JOB,EMAIL)
-VALUES('0001','1730200213549','นายจสินทร์ แสงทรวง','1993-07-28','M','B','ไทย','ไทย','155/8 ม.1 ต.บางรัก','034567543','0964747468','โปรแกรมเมอร์','meta.vin@hotmail.com');
+VALUES('0001','1730200213549','นายกิตติพร คำไล้','1993-07-28','M','B','ไทย','ไทย','155/8 ม.1 ต.บางรัก','034567543','0964747468','โปรแกรมเมอร์','meta.vin@hotmail.com');
 INSERT INTO PATIENT(HN,PID,NAME,BIRTHDATE,SEX,BLOOD,NATION,RACE,ADDRESS,TEL,MOBILE,JOB,EMAIL)
 VALUES('0002','1355737378334','นายยินดี สบายดี','1991-07-28','M','A','ไทย','ไทย','155/8 ม.1 ต.บางรัก','035432123','09456453212','ครู','gintan@hotmail.com');
 INSERT INTO PATIENT(HN,PID,NAME,BIRTHDATE,SEX,BLOOD,NATION,RACE,ADDRESS,TEL,MOBILE,JOB,EMAIL)
@@ -98,7 +98,7 @@ INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('124
 INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('2952452156','MRS.Wiwi natade','ธนาคารกสิกรไทย','ออมทรัพย์');
 INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('3245352134','MRS.Bensin natade','ธนาคารกสิกรไทย','ออมทรัพย์');
 INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('3521234252','MRS.Samshie Jaypanmay','ธนาคารกสิกรไทย','ออมทรัพย์');
-INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('2314523216','MRS.Samshie Jaypanmay','ธนาคารกสิกรไทย','ออมทรัพย์');
+INSERT INTO BANK(ACCOUNT_NUMBER,ACCOUNT_NAME,BANK_NAME,ACCOUNT_TYPE) VALUES('2314523216','MRS.Jasin Saengsuang','ธนาคารกสิกรไทย','ออมทรัพย์');
 
 INSERT INTO CONTACT(NAME,TEL,RELATION) VALUES('นายสมจิต จงจอหอ','0981235651','พ่อเลี้ยง');
 INSERT INTO CONTACT(NAME,TEL,RELATION) VALUES('นายสมปรี ปองดอง','0822314213','พ่อเลี้ยง');
@@ -120,9 +120,8 @@ VALUES('Banana@hotmail.com','1234','นางสาวเบนซิน น่�
 INSERT INTO EMPLOYEE(EMAIL,PASSWORD,NAME_TH,TYPE,ENABLE) 
 VALUES('Oran06@hotmail.com','1234','นายสมชัย ใจไปไหม','employee',1);
 INSERT INTO EMPLOYEE(EMAIL,PASSWORD,NAME_TH,TYPE,ENABLE) 
-VALUES('UUOOII@hotmail.com','1234','นายสมหมาย ใจดำ','employee',1);
+VALUES('1','1','นายจิสนทร์ แสงทรวง','employee',1);
 
---  MRS.Samshie Jaypanmay MRS.Sommaye Jaydo
 
 INSERT INTO STAFF (PERSONAL_ID,NAME_ENG,BIRTH_DATE,SEX,BLOOD,MARRY_STATUS,NATION,RACE,SOLDER_STATUS,ADDRESS_OF_PID
 ,CURRENT_ADDRESS,TEL,MOBILE,START_WORK,WORK_STATUS,DEPARTMENT_ID,CONTACT_ID,BANK_ID,id) 
@@ -136,21 +135,21 @@ VALUES ('1340284231245','MRS.Mama natade','1995-12-21','ชาย','A','โส�
 
 INSERT INTO STAFF (PERSONAL_ID,NAME_ENG,BIRTH_DATE,SEX,BLOOD,MARRY_STATUS,NATION,RACE,SOLDER_STATUS,ADDRESS_OF_PID
 ,CURRENT_ADDRESS,TEL,MOBILE,START_WORK,WORK_STATUS,DEPARTMENT_ID,CONTACT_ID,BANK_ID,id) 
-VALUES ('1453634578332','MRS.Bensin natade','1995-12-21','ชาย','O','โสด','ไทย','ไทย','ผ่านเกญฑ์แล้ว','177/1 ม.2'
+VALUES ('1453634578332','MRS.Wiwi natade','1995-12-21','ชาย','O','โสด','ไทย','ไทย','ผ่านเกญฑ์แล้ว','177/1 ม.2'
 ,'199/3 ม.4','035909987','089422123','2012-12-04','ทำงาน',3,3,3,3);
 
 INSERT INTO STAFF (PERSONAL_ID,NAME_ENG,BIRTH_DATE,SEX,BLOOD,MARRY_STATUS,NATION,RACE,SOLDER_STATUS,ADDRESS_OF_PID
 ,CURRENT_ADDRESS,TEL,MOBILE,START_WORK,WORK_STATUS,DEPARTMENT_ID,CONTACT_ID,BANK_ID,id) 
-VALUES ('1823242312536','MRS.Geamma natade','1995-12-21','ชาย','AB','โสด','ไทย','ไทย','ผ่านเกญฑ์แล้ว','100/1 ม.2'
+VALUES ('1823242312536','MRS.Bensin natade','1995-12-21','ชาย','AB','โสด','ไทย','ไทย','ผ่านเกญฑ์แล้ว','100/1 ม.2'
 ,'121/3 ม.4','035909987','0824212345','2012-12-04','ทำงาน',4,4,4,4);
 
 INSERT INTO DOCTOR(PID,PERMITNO,PERMITTYPE,NAMEENG,BIRTHDATE,SEX,BLOOD,ADDRESS,TEL,MOBILE,WORKSTATUS,id)
 VALUES('1242521456234','เลขcer','ใบcer','MRS.Samshie Jaypanmay','1995-12-21','ชาย','B','144/3 ม.6','032123421'
 ,'0842321232','ทำงาน',5);
-INSERT INTO DOCTOR(PID,PERMITNO,PERMITTYPE,NAMEENG,BIRTHDATE,SEX,BLOOD,ADDRESS,TEL,MOBILE,WORKSTATUS,id)
-VALUES('1242521456234','เลขcer','ใบcer','MRS.Samshie Jaypanmay','1995-12-21','ชาย','B','144/3 ม.6','032123421'
-,'0842321232','ทำงาน',6);
 
+INSERT INTO DOCTOR(PID,PERMITNO,PERMITTYPE,NAMEENG,BIRTHDATE,SEX,BLOOD,ADDRESS,TEL,MOBILE,WORKSTATUS,id)
+VALUES('1242521456234','เลขcer','ใบcer','MRS.Jasin Saengsuang','1995-12-21','ชาย','B','144/3 ม.6','032123421'
+,'0842321232','ทำงาน',6);
 
 
 INSERT INTO LISTSELECTHEAL(NAME,PRICE) VALUES('อุดฟัน',400);
