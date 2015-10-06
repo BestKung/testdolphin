@@ -31,7 +31,7 @@ public class PatientPicture implements Serializable{
     private String nameAfter;
     private String mimeTypeAfter;
     
-    private byte[] xrayFilm;
+    private byte[] contentXrayFilm;
     private String nameXrayFilm;
     private String mimeTypeXrayFilm;
 
@@ -115,12 +115,12 @@ public class PatientPicture implements Serializable{
         this.mimeTypeAfter = mimeTypeAfter;
     }
 
-    public byte[] getXrayFilm() {
-        return xrayFilm;
+    public byte[] getContentXrayFilm() {
+        return contentXrayFilm;
     }
 
-    public void setXrayFilm(byte[] xrayFilm) {
-        this.xrayFilm = xrayFilm;
+    public void setContentXrayFilm(byte[] contentXrayFilm) {
+        this.contentXrayFilm = contentXrayFilm;
     }
 
     public String getNameXrayFilm() {
