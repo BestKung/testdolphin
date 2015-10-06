@@ -23,6 +23,28 @@ angular.module('patient').controller('patientController', function ($scope, $htt
         });
     };
 
+    $scope.setBackgroundPrefixId = function () {
+        var hn = $scope.patient.hn;
+        if (hn.length != 0) {
+            $('#id').css('color', '#00bcd4');
+        }
+        else if (hn.length == 0) {
+            $('#id').css('color', 'black');
+        }
+    };
+    
+     $scope.setBackgroundPrefixSex = function () {
+        var sex = $scope.patient.sex;
+        if (sex.length != 0) {
+            $('#sex').css('color', '#00bcd4');
+             $('#blood').css('color', '#00bcd4');
+        }
+        else if (sex.length == 0) {
+              $('#sex').css('color', 'black');
+            $('#blood').css('color', 'black');
+        }
+    };
+
 
     $('.datepicker').pickadate({
         selectMonths: true,

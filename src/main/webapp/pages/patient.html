@@ -14,7 +14,7 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_balance</i>
-                    <input type="text" id="hn" ng-model="patient.hn">
+                    <input type="text" id="hn" ng-model="patient.hn" ng-change="setBackgroundPrefixId()">
                     <label for="hn" class="update">H/N</label>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">person</i>
-                    <input type="text" id="name" ng-model="patient.name">
+                    <input type="text" id="name" ng-model="patient.name" ng-change="setBackgroundPrefixSex()">
                     <label for="name" class="update">ชื่อ/สกุล</label>
                 </div>
             </div>
