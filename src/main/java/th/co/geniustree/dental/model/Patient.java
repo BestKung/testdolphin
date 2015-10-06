@@ -47,11 +47,20 @@ public class Patient implements Serializable {
     private String job;
     private String email;
     
-    @OneToOne(cascade = CascadeType.ALL)
-    private PatientPicture patientPicture;
-    
     @ManyToMany
     private List<MedicalHistory> medicalHistory;
+
+    @OneToOne(cascade = CascadeType.ALL)
+   private PatientPictureXray patientPictureXray;
+   
+    @OneToOne(cascade = CascadeType.ALL)
+    private PatientPictureBefore patientPictureBefore;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private PatientPictureCurrent patientPictureCurrent;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private PatientPictureAfter patientPictureAfter;
 
     public Integer getId() {
         return id;
@@ -165,14 +174,6 @@ public class Patient implements Serializable {
         this.email = email;
     }
 
-    public PatientPicture getPatientPicture() {
-        return patientPicture;
-    }
-
-    public void setPatientPicture(PatientPicture patientPicture) {
-        this.patientPicture = patientPicture;
-    }
-
     public List<MedicalHistory> getMedicalHistory() {
         return medicalHistory;
     }
@@ -181,10 +182,42 @@ public class Patient implements Serializable {
         this.medicalHistory = medicalHistory;
     }
 
+    public PatientPictureXray getPatientPictureXray() {
+        return patientPictureXray;
+    }
+
+    public void setPatientPictureXray(PatientPictureXray patientPictureXray) {
+        this.patientPictureXray = patientPictureXray;
+    }
+
+    public PatientPictureBefore getPatientPictureBefore() {
+        return patientPictureBefore;
+    }
+
+    public void setPatientPictureBefore(PatientPictureBefore patientPictureBefore) {
+        this.patientPictureBefore = patientPictureBefore;
+    }
+
+    public PatientPictureCurrent getPatientPictureCurrent() {
+        return patientPictureCurrent;
+    }
+
+    public void setPatientPictureCurrent(PatientPictureCurrent patientPictureCurrent) {
+        this.patientPictureCurrent = patientPictureCurrent;
+    }
+
+    public PatientPictureAfter getPatientPictureAfter() {
+        return patientPictureAfter;
+    }
+
+    public void setPatientPictureAfter(PatientPictureAfter patientPictureAfter) {
+        this.patientPictureAfter = patientPictureAfter;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 43 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -204,4 +237,6 @@ public class Patient implements Serializable {
     }
     
     
+    
+   
 }

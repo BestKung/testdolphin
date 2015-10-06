@@ -11,17 +11,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
  * @author Best
  */
 @Entity
-public class PatientPictureBefore implements Serializable{
-     @Id 
+public class PatientPictureBefore implements Serializable {
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+    @Lob
     private byte[] contentBefore;
     private String nameBefore;
     private String mimeTypeBefore;
@@ -79,6 +81,5 @@ public class PatientPictureBefore implements Serializable{
         }
         return true;
     }
-    
-    
+
 }

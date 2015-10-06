@@ -13,7 +13,7 @@ public abstract class DetailHeal_ {
 	public static volatile SingularAttribute<DetailHeal, Doctor> doctor;
 	public static volatile SingularAttribute<DetailHeal, Date> dateHeal;
 	public static volatile SingularAttribute<DetailHeal, Patient> patient;
-	public static volatile ListAttribute<DetailHeal, OrderHeal> OrderHeal_DetailHeal;
+	public static volatile ListAttribute<DetailHeal, OrderHeal> orderHeal_DetailHeal;
 	public static volatile SingularAttribute<DetailHeal, Integer> id;
 	public static volatile SingularAttribute<DetailHeal, String> detail;
 

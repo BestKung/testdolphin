@@ -17,6 +17,10 @@ import org.springframework.web.multipart.MultipartRequest;
 import th.co.geniustree.dental.model.MedicalHistory;
 import th.co.geniustree.dental.model.Patient;
 import th.co.geniustree.dental.model.PatientPicture;
+import th.co.geniustree.dental.model.PatientPictureAfter;
+import th.co.geniustree.dental.model.PatientPictureBefore;
+import th.co.geniustree.dental.model.PatientPictureCurrent;
+import th.co.geniustree.dental.model.PatientPictureXray;
 import th.co.geniustree.dental.repo.MedicalHistoryRepo;
 import th.co.geniustree.dental.repo.PatientRepo;
 
@@ -44,9 +48,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/savepatientpicturexray", method = RequestMethod.POST)
-    private PatientPicture savePatientPictureXray(MultipartRequest multipartRequest) throws IOException {
-        PatientPicture picture = new PatientPicture();
-        System.out.println("----------------------------------------------->xray");
+    private PatientPictureXray savePatientPictureXray(MultipartRequest multipartRequest) throws IOException {
+        PatientPictureXray picture = new PatientPictureXray();
         picture.setNameXrayFilm(multipartRequest.getFile("xray").getOriginalFilename());
         picture.setContentXrayFilm(multipartRequest.getFile("xray").getBytes());
         picture.setMimeTypeXrayFilm(multipartRequest.getFile("xray").getName());
@@ -55,8 +58,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/savepatientpicturebefore", method = RequestMethod.POST)
-    private PatientPicture savePatientPictureBefore(MultipartRequest multipartRequest) throws IOException {
-        PatientPicture picture = new PatientPicture();
+    private PatientPictureBefore savePatientPictureBefore(MultipartRequest multipartRequest) throws IOException {
+        PatientPictureBefore picture = new PatientPictureBefore();
         picture.setNameBefore(multipartRequest.getFile("before").getOriginalFilename());
         picture.setContentBefore(multipartRequest.getFile("before").getBytes());
         picture.setMimeTypeBefore(multipartRequest.getFile("before").getName());
@@ -65,8 +68,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/savepatientpicturecurrent", method = RequestMethod.POST)
-    private PatientPicture savePatientPictureCurrent(MultipartRequest multipartRequest) throws IOException {
-        PatientPicture picture = new PatientPicture();
+    private PatientPictureCurrent savePatientPictureCurrent(MultipartRequest multipartRequest) throws IOException {
+        PatientPictureCurrent picture = new PatientPictureCurrent();
         picture.setNameCurrent(multipartRequest.getFile("current").getOriginalFilename());
         picture.setContentCurrent(multipartRequest.getFile("current").getBytes());
         picture.setMimeTypeCurrent(multipartRequest.getFile("current").getName());
@@ -75,8 +78,8 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/savepatientpictureafter", method = RequestMethod.POST)
-    private PatientPicture savePatientPictureAfter(MultipartRequest multipartRequest) throws IOException {
-        PatientPicture picture = new PatientPicture();
+    private PatientPictureAfter savePatientPictureAfter(MultipartRequest multipartRequest) throws IOException {
+        PatientPictureAfter picture = new PatientPictureAfter();
         picture.setNameAfter(multipartRequest.getFile("after").getOriginalFilename());
         picture.setContentAfter(multipartRequest.getFile("after").getBytes());
         picture.setMimeTypeAfter(multipartRequest.getFile("after").getName());

@@ -8,7 +8,10 @@ package th.co.geniustree.dental.model;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -17,8 +20,9 @@ import javax.persistence.Id;
 @Entity
 public class PatientPictureCurrent implements Serializable{
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+    @Lob
     private byte[] contentCurrent;
     private String nameCurrent;
     private String mimeTypeCurrent;

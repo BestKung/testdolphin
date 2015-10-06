@@ -12,8 +12,8 @@ public abstract class PatientPicture_ {
 	public static volatile SingularAttribute<PatientPicture, byte[]> contentAfter;
 	public static volatile SingularAttribute<PatientPicture, byte[]> contentBefore;
 	public static volatile SingularAttribute<PatientPicture, String> nameAfter;
-	public static volatile SingularAttribute<PatientPicture, byte[]> xrayFilm;
 	public static volatile SingularAttribute<PatientPicture, String> mimeTypeAfter;
+	public static volatile SingularAttribute<PatientPicture, byte[]> contentXrayFilm;
 	public static volatile SingularAttribute<PatientPicture, byte[]> contentCurrent;
 	public static volatile SingularAttribute<PatientPicture, String> nameCurrent;
 	public static volatile SingularAttribute<PatientPicture, String> mimeTypeXrayFilm;
