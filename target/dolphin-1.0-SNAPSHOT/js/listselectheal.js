@@ -1,6 +1,7 @@
 angular.module('listSelectHeal', []);
 angular.module('listSelectHeal').controller('listSelectHealController', function ($scope, $http) {
 
+    $scope.listSelectHeal = {};
     $scope.listSelectHeals = {};
 
     loadListSelectHeal();
@@ -10,6 +11,40 @@ angular.module('listSelectHeal').controller('listSelectHealController', function
         }).error(function (data) {
         });
     }
+    $scope.saveListSelectHeal = function () {
+        $http.post('/savetypeproduct', $scope.listSelectHeal).success(function (data) {
+            loadListSelectHeal();
+            $scope.listSelectHeal = {};
+            Materialize.toast('saveข้อมูลเรียบร้อย', 3000, 'rounded');
+        }).error(function (data) {
+        });
+    };
 
+    $scope.clearData = function () {
+        $scope.listSelectHeal = {};
+        $('#namedepartment').removeClass('active'); // ให้ namedepartment เด้งลง
+    };
+
+    $scope.actionDelete = function (lsh) {
+        $scope.listSelectHeal = lsh;
+        $('#modal-delete').openModal({dismissible: false});
+    };
+
+    $scope.deleteListSelectHeal = function () {
+        $http.post('/deletetypeproduct', $scope.listSelectHeal).success(function (data) {
+            loadListSelectHeal();
+            $scope.listSelectHeal = {};
+        }).error(function (data) {
+
+        });
+    };
+
+    $scope.updateListSelectHeal = function (lsh) {
+        $scope.listSelectHeal.id = lsh.id;
+        $scope.listSelectHeal.name = lsh.name;
+        $scope.listSelectHeal.price = lshprice;
+        $('#namedepartment').addClass('active');
+    };
 
 });
+

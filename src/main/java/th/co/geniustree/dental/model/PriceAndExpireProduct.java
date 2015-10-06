@@ -54,48 +54,8 @@ public class PriceAndExpireProduct implements Serializable {
     private Product product;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "PriceAndExpireProduct")
-    private List<OrderBill> orderBills;
-
-    public List<OrderBill> getOrderBills() {
-        return orderBills;
-    }
-
-    public void setOrderBills(List<OrderBill> orderBills) {
-        this.orderBills = orderBills;
-    }
-
-    public Double getPriceBuy() {
-        return priceBuy;
-    }
-
-    public void setPriceBuy(Double priceBuy) {
-        this.priceBuy = priceBuy;
-    }
-
-    public Double getPriceSell() {
-        return priceSell;
-    }
-
-    public void setPriceSell(Double priceSell) {
-        this.priceSell = priceSell;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Lot getLot() {
-        return lot;
-    }
-
-    public void setLot(Lot lot) {
-        this.lot = lot;
-    }
+    @OneToMany(mappedBy = "priceAndExpireProduct")
+    private List<OrderBill> orderBills_priceAndExpireProduct;
 
     public Integer getId() {
         return id;
@@ -121,10 +81,50 @@ public class PriceAndExpireProduct implements Serializable {
         this.value = value;
     }
 
+    public Double getPriceBuy() {
+        return priceBuy;
+    }
+
+    public void setPriceBuy(Double priceBuy) {
+        this.priceBuy = priceBuy;
+    }
+
+    public Double getPriceSell() {
+        return priceSell;
+    }
+
+    public void setPriceSell(Double priceSell) {
+        this.priceSell = priceSell;
+    }
+
+    public Lot getLot() {
+        return lot;
+    }
+
+    public void setLot(Lot lot) {
+        this.lot = lot;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public List<OrderBill> getOrderBills_priceAndExpireProduct() {
+        return orderBills_priceAndExpireProduct;
+    }
+
+    public void setOrderBills_priceAndExpireProduct(List<OrderBill> orderBills_priceAndExpireProduct) {
+        this.orderBills_priceAndExpireProduct = orderBills_priceAndExpireProduct;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

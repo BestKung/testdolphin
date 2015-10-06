@@ -30,6 +30,7 @@ C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\gen
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\ListSelectHeal.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\PatientController.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\repo\StaffRepo.java
+C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\LotController.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Doctor.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\ValidationExceptionHandler.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\config\WebConfig.java
@@ -47,6 +48,7 @@ C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\gen
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Lot.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\model\Patient.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\repo\DetailHealRepo.java
+C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\TypeProductController.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\controller\ListSelectHealController.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\repo\DoctorRepo.java
 C:\Users\Jasin007\Documents\NetBeansProjects\testdolphin\src\main\java\th\co\geniustree\dental\service\StaffSearchService.java

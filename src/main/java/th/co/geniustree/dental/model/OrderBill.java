@@ -38,28 +38,12 @@ public class OrderBill implements Serializable {
     private Bill bill;
 
     @ManyToOne
-    @JoinColumn(name = "PriceAndExpireProduct_ID")
-    private PriceAndExpireProduct PriceAndExpireProduct;
+    @JoinColumn(name = "PRICEANDEXPIREPRODUCT_ID")
+    private PriceAndExpireProduct priceAndExpireProduct;
 
     @OneToOne
     @JoinColumn(name = "DETAILHEAL_ID")
     private DetailHeal detailHeal;
-
-    public Bill getBill() {
-        return bill;
-    }
-
-    public void setBill(Bill bill) {
-        this.bill = bill;
-    }
-
-    public PriceAndExpireProduct getPriceAndExpireProduct() {
-        return PriceAndExpireProduct;
-    }
-
-    public void setPriceAndExpireProduct(PriceAndExpireProduct PriceAndExpireProduct) {
-        this.PriceAndExpireProduct = PriceAndExpireProduct;
-    }
 
     public Integer getId() {
         return id;
@@ -77,6 +61,22 @@ public class OrderBill implements Serializable {
         this.value = value;
     }
 
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public PriceAndExpireProduct getPriceAndExpireProduct() {
+        return priceAndExpireProduct;
+    }
+
+    public void setPriceAndExpireProduct(PriceAndExpireProduct priceAndExpireProduct) {
+        this.priceAndExpireProduct = priceAndExpireProduct;
+    }
+
     public DetailHeal getDetailHeal() {
         return detailHeal;
     }
@@ -87,8 +87,8 @@ public class OrderBill implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -106,5 +106,7 @@ public class OrderBill implements Serializable {
         }
         return true;
     }
+
+   
 
 }

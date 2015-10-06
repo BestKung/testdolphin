@@ -38,7 +38,7 @@ public class DetailHeal implements Serializable {
 
     @Column(name = "DETAIL")
     private String detail;
- 
+
     @Column(name = "DATEHEAL")
     @Temporal(TemporalType.DATE)
     private Date dateHeal;
@@ -53,15 +53,7 @@ public class DetailHeal implements Serializable {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "detailHeal", cascade = CascadeType.ALL)
-    private List<OrderHeal> OrderHeal_DetailHeal;
-
-    public List<OrderHeal> getPayHeals_DetailHeal() {
-        return OrderHeal_DetailHeal;
-    }
-
-    public void setPayHeals_DetailHeal(List<OrderHeal> OrderHeal_DetailHeal) {
-        this.OrderHeal_DetailHeal = OrderHeal_DetailHeal;
-    }
+    private List<OrderHeal> orderHeal_DetailHeal;
 
     public Patient getPatient() {
         return patient;
@@ -72,11 +64,11 @@ public class DetailHeal implements Serializable {
     }
 
     public List<OrderHeal> getOrderHeal_DetailHeal() {
-        return OrderHeal_DetailHeal;
+        return orderHeal_DetailHeal;
     }
 
-    public void setOrderHeal_DetailHeal(List<OrderHeal> OrderHeal_DetailHeal) {
-        this.OrderHeal_DetailHeal = OrderHeal_DetailHeal;
+    public void setOrderHeal_DetailHeal(List<OrderHeal> orderHeal_DetailHeal) {
+        this.orderHeal_DetailHeal = orderHeal_DetailHeal;
     }
 
     public Doctor getDoctor() {
