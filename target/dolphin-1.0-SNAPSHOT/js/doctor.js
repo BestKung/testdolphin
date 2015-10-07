@@ -36,7 +36,7 @@ angular.module('doctor').controller('doctorController', function (employeeServic
     };
 
     hasDoctorService();
-    function    hasDoctorService() {
+    function hasDoctorService() {
         if (!!employeeService.doctorUpdate.id) {
             $('.update').addClass('active');
             $('.clear-prefix').css('color', '#00bcd4')

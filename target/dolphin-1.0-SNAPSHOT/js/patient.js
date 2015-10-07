@@ -8,6 +8,7 @@ angular.module('patient').controller('patientController', function ($scope, $htt
     $scope.patientPictureCurrent;
     $scope.patientPictureAfter;
     $scope.patientPictureXrayFilm;
+    var imageIsNo;
 
     getMedicalHistory();
     function getMedicalHistory() {
@@ -101,6 +102,38 @@ angular.module('patient').controller('patientController', function ($scope, $htt
                    $scope.patient.patientPictureAfter = data;
                 });
     };
+
+    NoImage();
+     function NoImage() {
+                $http.get('/getnoimage').success(function (data) {
+                 imageIsNo = data.contentImage;
+                 noImageXray();
+                 noImageBefore();
+                 noImageCurrent();
+                 noImageAfter();
+                });
+            }
+            ;
+    
+    
+      function noImageXray(){
+          document.getElementById('patient-xrayfilm').src = "data:image/jpg;base64," + imageIsNo;
+      }
+      
+     
+      function noImageBefore(){
+           document.getElementById('patient-before').src = "data:image/jpg;base64," + imageIsNo;
+      }
+     
+    
+      function noImageCurrent(){
+          document.getElementById('patient-current').src = "data:image/jpg;base64," + imageIsNo;
+      }
+      
+     
+      function noImageAfter(){
+          document.getElementById('patient-after').src = "data:image/jpg;base64," + imageIsNo;
+      }
 
     function readURLBefore(input) {
         if (input.files && input.files[0]) {
