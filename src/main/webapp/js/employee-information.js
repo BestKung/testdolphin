@@ -29,24 +29,25 @@ angular.module('employee-information').controller('employeeInformationController
         });
     }
 
-      
+
 
     getTotalEmployee();
     function getTotalEmployee() {
         $http.get('/totalstaff').success(function (data) {
             totalEmployees = data;
             totalPages();
-           
+
         });
     }
-    
-    function searchStaffCount (){
-        $http.post('/searchstaff/count',$scope.searchData).success(function (data){
-             totalEmployees = data;
+
+    function searchStaffCount() {
+        $http.post('/searchstaff/count', $scope.searchData).success(function (data) {
+            totalEmployees = data;
             totalPages();
-            console.log('count search'+data);
+            console.log('count search' + data);
         });
-    };
+    }
+    ;
 
 
     function totalPages() {
@@ -56,12 +57,12 @@ angular.module('employee-information').controller('employeeInformationController
             totalPages++;
         }
         totalPage = totalPages;
-        console.log("totalpage = "+totalPage);
-        if($scope.currentPage == 1){
+        console.log("totalpage = " + totalPage);
+        if ($scope.currentPage == 1) {
             $('#first-page').addClass('disabled');
             $('#pre-page').addClass('disabled');
         }
-        if($scope.currentPage  == totalPage){
+        if ($scope.currentPage == totalPage) {
             $('#next-page').addClass('disabled');
             $('#final-page').addClass('disabled');
         }
@@ -77,21 +78,21 @@ angular.module('employee-information').controller('employeeInformationController
 
     $scope.searcEmployee = function () {
         console.log('search');
-        $http.post('/searchstaff' ,$scope.searchData , {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
+        $http.post('/searchstaff', $scope.searchData, {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
             $scope.employees = data;
-             searchStaffCount();
-             console.log(data);
+            searchStaffCount();
+            console.log(data);
         }).error(function (data) {
 
         });
     };
 
-    function searcEmployee(){
-        $http.post('/searchstaff' ,$scope.searchData , {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
+    function searcEmployee() {
+        $http.post('/searchstaff', $scope.searchData, {params: {page: $scope.page, size: $scope.row}}).success(function (data) {
             $scope.employees = data;
         });
     }
-    
+
     $scope.detailEmployee = function (emp) {
         $scope.preScroll = $(window).scrollTop();
         $('body,html').animate({scrollTop: 400}, "00");
@@ -159,15 +160,15 @@ angular.module('employee-information').controller('employeeInformationController
     };
 
 
-    $scope.selectGetOrSearch = function (){
+    $scope.selectGetOrSearch = function () {
         selectGetOrSearch();
     };
 
-    function selectGetOrSearch(){
-        if(!!$scope.searchData.keyword){
+    function selectGetOrSearch() {
+        if (!!$scope.searchData.keyword) {
             searcEmployee();
         }
-        else{
+        else {
             getEmployees();
         }
     }
@@ -187,7 +188,7 @@ angular.module('employee-information').controller('employeeInformationController
     $scope.prePage = function () {
         if (!$('#first-page').hasClass('disabled')) {
             $scope.page--;
-           selectGetOrSearch();
+            selectGetOrSearch();
             $scope.currentPage = $scope.page + 1;
             if ($scope.page == 0) {
                 $('#first-page').addClass('disabled');

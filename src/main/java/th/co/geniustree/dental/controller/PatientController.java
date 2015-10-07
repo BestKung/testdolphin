@@ -86,4 +86,9 @@ public class PatientController {
 
         return picture;
     }
+    
+    @RequestMapping(value = "/getpatient")
+    private Page<Patient> getPatient(Pageable pageable){
+    return patientRepo.findAll(pageable);
+    }
 }

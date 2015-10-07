@@ -10,6 +10,15 @@ angular.module('doctor-information').controller('doctorInformationController', f
     var page = 0;
     var totalDoctor = 0;
     var totalPage = 0;
+    
+     checkMobile();
+    function checkMobile() {
+        var $mobile = $(window).outerWidth() < 995;
+        if ($mobile) {
+            $('th').removeAttr('style');
+            $('.topic-detail').css('fontSize', 13);
+        }
+    }
 
     getDoctor();
     function getDoctor() {
