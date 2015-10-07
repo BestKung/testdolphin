@@ -44,6 +44,7 @@ angular.module('typeProduct').controller('typeProductController', function ($sco
         $scope.typeProduct.id = tp.id;
         $scope.typeProduct.name = tp.name;
         $('#namedepartment').addClass('active');
+        $('body,html').animate({scrollTop: 0}, "600");
     };
 
 });

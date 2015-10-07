@@ -46,6 +46,7 @@ angular.module('unitProduct').controller('unitProductController', function ($sco
         $scope.unitProduct.id = up.id;
         $scope.unitProduct.name = up.name;
         $('#namedepartment').addClass('active');
+        $('body,html').animate({scrollTop: 0}, "600");
     };
 
 });

@@ -44,6 +44,7 @@ angular.module('listSelectHeal').controller('listSelectHealController', function
         $scope.listSelectHeal.name = lsh.name;
         $scope.listSelectHeal.price = lsh.price;
         $('#namedepartment').addClass('active');
+        $('body,html').animate({scrollTop: 0}, "600");
     };
 
 });

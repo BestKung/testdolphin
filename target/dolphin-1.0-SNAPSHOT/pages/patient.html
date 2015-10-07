@@ -14,7 +14,7 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">account_balance</i>
-                    <input type="text" id="hn" ng-model="patient.hn">
+                    <input type="text" id="hn" ng-model="patient.hn" ng-change="setBackgroundPrefixId()">
                     <label for="hn" class="update">H/N</label>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col m6 s12 input-field">
                     <i class="material-icons prefix clear-prefix">person</i>
-                    <input type="text" id="name" ng-model="patient.name">
+                    <input type="text" id="name" ng-model="patient.name" ng-change="setBackgroundPrefixSex()">
                     <label for="name" class="update">ชื่อ/สกุล</label>
                 </div>
             </div>
@@ -128,10 +128,10 @@
             <div class="card-content">
                 <span class="card-title" style="color: black"><h5>อัพโหลดรูปภาพ ฟิล์มเอ็กเรย์</h5></span>
                 <div style="margin: 0px auto" class="center">
-                    <img id="employee-picture" class="responsive-img" ng-src="">
+                    <img id="patient-xrayfilm" class="responsive-img" ng-src="">
                 </div>
                 <div class="center">
-                    <input type="file" id="input-employee-picture" custom-on-change="selectPicture" file-model="image" style="margin-top: 20px">
+                    <input type="file" id="input-patient-xrayfilm" custom-on-change="savePictureXray" file-model="patientPictureXrayFilm" style="margin-top: 20px">
                 </div>
             </div>
         </div>
@@ -144,10 +144,10 @@
             <div class="card-content">
                 <span class="card-title" style="color: black"><h5>อัพโหลดรูปภาพ ก่อนจัดฟัน</h5></span>
                 <div style="margin: 0px auto" class="center">
-                    <img id="employee-picture" class="responsive-img" ng-src="">
+                    <img id="patient-before" class="responsive-img" ng-src="">
                 </div>
                 <div class="center">
-                    <input type="file" id="input-employee-picture" custom-on-change="selectPicture" file-model="image" style="margin-top: 20px">
+                    <input type="file" id="input-patient-before" custom-on-change="savePictureBefore" file-model="patientPictureBefore" style="margin-top: 20px">
                 </div>
             </div>
         </div>
@@ -160,10 +160,10 @@
             <div class="card-content">
                 <span class="card-title" style="color: black"><h5>อัพโหลดรูปภาพ ระหว่างจัดฟัน</h5></span>
                 <div style="margin: 0px auto" class="center">
-                    <img id="employee-picture" class="responsive-img" ng-src="">
+                    <img id="patient-current" class="responsive-img" ng-src="">
                 </div>
                 <div class="center">
-                    <input type="file" id="input-employee-picture" custom-on-change="selectPicture" file-model="image" style="margin-top: 20px">
+                    <input type="file" id="input-patient-current" custom-on-change="savePictureCurrent" file-model="patientPictureCurrent" style="margin-top: 20px">
                 </div>
             </div>
         </div>
@@ -176,10 +176,10 @@
             <div class="card-content">
                 <span class="card-title" style="color: black"><h5>อัพโหลดรูปภาพ หลังจัดฟัน</h5></span>
                 <div style="margin: 0px auto" class="center">
-                    <img id="employee-picture" class="responsive-img" ng-src="">
+                    <img id="patient-after" class="responsive-img" ng-src="">
                 </div>
                 <div class="center">
-                    <input type="file" id="input-employee-picture" custom-on-change="selectPicture" file-model="image" style="margin-top: 20px">
+                    <input type="file" id="input-patient-after" custom-on-change="savePictureAfter" file-model="patientPictureAfter" style="margin-top: 20px">
                 </div>
             </div>
         </div>
@@ -196,3 +196,4 @@
         </div>
     </div>
 </div>
+{{patient.patientPicture}}

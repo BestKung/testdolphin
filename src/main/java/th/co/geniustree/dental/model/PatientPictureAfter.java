@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -21,7 +22,7 @@ public class PatientPictureAfter implements Serializable{
     @Id 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+    @Lob
     private byte[] contentAfter;
     private String nameAfter;
     private String mimeTypeAfter;

@@ -61,6 +61,7 @@ angular.module('lot').controller('lotController', function ($scope, $http) {
         $scope.lot.dateOut = new Date(lo.dateOut);
         $('#namedepartment1').addClass('active');
         $('#namedepartment2').addClass('active');
+        $('body,html').animate({scrollTop: 0}, "600");
     };
 
     $('.datepicker').pickadate({
