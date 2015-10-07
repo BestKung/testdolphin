@@ -14,8 +14,8 @@ public abstract class PriceAndExpireProduct_ {
 	public static volatile SingularAttribute<PriceAndExpireProduct, Lot> lot;
 	public static volatile SingularAttribute<PriceAndExpireProduct, Product> product;
 	public static volatile SingularAttribute<PriceAndExpireProduct, Double> priceBuy;
-	public static volatile ListAttribute<PriceAndExpireProduct, OrderBill> orderBills;
 	public static volatile SingularAttribute<PriceAndExpireProduct, Date> expire;
+	public static volatile ListAttribute<PriceAndExpireProduct, OrderBill> orderBills_priceAndExpireProduct;
 	public static volatile SingularAttribute<PriceAndExpireProduct, Integer> id;
 	public static volatile SingularAttribute<PriceAndExpireProduct, Integer> value;
 

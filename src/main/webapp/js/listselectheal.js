@@ -12,7 +12,7 @@ angular.module('listSelectHeal').controller('listSelectHealController', function
         });
     }
     $scope.saveListSelectHeal = function () {
-        $http.post('/savetypeproduct', $scope.listSelectHeal).success(function (data) {
+        $http.post('/savelistselectheal', $scope.listSelectHeal).success(function (data) {
             loadListSelectHeal();
             $scope.listSelectHeal = {};
             Materialize.toast('saveข้อมูลเรียบร้อย', 3000, 'rounded');
@@ -31,7 +31,7 @@ angular.module('listSelectHeal').controller('listSelectHealController', function
     };
 
     $scope.deleteListSelectHeal = function () {
-        $http.post('/deletetypeproduct', $scope.listSelectHeal).success(function (data) {
+        $http.post('/deletelistselectheal', $scope.listSelectHeal).success(function (data) {
             loadListSelectHeal();
             $scope.listSelectHeal = {};
         }).error(function (data) {
@@ -42,7 +42,7 @@ angular.module('listSelectHeal').controller('listSelectHealController', function
     $scope.updateListSelectHeal = function (lsh) {
         $scope.listSelectHeal.id = lsh.id;
         $scope.listSelectHeal.name = lsh.name;
-        $scope.listSelectHeal.price = lshprice;
+        $scope.listSelectHeal.price = lsh.price;
         $('#namedepartment').addClass('active');
     };
 

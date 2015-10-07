@@ -12,7 +12,7 @@ public abstract class OrderBill_ {
 	public static volatile SingularAttribute<OrderBill, Integer> id;
 	public static volatile SingularAttribute<OrderBill, DetailHeal> detailHeal;
 	public static volatile SingularAttribute<OrderBill, Integer> value;
-	public static volatile SingularAttribute<OrderBill, PriceAndExpireProduct> PriceAndExpireProduct;
+	public static volatile SingularAttribute<OrderBill, PriceAndExpireProduct> priceAndExpireProduct;
 
 }
 

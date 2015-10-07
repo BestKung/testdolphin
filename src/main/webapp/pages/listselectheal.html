@@ -34,17 +34,19 @@
             <span class="card-title" style="color: black;"><h4>ตารางชนิดการรักษา</h4></span>
             <table class="bordered hoverable responsive-table">
                 <thead>
-                <th style="width: 20px" class="table-department">Name</th>
-                <th style="width: 50px" class="table-department">Price</th>
+                <th style="width: 10px" class="table-department">ลำดับ</th>
+                <th style="width: 20px" class="table-department">ชื่อ</th>
+                <th style="width: 50px" class="table-department">ราคา</th>
                 <th style="width: 30px;"class="table-department">Action</th>
                 </thead>
                 <tbody>
                     <tr ng-repeat="lsh in listSelectHeals.content">
+                        <td>{{lsh.id}}</td>
                         <td>{{lsh.name}}</td>
                         <td>{{lsh.price}}</td>
                         <td>
                             <a class="modal-trigger btn btn-red waves-effect waves-light" href="" ng-click="actionDelete(lsh)" >Delete</a>
-                            <a href="" class="btn btn-blue2 waves-effect waves-light" ng-click="actionUpdate(lsh)">Update</a>
+                            <a href="" class="btn btn-blue2 waves-effect waves-light" ng-click="updateListSelectHeal(lsh)">Update</a>
                         </td>
                     </tr>
                 </tbody>
