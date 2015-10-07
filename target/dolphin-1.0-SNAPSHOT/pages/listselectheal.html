@@ -45,8 +45,8 @@
                         <td>{{lsh.name}}</td>
                         <td>{{lsh.price}}</td>
                         <td>
-                            <a class="modal-trigger btn btn-red waves-effect waves-light" href="" ng-click="actionDelete(lsh)" >Delete</a>
-                            <a href="" class="btn btn-blue2 waves-effect waves-light" ng-click="updateListSelectHeal(lsh)">Update</a>
+                            <a class="modal-trigger btn btn-red waves-effect waves-light" href="" ng-click="actionDelete(lsh)" >ลบ</a>
+                            <a href="" class="btn btn-blue2 waves-effect waves-light" ng-click="updateListSelectHeal(lsh)">แก้ไข</a>
                         </td>
                     </tr>
                 </tbody>
@@ -63,8 +63,8 @@
         <h4 class="margin-left-20">ลบชนิดการรักษา : {{listSelectHeal.name}}</h4>
     </div>
     <div class="model-footer right">
-        <a href="" class="magin-button btn btn-gray modal-action modal-close" ng-click="clearData()">Cancle</a>
-        <a href="" class="magin-button btn btn-red modal-action modal-close" ng-click="deleteListSelectHeal()">Delete</a>
+        <a href="" class="magin-button btn btn-red modal-action modal-close" ng-click="deleteListSelectHeal()">ลบ</a>
+        <a href="" class="magin-button btn btn-gray modal-action modal-close" ng-click="clearData()">ยกเลิก</a>
     </div>
 </div>
 

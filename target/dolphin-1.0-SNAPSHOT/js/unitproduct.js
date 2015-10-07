@@ -1,8 +1,8 @@
 angular.module('unitProduct', []);
 angular.module('unitProduct').controller('unitProductController', function ($scope, $http) {
 
-    $scope.unitProducts = {};
     $scope.unitProduct = {};
+    $scope.unitProducts = {};
 
     loadUnitProduct();
     function loadUnitProduct() {
@@ -11,7 +11,7 @@ angular.module('unitProduct').controller('unitProductController', function ($sco
         }).error(function (data) {
         });
     }
-  
+
     $scope.saveUnitProduct = function () {
         $http.post('/saveunitproduct', $scope.unitProduct).success(function (data) {
             loadUnitProduct();
@@ -41,8 +41,8 @@ angular.module('unitProduct').controller('unitProductController', function ($sco
 
         });
     };
-    
-    $scope.updateUnitProduct = function (up){
+
+    $scope.updateUnitProduct = function (up) {
         $scope.unitProduct.id = up.id;
         $scope.unitProduct.name = up.name;
         $('#namedepartment').addClass('active');

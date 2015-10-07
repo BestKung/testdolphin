@@ -56,7 +56,6 @@ angular.module('lot').controller('lotController', function ($scope, $http) {
         
         $scope.lot.id = lo.id;
         $scope.lot.nameStaffReam = lo.nameStaffReam;
-        console.log($scope.lot.nameStaffReam);
         $scope.lot.dateIn = new Date(lo.dateIn);
         $scope.lot.dateOut = new Date(lo.dateOut);
         $('#namedepartment1').addClass('active');

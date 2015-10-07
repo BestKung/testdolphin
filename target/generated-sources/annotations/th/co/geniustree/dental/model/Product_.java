@@ -13,7 +13,7 @@ public abstract class Product_ {
 	public static volatile SingularAttribute<Product, UnitProduct> unit;
 	public static volatile SingularAttribute<Product, String> name;
 	public static volatile SingularAttribute<Product, String> barCode_Main;
-	public static volatile SingularAttribute<Product, Integer> Id;
+	public static volatile SingularAttribute<Product, Integer> id;
 	public static volatile ListAttribute<Product, PriceAndExpireProduct> PriceAndExpireProduct_Product;
 	public static volatile SingularAttribute<Product, String> barCode_Sub;
 

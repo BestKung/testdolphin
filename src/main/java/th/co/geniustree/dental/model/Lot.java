@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,15 +47,7 @@ public class Lot implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "lot")
-    private List<PriceAndExpireProduct> PriceAndExpireProduct_lot;
-
-    public List<PriceAndExpireProduct> getPriceAndExpireProduct_lot() {
-        return PriceAndExpireProduct_lot;
-    }
-
-    public void setPriceAndExpireProduct_lot(List<PriceAndExpireProduct> PriceAndExpireProduct_lot) {
-        this.PriceAndExpireProduct_lot = PriceAndExpireProduct_lot;
-    }
+    private List<PriceAndExpireProduct> priceAndExpireProducts_lot;
 
     public Integer getId() {
         return id;
@@ -88,10 +81,18 @@ public class Lot implements Serializable {
         this.nameStaffReam = nameStaffReam;
     }
 
+    public List<PriceAndExpireProduct> getPriceAndExpireProducts_lot() {
+        return priceAndExpireProducts_lot;
+    }
+
+    public void setPriceAndExpireProducts_lot(List<PriceAndExpireProduct> priceAndExpireProducts_lot) {
+        this.priceAndExpireProducts_lot = priceAndExpireProducts_lot;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

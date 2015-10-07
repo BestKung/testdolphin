@@ -13,6 +13,7 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -29,10 +30,11 @@ import javax.persistence.TemporalType;
 @Table(name = "PRICEANDEXPIREPRODUCT")
 public class PriceAndExpireProduct implements Serializable {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;
 
+    @Column(name = "EXPIRE")
     @Temporal(TemporalType.DATE)
     private Date expire;
 
@@ -123,8 +125,8 @@ public class PriceAndExpireProduct implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

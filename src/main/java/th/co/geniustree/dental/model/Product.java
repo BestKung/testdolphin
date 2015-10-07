@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,9 +35,8 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Product implements Serializable {
 
     @Id
-    @SequenceGenerator(name = "PRODUCT", sequenceName = "PRODUCT_SQE", allocationSize = 1)
-    @GeneratedValue(generator = "PRODUCT", strategy = GenerationType.AUTO)
-    private Integer Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
     @NotBlank(message = "Name not Empty")
     @Column(name = "NAME")
@@ -58,38 +58,14 @@ public class Product implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "product")
-    private List<PriceAndExpireProduct> PriceAndExpireProduct_Product;
-
-    public List<PriceAndExpireProduct> getPriceAndExpireProduct_Product() {
-        return PriceAndExpireProduct_Product;
-    }
-
-    public void setPriceAndExpireProduct_Product(List<PriceAndExpireProduct> PriceAndExpireProduct_Product) {
-        this.PriceAndExpireProduct_Product = PriceAndExpireProduct_Product;
-    }
-
-    public TypeProduct getTypeProduct() {
-        return typeProduct;
-    }
-
-    public void setTypeProduct(TypeProduct typeProduct) {
-        this.typeProduct = typeProduct;
-    }
-
-    public UnitProduct getUnit() {
-        return unit;
-    }
-
-    public void setUnit(UnitProduct unit) {
-        this.unit = unit;
-    }
+    private List<PriceAndExpireProduct> priceAndExpireProducts_Product;
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Integer Id) {
-        this.Id = Id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -116,10 +92,34 @@ public class Product implements Serializable {
         this.barCode_Sub = barCode_Sub;
     }
 
+    public TypeProduct getTypeProduct() {
+        return typeProduct;
+    }
+
+    public void setTypeProduct(TypeProduct typeProduct) {
+        this.typeProduct = typeProduct;
+    }
+
+    public UnitProduct getUnit() {
+        return unit;
+    }
+
+    public void setUnit(UnitProduct unit) {
+        this.unit = unit;
+    }
+
+    public List<PriceAndExpireProduct> getPriceAndExpireProducts_Product() {
+        return priceAndExpireProducts_Product;
+    }
+
+    public void setPriceAndExpireProducts_Product(List<PriceAndExpireProduct> priceAndExpireProducts_Product) {
+        this.priceAndExpireProducts_Product = priceAndExpireProducts_Product;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.Id);
+        hash = 59 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -132,7 +132,7 @@ public class Product implements Serializable {
             return false;
         }
         final Product other = (Product) obj;
-        if (!Objects.equals(this.Id, other.Id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;
