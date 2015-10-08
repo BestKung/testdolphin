@@ -10,8 +10,8 @@ angular.module('doctor-information').controller('doctorInformationController', f
     var page = 0;
     var totalDoctor = 0;
     var totalPage = 0;
-    
-     checkMobile();
+
+    checkMobile();
     function checkMobile() {
         var $mobile = $(window).outerWidth() < 995;
         if ($mobile) {
@@ -36,7 +36,7 @@ angular.module('doctor-information').controller('doctorInformationController', f
         $scope.preScroll = $(window).scrollTop();
         $('body,html').animate({scrollTop: 400}, "400");
         $scope.doctorDetail = detail;
-         $scope.doctorDetail.age = new Date().getFullYear() - new Date($scope.doctorDetail.birthDate).getFullYear();
+        $scope.doctorDetail.age = new Date().getFullYear() - new Date($scope.doctorDetail.birthDate).getFullYear();
         var topic = document.getElementsByClassName('topic-detail');
         for (var i = 0; i < topic.length; i++) {
             if (topic[i].innerHTML == "") {
@@ -109,6 +109,7 @@ angular.module('doctor-information').controller('doctorInformationController', f
         $http.post('/countsearchdoctor', $scope.search, {params: {page: page, size: $scope.row}}).success(function (data) {
             $scope.totalDoctor = data;
             findTotalPage();
+
         });
     }
 
@@ -127,6 +128,16 @@ angular.module('doctor-information').controller('doctorInformationController', f
         }
         totalPage = totalpages;
         console.log(totalPage);
+        if (totalpages == 1) {
+            $('#first-page').addClass('disabled');
+            $('#pre-page').addClass('disabled');
+            $('#next-page').addClass('disabled');
+            $('#final-page').addClass('disabled');
+        }
+        if(totalpages > 1){
+             $('#first-page').addClass('disabled');
+                $('#pre-page').addClass('disabled');
+        }
     }
 
 

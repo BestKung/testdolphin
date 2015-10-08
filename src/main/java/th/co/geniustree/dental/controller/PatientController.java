@@ -25,6 +25,7 @@ import th.co.geniustree.dental.model.SearchData;
 import th.co.geniustree.dental.repo.MedicalHistoryRepo;
 import th.co.geniustree.dental.repo.PatientRepo;
 import th.co.geniustree.dental.service.PatientSearchService;
+import th.co.geniustree.dental.spec.PatientSpec;
 
 /**
  *
@@ -112,5 +113,27 @@ public class PatientController {
             patients = patientSearchService.searchByEmail(keyword, pageable);
         }
         return patients;
+    }
+
+    @RequestMapping(value = "/countpatient", method = RequestMethod.GET)
+    private Long countPatient() {
+        return patientRepo.count();
+    }
+
+    @RequestMapping(value = "/countsearchpatient" , method = RequestMethod.POST)
+    private Long countSearchPatient(@RequestBody SearchData searchData) {
+        String searchBy = searchData.getSearchBy();
+        String keyword = searchData.getKeyword();
+        Long count = null;
+        if ("H/N".equals(searchBy)) {
+            count = patientRepo.count(PatientSpec.hmLike("%" + keyword + "%"));
+        }
+        if ("ชื่อ".equals(searchBy)) {
+            count = patientRepo.count(PatientSpec.nameLike("%" + keyword + "%"));
+        }
+        if ("อีเมลล์".equals(searchBy)) {
+            count = patientRepo.count(PatientSpec.emailLike("%" + keyword + "%"));
+        }
+        return count;
     }
 }

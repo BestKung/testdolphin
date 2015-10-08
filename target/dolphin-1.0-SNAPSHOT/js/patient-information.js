@@ -7,6 +7,12 @@ angular.module('patient-information').controller('patientInformationController',
     $scope.patientDetail.patientPictureBefore = {};
     $scope.patientDetail.patientPictureCurrent = {};
     $scope.patientDetail.patientPictureAfter = {};
+    $scope.totalPatient = 0;
+    $scope.size = 10;
+    $scope.currentPage = 0;
+    var totalPage;
+    var page = 0;
+
     checkMobile();
     function checkMobile() {
         var $mobile = $(window).outerWidth() < 995;
@@ -16,22 +22,140 @@ angular.module('patient-information').controller('patientInformationController',
         }
     }
 
+ 
+
     getPatient();
     function getPatient() {
-        $http.get('/getpatient').success(function (data) {
+        $http.get('/getpatient', {params: {size: $scope.size, page: page}}).success(function (data) {
             $scope.patients = data;
-            console.log(data.content[0]);
-            console.log('jvzhjdzvuz');
         });
     }
 
 
-    $scope.searchPatient = function (){
-        $http.post('/searchpatient',$scope.search).success(function (data){
-            console.log(data);
-        });
+    $scope.searchPatient = function () {
+        searchPatient();
     };
     
+        function searchPatient(){
+             $http.post('/searchpatient', $scope.search).success(function (data) {
+            $scope.patients = data;
+        });
+        }
+
+    countPatient();
+    function countPatient() {
+        $http.get('/countpatient').success(function (data) {
+            $scope.totalPatient = data;
+            findTotalPage();
+            console.log('total page : ' + totalPage);
+        });
+    }
+    
+     function selectGetOrSearch() {
+        if (!!$scope.search.keyword) {
+            searchPatient();
+        }
+        else {
+            getPatient();
+        }
+    }
+    
+    
+    $scope.selectGetOrSearch = function (){
+        page = 0;
+        $scope.currentPage = page;
+        selectGetOrSearch();
+        findTotalPage();
+        console.log('total : ' + totalPage);
+        if (totalPage != 1) {
+            $('#first-page').addClass('disabled');
+            $('#pre-page').addClass('disabled');
+            $('#next-page').removeClass('disabled');
+            $('#final-page').removeClass('disabled');
+        }
+    };
+
+    function countSearchPatient() {
+        $http.post('/countsearchpatient', $scope.search).success(function (data) {
+            $scope.totalPatient = data;
+            findTotalPage();
+        });
+    }
+
+    function findTotalPage() {
+        var totalpages = parseInt($scope.totalPatient / $scope.size);
+        if (($scope.totalPatient % $scope.size) != 0) {
+            totalpages++;
+        }
+        totalPage = totalpages;
+        console.log(totalPage);
+        if (totalpages == 1) {
+            $('#first-page').addClass('disabled');
+            $('#pre-page').addClass('disabled');
+            $('#next-page').addClass('disabled');
+            $('#final-page').addClass('disabled');
+        }
+        if (totalpages > 1) {
+            $('#first-page').addClass('disabled');
+            $('#pre-page').addClass('disabled');
+        }
+    }
+
+    $scope.firstPage = function () {
+        if (!$('#first-page').hasClass('disabled')) {
+            page = 0;
+            $scope.currentPage = page;
+            selectGetOrSearch();
+            if (page == 0) {
+                $('#first-page').addClass('disabled');
+                $('#pre-page').addClass('disabled');
+            }
+            $('#next-page').removeClass('disabled');
+            $('#final-page').removeClass('disabled');
+        }
+    };
+
+    $scope.prePage = function () {
+        if (!$('#first-page').hasClass('disabled')) {
+            page--;
+            $scope.currentPage = page;
+            selectGetOrSearch();
+            if (page == 0) {
+                $('#first-page').addClass('disabled');
+                $('#pre-page').addClass('disabled');
+            }
+            $('#next-page').removeClass('disabled');
+            $('#final-page').removeClass('disabled');
+        }
+    };
+
+    $scope.nextPage = function () {
+        if (!$('#final-page').hasClass('disabled')) {
+            page++;
+            $scope.currentPage = page;
+            selectGetOrSearch();
+            if (page == totalPage - 1) {
+                $('#next-page').addClass('disabled');
+                $('#final-page').addClass('disabled');
+            }
+            $('#pre-page').removeClass('disabled');
+            $('#first-page').removeClass('disabled');
+        }
+    };
+
+    $scope.finalPage = function () {
+        if (!$('#final-page').hasClass('disabled')) {
+            page = totalPage - 1;
+            $scope.currentPage = page;
+            selectGetOrSearch();
+            if (page == totalPage - 1) {
+                $('#final-page').addClass('disabled');
+                $('#next-page').addClass('disabled');
+            }
+            $('#pre-page').removeClass('disabled');
+            $('#first-page').removeClass('disabled');
+        }
+    };
 
 
     $scope.clickMoreDetail = function (more) {
@@ -58,16 +182,16 @@ angular.module('patient-information').controller('patientInformationController',
             NoImageBefore();
         }
         if (!!$scope.patientDetail.patientPictureCurrent) {
-          document.getElementById('img-patientcurrent').src = "data:image/jpg;base64," + $scope.patientDetail.patientPictureCurrent.contentCurrent;  
+            document.getElementById('img-patientcurrent').src = "data:image/jpg;base64," + $scope.patientDetail.patientPictureCurrent.contentCurrent;
         }
         else {
             NoImageCurrent();
         }
         if (!!$scope.patientDetail.patientPictureAfter) {
-           document.getElementById('img-patientafter').src = "data:image/jpg;base64," + $scope.patientDetail.patientPictureAfter.contentAfter;
+            document.getElementById('img-patientafter').src = "data:image/jpg;base64," + $scope.patientDetail.patientPictureAfter.contentAfter;
         }
         else {
-             NoImageAfter();
+            NoImageAfter();
         }
 
     };
@@ -100,5 +224,18 @@ angular.module('patient-information').controller('patientInformationController',
         });
     }
     ;
+    
+    $scope.cancel = function () {
+        toPreScroll();
+        $('span#close-card').trigger('click');
+    };
+    
+     function toPreScroll() {
+        $('body,html').animate({scrollTop: $scope.preScroll}, "0");
+    }
+
+    $scope.toPreScroll = function () {
+        toPreScroll();
+    };
 
 });

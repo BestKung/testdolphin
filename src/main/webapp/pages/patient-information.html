@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="">
-                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)" ng-click="searchPatient()">ค้นหา</a>
+                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)" ng-click="selectGetOrSearch()">ค้นหา</a>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
                 <div class="col m6">
                     <div class="right">
                         <span class="">เเสดงข้อมูล : </span>
-                        <select class="browser-default" ng-change="selectGetOrSearch()" style="margin-top: 10px; margin-left:calc(3.8rem);width: 100px;" ng-model="size" ng-init="size = '10'">
+                        <select class="browser-default" ng-change="getPatient()" style="margin-top: 10px; margin-left:calc(3.8rem);width: 100px;" ng-model="size" ng-init="size = '10'">
                             <option value="10">10</option>
                             <option value="20">20</option>
                             <option value="30">30</option>
