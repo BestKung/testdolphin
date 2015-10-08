@@ -21,8 +21,10 @@ import th.co.geniustree.dental.model.PatientPictureAfter;
 import th.co.geniustree.dental.model.PatientPictureBefore;
 import th.co.geniustree.dental.model.PatientPictureCurrent;
 import th.co.geniustree.dental.model.PatientPictureXray;
+import th.co.geniustree.dental.model.SearchData;
 import th.co.geniustree.dental.repo.MedicalHistoryRepo;
 import th.co.geniustree.dental.repo.PatientRepo;
+import th.co.geniustree.dental.service.PatientSearchService;
 
 /**
  *
@@ -36,6 +38,9 @@ public class PatientController {
 
     @Autowired
     private MedicalHistoryRepo medicalHistoryRepo;
+
+    @Autowired
+    private PatientSearchService patientSearchService;
 
     @RequestMapping(value = "/getmedicalhistory", method = RequestMethod.GET)
     private Page<MedicalHistory> getmedicalHistory(Pageable pageable) {
@@ -86,9 +91,26 @@ public class PatientController {
 
         return picture;
     }
-    
-    @RequestMapping(value = "/getpatient")
-    private Page<Patient> getPatient(Pageable pageable){
-    return patientRepo.findAll(pageable);
+
+    @RequestMapping(value = "/getpatient", method = RequestMethod.GET)
+    private Page<Patient> getPatient(Pageable pageable) {
+        return patientRepo.findAll(pageable);
+    }
+
+    @RequestMapping(value = "/searchpatient", method = RequestMethod.POST)
+    private Page<Patient> searchPatient(@RequestBody SearchData searchData, Pageable pageable) {
+        String searchBy = searchData.getSearchBy();
+        String keyword = searchData.getKeyword();
+        Page<Patient> patients = null;
+        if ("H/N".equals(searchBy)) {
+            patients = patientSearchService.searchByHN(keyword, pageable);
+        }
+        if ("ชื่อ".equals(searchBy)) {
+            patients = patientSearchService.searchByName(keyword, pageable);
+        }
+        if ("อีเมลล์".equals(searchBy)) {
+            patients = patientSearchService.searchByEmail(keyword, pageable);
+        }
+        return patients;
     }
 }

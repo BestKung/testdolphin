@@ -2,6 +2,7 @@ angular.module('patient-information', []);
 angular.module('patient-information').controller('patientInformationController', function ($scope, $http) {
     $scope.patients = {};
     $scope.patientDetail = {};
+    $scope.search = {};
     $scope.patientDetail.patientPictureXray = {};
     $scope.patientDetail.patientPictureBefore = {};
     $scope.patientDetail.patientPictureCurrent = {};
@@ -23,6 +24,14 @@ angular.module('patient-information').controller('patientInformationController',
             console.log('jvzhjdzvuz');
         });
     }
+
+
+    $scope.searchPatient = function (){
+        $http.post('/searchpatient',$scope.search).success(function (data){
+            console.log(data);
+        });
+    };
+    
 
 
     $scope.clickMoreDetail = function (more) {

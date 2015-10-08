@@ -14,15 +14,16 @@
                     <span><h6>ค้นหาโดย : </h6></span>
                     <div class="select-custom">
                         <select class="browser-default" id="select-searchby" ng-model="search.searchBy" ng-init="search.searchBy = 'ชื่อ'">
-                            <option value="H/N">อีเมลล์</option>
+                            <option value="H/N">H/N</option>
                             <option value="ชื่อ">ชื่อ</option>
+                            <option value="อีเมลล์">อีเมลล์</option>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="">
-                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)" ng-click="searchData()">ค้นหา</a>
+                    <a class="btn waves-effect waves-light" style="margin-top: 10px; margin-left:calc(3.8rem)" ng-click="searchPatient()">ค้นหา</a>
                 </div>
             </div>
         </div>
