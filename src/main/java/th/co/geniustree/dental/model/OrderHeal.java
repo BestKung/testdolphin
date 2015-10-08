@@ -47,22 +47,6 @@ public class OrderHeal implements Serializable {
     @JoinColumn(name = "LISTSELECTHEAL_ID")
     private ListSelectHeal listSelectHeal;
 
-    public ListSelectHeal getListSelectHeal() {
-        return listSelectHeal;
-    }
-
-    public void setListSelectHeal(ListSelectHeal listSelectHeal) {
-        this.listSelectHeal = listSelectHeal;
-    }
-
-    public DetailHeal getDetailHeal() {
-        return detailHeal;
-    }
-
-    public void setDetailHeal(DetailHeal detailHeal) {
-        this.detailHeal = detailHeal;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -79,10 +63,26 @@ public class OrderHeal implements Serializable {
         this.value = value;
     }
 
+    public DetailHeal getDetailHeal() {
+        return detailHeal;
+    }
+
+    public void setDetailHeal(DetailHeal detailHeal) {
+        this.detailHeal = detailHeal;
+    }
+
+    public ListSelectHeal getListSelectHeal() {
+        return listSelectHeal;
+    }
+
+    public void setListSelectHeal(ListSelectHeal listSelectHeal) {
+        this.listSelectHeal = listSelectHeal;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

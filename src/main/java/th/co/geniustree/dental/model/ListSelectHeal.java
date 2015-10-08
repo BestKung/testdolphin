@@ -37,7 +37,7 @@ public class ListSelectHeal implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "listSelectHeal")
-    private List<OrderHeal> OrderHeal_ListSelectHeal;
+    private List<OrderHeal> orderHealListSelectHeals;
 
     public Integer getId() {
         return id;
@@ -63,18 +63,18 @@ public class ListSelectHeal implements Serializable {
         this.price = price;
     }
 
-    public List<OrderHeal> getOrderHeal_ListSelectHeal() {
-        return OrderHeal_ListSelectHeal;
+    public List<OrderHeal> getOrderHealListSelectHeals() {
+        return orderHealListSelectHeals;
     }
 
-    public void setOrderHeal_ListSelectHeal(List<OrderHeal> OrderHeal_ListSelectHeal) {
-        this.OrderHeal_ListSelectHeal = OrderHeal_ListSelectHeal;
+    public void setOrderHealListSelectHeals(List<OrderHeal> orderHealListSelectHeals) {
+        this.orderHealListSelectHeals = orderHealListSelectHeals;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 71 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
         return hash;
     }
 

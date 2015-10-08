@@ -53,38 +53,14 @@ public class DetailHeal implements Serializable {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "detailHeal", cascade = CascadeType.ALL)
-    private List<OrderHeal> orderHeal_DetailHeal;
+    private List<OrderHeal> orderHealDetailHeals;
 
-    public Patient getPatient() {
-        return patient;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    public List<OrderHeal> getOrderHeal_DetailHeal() {
-        return orderHeal_DetailHeal;
-    }
-
-    public void setOrderHeal_DetailHeal(List<OrderHeal> orderHeal_DetailHeal) {
-        this.orderHeal_DetailHeal = orderHeal_DetailHeal;
-    }
-
-    public Doctor getDoctor() {
-        return doctor;
-    }
-
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
-
-    public Date getDateHeal() {
-        return dateHeal;
-    }
-
-    public void setDateHeal(Date dateHeal) {
-        this.dateHeal = dateHeal;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDetail() {
@@ -95,18 +71,42 @@ public class DetailHeal implements Serializable {
         this.detail = detail;
     }
 
-    public Integer getId() {
-        return id;
+    public Date getDateHeal() {
+        return dateHeal;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setDateHeal(Date dateHeal) {
+        this.dateHeal = dateHeal;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public Doctor getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
+    }
+
+    public List<OrderHeal> getOrderHealDetailHeals() {
+        return orderHealDetailHeals;
+    }
+
+    public void setOrderHealDetailHeals(List<OrderHeal> orderHealDetailHeals) {
+        this.orderHealDetailHeals = orderHealDetailHeals;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
