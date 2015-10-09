@@ -5,6 +5,7 @@
  */
 package th.co.geniustree.dental.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
@@ -87,7 +88,7 @@ public class Staff extends Employee implements Serializable{
     @Column(name = "WORK_STATUS")
     private String workStatus;
    
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "DEPARTMENT_ID")
     private Department department;
 

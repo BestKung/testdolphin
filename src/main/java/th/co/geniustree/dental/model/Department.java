@@ -6,9 +6,11 @@
 package th.co.geniustree.dental.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +35,7 @@ public class Department implements Serializable {
     @NotBlank(message = "Department Name not Empty")
     private String name;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Staff> staff;
 

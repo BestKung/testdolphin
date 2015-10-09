@@ -11,8 +11,8 @@ public abstract class ListSelectHeal_ {
 
 	public static volatile SingularAttribute<ListSelectHeal, Double> price;
 	public static volatile SingularAttribute<ListSelectHeal, String> name;
-	public static volatile ListAttribute<ListSelectHeal, OrderHeal> OrderHeal_ListSelectHeal;
 	public static volatile SingularAttribute<ListSelectHeal, Integer> id;
+	public static volatile ListAttribute<ListSelectHeal, OrderHeal> orderHealListSelectHeals;
 
 }
 
