@@ -33,71 +33,71 @@ import th.co.geniustree.dental.spec.PatientSpec;
  */
 @RestController
 public class PatientController {
-
+    
     @Autowired
     private PatientRepo patientRepo;
-
+    
     @Autowired
     private MedicalHistoryRepo medicalHistoryRepo;
-
+    
     @Autowired
     private PatientSearchService patientSearchService;
-
+    
     @RequestMapping(value = "/getmedicalhistory", method = RequestMethod.GET)
     private Page<MedicalHistory> getmedicalHistory(Pageable pageable) {
         return medicalHistoryRepo.findAll(pageable);
     }
-
+    
     @RequestMapping(value = "/savepatient", method = RequestMethod.POST)
     private void savePatient(@RequestBody Patient patient) {
         patientRepo.save(patient);
     }
-
+    
     @RequestMapping(value = "/savepatientpicturexray", method = RequestMethod.POST)
     private PatientPictureXray savePatientPictureXray(MultipartRequest multipartRequest) throws IOException {
         PatientPictureXray picture = new PatientPictureXray();
         picture.setNameXrayFilm(multipartRequest.getFile("xray").getOriginalFilename());
         picture.setContentXrayFilm(multipartRequest.getFile("xray").getBytes());
         picture.setMimeTypeXrayFilm(multipartRequest.getFile("xray").getName());
-
+        
         return picture;
     }
-
+    
     @RequestMapping(value = "/savepatientpicturebefore", method = RequestMethod.POST)
     private PatientPictureBefore savePatientPictureBefore(MultipartRequest multipartRequest) throws IOException {
         PatientPictureBefore picture = new PatientPictureBefore();
         picture.setNameBefore(multipartRequest.getFile("before").getOriginalFilename());
         picture.setContentBefore(multipartRequest.getFile("before").getBytes());
         picture.setMimeTypeBefore(multipartRequest.getFile("before").getName());
-
+        
         return picture;
     }
-
+    
     @RequestMapping(value = "/savepatientpicturecurrent", method = RequestMethod.POST)
     private PatientPictureCurrent savePatientPictureCurrent(MultipartRequest multipartRequest) throws IOException {
         PatientPictureCurrent picture = new PatientPictureCurrent();
         picture.setNameCurrent(multipartRequest.getFile("current").getOriginalFilename());
         picture.setContentCurrent(multipartRequest.getFile("current").getBytes());
         picture.setMimeTypeCurrent(multipartRequest.getFile("current").getName());
-
+        
         return picture;
     }
-
+    
     @RequestMapping(value = "/savepatientpictureafter", method = RequestMethod.POST)
     private PatientPictureAfter savePatientPictureAfter(MultipartRequest multipartRequest) throws IOException {
         PatientPictureAfter picture = new PatientPictureAfter();
         picture.setNameAfter(multipartRequest.getFile("after").getOriginalFilename());
         picture.setContentAfter(multipartRequest.getFile("after").getBytes());
         picture.setMimeTypeAfter(multipartRequest.getFile("after").getName());
-
+        
         return picture;
     }
-
+    
     @RequestMapping(value = "/getpatient", method = RequestMethod.GET)
     private Page<Patient> getPatient(Pageable pageable) {
         return patientRepo.findAll(pageable);
     }
-
+    
     @RequestMapping(value = "/searchpatient", method = RequestMethod.POST)
     private Page<Patient> searchPatient(@RequestBody SearchData searchData, Pageable pageable) {
         String searchBy = searchData.getSearchBy();
@@ -114,13 +114,13 @@ public class PatientController {
         }
         return patients;
     }
-
+    
     @RequestMapping(value = "/countpatient", method = RequestMethod.GET)
     private Long countPatient() {
         return patientRepo.count();
     }
-
-    @RequestMapping(value = "/countsearchpatient" , method = RequestMethod.POST)
+    
+    @RequestMapping(value = "/countsearchpatient", method = RequestMethod.POST)
     private Long countSearchPatient(@RequestBody SearchData searchData) {
         String searchBy = searchData.getSearchBy();
         String keyword = searchData.getKeyword();
@@ -135,5 +135,10 @@ public class PatientController {
             count = patientRepo.count(PatientSpec.emailLike("%" + keyword + "%"));
         }
         return count;
+    }
+    
+    @RequestMapping(value = "/deletepatient", method = RequestMethod.POST)
+    private void deletePatient(@RequestBody Patient patient) {
+        patientRepo.delete(patient);
     }
 }

@@ -35,9 +35,9 @@ public class Department implements Serializable {
     @NotBlank(message = "Department Name not Empty")
     private String name;
 
-    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Staff> staff;
+//    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
+//    @JsonIgnore
+//    private List<Staff> staff;
 
     public Integer getId() {
         return id;
@@ -55,15 +55,14 @@ public class Department implements Serializable {
         this.name = name;
     }
 
-    public List<Staff> getStaff() {
-        return staff;
-    }
+//    public List<Staff> getStaff() {
+//        return staff;
+//    }
+//
+//    public void setEmployees(List<Staff> staff) {
+//        this.staff = staff;
+//    }
 
-    public void setEmployees(List<Staff> staff) {
-        this.staff = staff;
-    }
-
-    
     @Override
     public int hashCode() {
         int hash = 3;

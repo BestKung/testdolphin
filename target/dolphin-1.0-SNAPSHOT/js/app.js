@@ -47,6 +47,13 @@ app.factory('employeeService', function () {
         employeeUpdate: {}, doctorUpdate : {}
     };
 });
+
+app.factory('patientService' , function (){
+    return {
+        patienUpdate:{}
+    };
+});
+
 app.config(function ($routeProvider) {
     $routeProvider.when('/', {
         controller: 'homeController',

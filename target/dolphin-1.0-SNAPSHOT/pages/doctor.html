@@ -12,57 +12,57 @@
                     <label for="id" class="update">ID</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">email</i>
-                    <input type="text" id="email" ng-model="doctor.email" ng-change="setBackgroundPrefixId();error.violations.email.message = ''">
+                    <i class="material-icons prefix clear-prefix email">email</i>
+                    <input type="text" id="email" ng-model="doctor.email" ng-change="setBackgroundPrefixId();error.violations.email.message = '';changePrefix('.email')">
                     <label for="email" class="update">อีเมลล์<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.email.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">lock</i>
-                    <input type="password" id="password"  ng-model="password" ng-change="comparePassword();error.violations.password.message = ''">
+                    <i class="material-icons prefix clear-prefix password">lock</i>
+                    <input type="password" id="password"  ng-model="password" ng-change="comparePassword();error.violations.password.message = '';changePrefix('.password')">
                     <label for="password" class="update">พาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">lock</i>
-                    <input type="password" id="confirmpassword"  ng-model="doctor.password" ng-change="comparePassword();error.violations.password.message = ''">
+                    <i class="material-icons prefix clear-prefix confirmpassword">lock</i>
+                    <input type="password" id="confirmpassword"  ng-model="doctor.password" ng-change="comparePassword();error.violations.password.message = '';changePrefix('.confirmpassword')">
                     <label for="confirmpassword" class="update">ยืนยังพาสเวิร์ด<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.password.message}}</span></label>
                     <i class="material-icons right-input-custom" id="confirm"></i>
                 </div>
             </div>
              <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">book</i>
-                    <input type="text" id="pid"  ng-model="doctor.permitNo">
+                    <i class="material-icons prefix clear-prefix permitno">book</i>
+                    <input type="text" id="pid"  ng-model="doctor.permitNo" ng-change=";changePrefix('.permitno')">
                     <label  for="pid" class="update">เลขที่ใบอนุญาติ</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">book</i>
-                    <input type="text" id="nameth" ng-model="doctor.permitType">
+                    <i class="material-icons prefix clear-prefix permittype">book</i>
+                    <input type="text" id="nameth" ng-model="doctor.permitType" ng-change=";changePrefix('.permittype')">
                     <label for="nameth" class="update">ประเภทใบอนุญาติ</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">credit_card</i>
-                    <input type="text" id="pid"  ng-model="doctor.pid">
+                    <i class="material-icons prefix clear-prefix pid">credit_card</i>
+                    <input type="text" id="pid"  ng-model="doctor.pid" ng-change=";changePrefix('.pid')">
                     <label  for="pid" class="update">รหัสประชาชน</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">account_circle</i>
-                    <input type="text" id="nameth"  ng-model="doctor.nameTh" ng-change="error.violations.nameTh.message = ''">
+                    <i class="material-icons prefix clear-prefix nameth">account_circle</i>
+                    <input type="text" id="nameth"  ng-model="doctor.nameTh" ng-change="error.violations.nameTh.message = '';;changePrefix('.nameth')">
                     <label for="nameth" class="update">ชื่อ ภาษาไทย<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.nameTh.message}}</span></label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">account_circle</i>
-                    <input type="text" id="nameeng"  ng-model="doctor.nameEng">
+                    <i class="material-icons prefix clear-prefix nameeng">account_circle</i>
+                    <input type="text" id="nameeng"  ng-model="doctor.nameEng" ng-change="changePrefix('.nameeng')">
                     <label for="nameeng" class="update">ชื่อ ภาษาอังกฤษ</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">cake</i>
-                    <input type="date" id="birthdate" class="datepicker" ng-model="doctor.birthDate">
+                    <i class="material-icons prefix clear-prefix birthdate">cake</i>
+                    <input type="date" id="birthdate" class="datepicker" ng-model="doctor.birthDate" ng-change="changePrefix('.birthdate')">
                     <label for="birthdate" class="update">วันเกิด</label>
                 </div>
             </div>
@@ -92,20 +92,20 @@
             </div>
            <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">home</i>
-                    <textarea type="text" id="addressofpid" class="materialize-textarea"  ng-model="doctor.address"></textarea>
+                    <i class="material-icons prefix clear-prefix address">home</i>
+                    <textarea type="text" id="address" class="materialize-textarea"  ng-model="doctor.address" ng-change="changePrefix('.address')"></textarea>
                     <label for="address" class="update">ที่อยู่</label>
                 </div>
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">phone</i>
+                    <i class="material-icons prefix clear-prefix tel">phone</i>
                     <input type="text" id="tel" ng-model="doctor.tel">
                     <label for="tel" class="update">เบอร์โทร</label>
                 </div>
             </div>
             <div class="row">
                 <div class="col m6 s12 input-field">
-                    <i class="material-icons prefix clear-prefix">stay_current_portrait</i>
-                    <input type="text" id="mobile" ng-model="doctor.mobile" ng-change="setBackgroundPrefixSexBlood();setBackgroundPrefixWorkstatus();error.violations.mobile.message = ''">
+                    <i class="material-icons prefix clear-prefix mobile">stay_current_portrait</i>
+                    <input type="text" id="mobile" ng-model="doctor.mobile" ng-change="setBackgroundPrefixSexBlood();setBackgroundPrefixWorkstatus();error.violations.mobile.message = '';changePrefix('.mobile')">
                     <label for="mobile" class="update">เบอร์โทรศัพท์มือถือ<span class="necessary">*</span><span class="margin-left necessary-text">{{error.violations.mobile.message}}</span></label>
                 </div>
                  <div class="col m6 s12 input-field">
