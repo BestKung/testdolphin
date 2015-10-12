@@ -7,8 +7,11 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
     $scope.patients = {};
     $scope.doctors = {};
     $scope.listSelectHeals = {};
-
+    $scope.preScroll = 0;
     loadDetailHeal();
+    $scope.deleteOrderHeal = [];
+    $scope.updateOrderHeal = {};
+    var count = 0;
     function loadDetailHeal() {
         $http.get('/loaddetailheal').success(function (data) {
             $scope.detailHeals = data;
@@ -17,19 +20,30 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
         });
     }
 
-    loadPatient();
-    function loadPatient() {
+    loadPatient(0);
+    function loadPatient(id) {
         $http.get('/getpatient').success(function (data) {
             $scope.patients = data;
-            $scope.detailHeal.patient = data.content[0];
+            $scope.detailHeal.patient = data.content[id];
+            for (i = 0; i < data.content.length; i++) {
+                if (id === data.content[i].id) {
+                    $scope.detailHeal.patient = data.content[i];
+                }
+            }
+
         });
     }
 
-    loadDoctor();
-    function loadDoctor() {
+    loadDoctor(0);
+    function loadDoctor(id) {
         $http.get('/getdoctor').success(function (data) {
             $scope.doctors = data;
-            $scope.detailHeal.doctor = data.content[0];
+            $scope.detailHeal.doctor = data.content[id];
+            for (j = 0; j < data.content.length; j++) {
+                if (id === data.content[j].id) {
+                    $scope.detailHeal.doctor = data.content[j];
+                }
+            }
         });
     }
 
@@ -77,11 +91,10 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
         }
         loadListSelectHeal();
     };
-    $scope.removeSelectHeal = function (name) {
+    $scope.removeSelectHeal = function (name, id) {
         var index = -1;
-        var rowData = eval($scope.orderHeals);
-        for (var i = 0; i < rowData.length; i++) {
-            if (rowData[i].listSelectHeal.name === name) {
+        for (var i = 0; i < $scope.orderHeals.length; i++) {
+            if ($scope.orderHeals[i].listSelectHeal.name === name) {
                 index = i;
                 break;
             }
@@ -90,28 +103,77 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
             Materialize.toast('บางอย่างผิดพลาด', 3000, 'rounded');
         }
         $scope.orderHeals.splice(index, 1);
+        $scope.deleteOrderHeal[count] = id;
+        count++;
     };
-    
+
     $scope.saveDetailheal = function () {
-                $http.post('/savedetailheal', $scope.detailHeal).success(function (data) {
-                    $http.post('/saveorderheal', $scope.orderHeals).success(function (data) {
-                        Materialize.toast('saveข้อมูลเรียบร้อย', 3000, 'rounded');
-                        loadDetailHeal();
-                        $scope.detailHeal = {};
-                        $scope.orderHeals = [];
-                        $scope.nameListPayHeal = '';
-                        $scope.amountListPayHeal = '';
-                        loadListSelectHeal();
-                        loadPatient();
-                        loadDoctor();
-                    }).error(function (data, status, header, cofig) {
-                        Materialize.toast('ผิดพลาดsavedetailHeal', 3000, 'rounded');
-                    });
-                }).error(function (data, status, header, cofig) {
 
-                });
+        count = 0;
+        $scope.updateOrderHeal.orderHeal = $scope.orderHeals;
+        $scope.updateOrderHeal.id = $scope.deleteOrderHeal;
+        $http.post('/savedetailheal', $scope.detailHeal).success(function (data) {
+            $http.post('/saveorderheal', $scope.updateOrderHeal).success(function (data) {
+                Materialize.toast('บันทึกข้อมูลเรียบร้อย', 3000, 'rounded');
+                loadDetailHeal();
+                $scope.detailHeal = {};
+                $scope.orderHeals = [];
+                $scope.nameListPayHeal = '';
+                $scope.amountListPayHeal = '';
+                loadListSelectHeal();
+                loadPatient();
+                loadDoctor();
+            }).error(function (data, status, header, cofig) {
+                Materialize.toast('ผิดพลาดsavedetailHeal', 3000, 'rounded');
+            });
+        }).error(function (data, status, header, cofig) {
 
-            };
+        });
+
+    };
+
+    $scope.clearData = function () {
+        $scope.detailHeal = {};
+        $scope.orderHeals = [];
+        $scope.nameListPayHeal = '';
+        $scope.amountListPayHeal = '';
+        loadListSelectHeal();
+        loadPatient();
+        loadDoctor();
+        $('#namedepartment').removeClass('active');
+    };
+
+    $scope.seeDetail = {};
+    $scope.seeDatailHeal = function (dh) {
+        $scope.preScroll = $(window).scrollTop();
+        $scope.seeDetail = dh;
+    };
+
+    $scope.deleteDetailHeal = function () {
+        $http.post('/deletedetailheal', $scope.seeDetail).success(function (data) {
+            Materialize.toast('ลบข้อมูลเรียบร้อย', 3000, 'rounded');
+            loadDetailHeal();
+            $('span#close-card').trigger('click');
+        }).error(function (data) {
+
+        });
+    };
+
+
+    $scope.actionUpdate = function (seeDetail) {
+        $('body,html').animate({scrollTop: 0}, "600");
+        $scope.detailHeal.id = seeDetail.id;
+        $scope.detailHeal.dateHeal = new Date(seeDetail.dateHeal);
+        loadPatient(seeDetail.patient.id);
+        loadDoctor(seeDetail.doctor.id);
+        $scope.detailHeal.detail = seeDetail.detail;
+
+        $scope.orderHeals = seeDetail.orderHealDetailHeals;
+        $('#namedate').addClass('active');
+        $('#namedatail').addClass('active');
+    };
+
+
 
     $('.datepicker').pickadate({
         selectMonths: true,
@@ -124,6 +186,18 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
         $('.modal-trigger').leanModal();
     });
 
+    function toPreScroll() {
+        $('body,html').animate({scrollTop: $scope.preScroll}, "0");
+    }
+
+    $scope.toPreScroll = function () {
+        toPreScroll();
+    };
+
+    $scope.cancel = function () {
+        toPreScroll();
+        $('span#close-card').trigger('click');
+    };
 
 });
 

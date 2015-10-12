@@ -28,6 +28,7 @@ th\co\geniustree\dental\model\Lot_.class
 th\co\geniustree\dental\model\SearchData.class
 th\co\geniustree\dental\model\PatientPictureBefore.class
 th\co\geniustree\dental\repo\PatientRepo.class
+th\co\geniustree\dental\model\UpdateOrderHeal.class
 th\co\geniustree\dental\service\StaffSearchService.class
 th\co\geniustree\dental\service\CustomUserService.class
 th\co\geniustree\dental\spec\PatientSpec$3.class
@@ -79,6 +80,7 @@ th\co\geniustree\dental\model\PatientPictureCurrent_.class
 th\co\geniustree\dental\model\Employee_.class
 th\co\geniustree\dental\spec\DoctorSpec$1.class
 th\co\geniustree\dental\model\DoctorPicture.class
+th\co\geniustree\dental\controller\BillController.class
 th\co\geniustree\dental\model\DetailHeal_.class
 th\co\geniustree\dental\repo\DepartmentRepo.class
 th\co\geniustree\dental\model\OrderHeal.class
