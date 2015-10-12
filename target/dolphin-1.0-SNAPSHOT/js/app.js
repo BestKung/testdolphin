@@ -1,7 +1,7 @@
 var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department'
-    , 'employee-information','doctor','doctor-information','patient'
-,'bill','detailHeal','listSelectHeal','priceAndExpireProduct','product','typeProduct','unitProduct','lot',
-'patient-information']);
+            , 'employee-information', 'doctor', 'doctor-information', 'patient'
+            , 'bill', 'detailHeal', 'listSelectHeal', 'priceAndExpireProduct', 'product', 'typeProduct', 'unitProduct', 'lot',
+    'patient-information']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     $scope.login = {};
@@ -24,17 +24,22 @@ app.controller('homeController', function ($scope, $http) {
         });
     }
 
+    $scope.changcolor = function () {
+          $('.color1').toggleClass('color2'); 
+          $('.text-sky').toggleClass('text-sky-grann'); 
+    };
+
 
     function hasLogin() {
         if (!!$scope.login.id) {
             $('#login').removeClass('btn-blue').addClass('btn-red').html('Logout');
         }
     }
-    
-    $scope.clickLogout = function (){
+
+    $scope.clickLogout = function () {
         console.log(!!$('#logout').hasClass('.btn-red'));
-        if(!!$scope.login.id){
-            location.href="/logout";
+        if (!!$scope.login.id) {
+            location.href = "/logout";
             console.log('logout');
         }
     };
@@ -44,13 +49,13 @@ app.controller('homeController', function ($scope, $http) {
 
 app.factory('employeeService', function () {
     return {
-        employeeUpdate: {}, doctorUpdate : {}
+        employeeUpdate: {}, doctorUpdate: {}
     };
 });
 
-app.factory('patientService' , function (){
+app.factory('patientService', function () {
     return {
-        patienUpdate:{}
+        patienUpdate: {}
     };
 });
 
@@ -70,43 +75,43 @@ app.config(function ($routeProvider) {
         controller: 'employeeInformationController',
         templateUrl: 'pages/employee-information.html'
     }).when('/doctor', {
-        controller:'doctorController',
+        controller: 'doctorController',
         templateUrl: 'pages/doctor.html'
-    }).when('/doctor/information',{
-        controller:'doctorInformationController',
-        templateUrl:'pages/doctor-information.html'
-    }).when('/patient',{
-        controller:'patientController',
-        templateUrl:'pages/patient.html'
-    
-    
-    }).when('/listselectheal',{
-        controller:'listSelectHealController',
-        templateUrl:'pages/listselectheal.html'
-    }).when('/detailheal',{
-        controller:'detailHealController',
-        templateUrl:'pages/detailheal.html'
-    }).when('/unitproduct',{
-        controller:'unitProductController',
-        templateUrl:'pages/unitproduct.html'
-    }).when('/typeproduct',{
-        controller:'typeProductController',
-        templateUrl:'pages/typeproduct.html'
-    }).when('/lot',{
-        controller:'lotController',
-        templateUrl:'pages/lot.html'
-    }).when('/product',{
-        controller:'productController',
-        templateUrl:'pages/product.html'
-    }).when('/price-and-expire-prooduct',{
-        controller:'priceAndExpireProductController',
-        templateUrl:'pages/price-and-expire-prooduct.html'
-    }).when('/bill',{
-        controller:'billController',
-        templateUrl:'pages/bill.html'
-    }).when('/patient/information',{
-        controller:'patientInformationController',
-        templateUrl:'pages/patient-information.html'
+    }).when('/doctor/information', {
+        controller: 'doctorInformationController',
+        templateUrl: 'pages/doctor-information.html'
+    }).when('/patient', {
+        controller: 'patientController',
+        templateUrl: 'pages/patient.html'
+
+
+    }).when('/listselectheal', {
+        controller: 'listSelectHealController',
+        templateUrl: 'pages/listselectheal.html'
+    }).when('/detailheal', {
+        controller: 'detailHealController',
+        templateUrl: 'pages/detailheal.html'
+    }).when('/unitproduct', {
+        controller: 'unitProductController',
+        templateUrl: 'pages/unitproduct.html'
+    }).when('/typeproduct', {
+        controller: 'typeProductController',
+        templateUrl: 'pages/typeproduct.html'
+    }).when('/lot', {
+        controller: 'lotController',
+        templateUrl: 'pages/lot.html'
+    }).when('/product', {
+        controller: 'productController',
+        templateUrl: 'pages/product.html'
+    }).when('/price-and-expire-prooduct', {
+        controller: 'priceAndExpireProductController',
+        templateUrl: 'pages/price-and-expire-prooduct.html'
+    }).when('/bill', {
+        controller: 'billController',
+        templateUrl: 'pages/bill.html'
+    }).when('/patient/information', {
+        controller: 'patientInformationController',
+        templateUrl: 'pages/patient-information.html'
     }).otherwise({
         redirectTo: '/'
     });
