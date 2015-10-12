@@ -24,6 +24,7 @@ public abstract class Patient_ {
 	public static volatile SingularAttribute<Patient, String> blood;
 	public static volatile SingularAttribute<Patient, PatientPictureXray> patientPictureXray;
 	public static volatile SingularAttribute<Patient, String> name;
+	public static volatile ListAttribute<Patient, DetailHeal> detailHeals;
 	public static volatile SingularAttribute<Patient, String> tel;
 	public static volatile SingularAttribute<Patient, Integer> id;
 	public static volatile SingularAttribute<Patient, String> job;

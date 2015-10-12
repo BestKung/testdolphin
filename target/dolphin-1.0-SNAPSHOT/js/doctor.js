@@ -23,7 +23,7 @@ angular.module('doctor').controller('doctorController', function (employeeServic
     $scope.saveDoctor = function () {
         if (confirmPassword()) {
             $http.post('/savedoctor', $scope.doctor).success(function (data) {
-
+                clearData();
             }).error(function (data) {
                 $scope.error = data;
                 $('body,html').animate({scrollTop: 0}, "600");
@@ -60,19 +60,19 @@ angular.module('doctor').controller('doctorController', function (employeeServic
     };
 
     hasImage();
-    function hasImage (){
-     if (!!$scope.doctor.doctorPicture) {
-        if (!!$scope.doctor.doctorPicture.content) {
-            document.getElementById('employee-picture').src = "data:image/jpg;base64," + $scope.doctor.doctorPicture.content;
+    function hasImage() {
+        if (!!$scope.doctor.doctorPicture) {
+            if (!!$scope.doctor.doctorPicture.content) {
+                document.getElementById('employee-picture').src = "data:image/jpg;base64," + $scope.doctor.doctorPicture.content;
+            }
+            else {
+                NoImage();
+            }
+
         }
         else {
             NoImage();
         }
-
-    }
-    else {
-        NoImage();
-    }
     }
 
     function NoImage() {
@@ -107,6 +107,26 @@ angular.module('doctor').controller('doctorController', function (employeeServic
         }
     }
 
+    function clearData() {
+        employeeService.doctorUpdate = {};
+        $scope.doctor = {};
+        $scope.password = "";
+        NoImage();
+        $('#confirm').html('');
+        $('.update').removeClass('active');
+        $('.clear-prefix').css('color', 'black');
+        $scope.doctor.sex = 'ชาย';
+        $scope.doctor.blood = 'A';
+        $scope.doctor.workStatus = 'ทำงาน';
+    }
+
+    $scope.clearData = function () {
+        clearData();
+    };
+
+    $scope.changePrefix = function (my){
+       $(my).css('color', '#00bcd4');
+    };
 
     $scope.setBackgroundPrefixId = function () {
         var email = $scope.doctor.email;
@@ -168,6 +188,7 @@ angular.module('doctor').controller('doctorController', function (employeeServic
 
 
 });
+
 
 app.directive('fileModel', function ($parse) {
     return {

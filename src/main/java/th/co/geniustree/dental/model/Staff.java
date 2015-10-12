@@ -88,7 +88,7 @@ public class Staff extends Employee implements Serializable{
     @Column(name = "WORK_STATUS")
     private String workStatus;
    
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "DEPARTMENT_ID")
     private Department department;
 

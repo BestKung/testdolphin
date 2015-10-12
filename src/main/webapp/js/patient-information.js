@@ -1,5 +1,5 @@
 angular.module('patient-information', []);
-angular.module('patient-information').controller('patientInformationController', function ($scope, $http) {
+angular.module('patient-information').controller('patientInformationController', function (patientService,$scope, $http) {
     $scope.patients = {};
     $scope.patientDetail = {};
     $scope.search = {};
@@ -30,8 +30,25 @@ angular.module('patient-information').controller('patientInformationController',
             $scope.patients = data;
         });
     }
+    
+    
+    $scope.clickDelete = function () {
+        $('#modal-delete').openModal({dismissible: false});
+     };
 
 
+    $scope.deletePatient = function (){
+        $http.post('/deletepatient' , $scope.patientDetail).success(function (data){
+            console.log('delete success');
+            $scope.cancel();
+        });
+    };
+    
+    $scope.updatePatient = function (patient){
+        patientService.patienUpdate = patient;
+          location.href = "#/patient";
+    };
+    
     $scope.searchPatient = function () {
         searchPatient();
     };

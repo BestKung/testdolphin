@@ -1,7 +1,8 @@
 angular.module('patient', []);
-angular.module('patient').controller('patientController', function ($scope, $http) {
+angular.module('patient').controller('patientController', function (patientService, $scope, $http) {
 
-    $scope.patient = {};
+    $scope.patient = patientService.patienUpdate;
+    $scope.patient.birthDate = new Date(patientService.patienUpdate.birthDate);
     $scope.patient.patientPicture = {};
     $scope.medicalHistory = {};
     $scope.patientPictureBefore;
@@ -21,8 +22,21 @@ angular.module('patient').controller('patientController', function ($scope, $htt
         console.log($scope.patient.patientPicture);
         $http.post('/savepatient', $scope.patient).success(function (data) {
             console.log('success');
+            clearData();
         });
     };
+
+    hasPatientService();
+    function hasPatientService() {
+        console.log('service..........' + $scope.patient);
+        if (!!patientService.patienUpdate.id) {
+            $('.update').addClass('active');
+            $('.clear-prefix').css('color', '#00bcd4')
+        }
+        else {
+            $('.update').removeClass('active');
+        }
+    }
 
     $scope.setBackgroundPrefixId = function () {
         var hn = $scope.patient.hn;
@@ -33,15 +47,15 @@ angular.module('patient').controller('patientController', function ($scope, $htt
             $('#id').css('color', 'black');
         }
     };
-    
-     $scope.setBackgroundPrefixSex = function () {
+
+    $scope.setBackgroundPrefixSex = function () {
         var sex = $scope.patient.sex;
         if (sex.length != 0) {
             $('#sex').css('color', '#00bcd4');
-             $('#blood').css('color', '#00bcd4');
+            $('#blood').css('color', '#00bcd4');
         }
         else if (sex.length == 0) {
-              $('#sex').css('color', 'black');
+            $('#sex').css('color', 'black');
             $('#blood').css('color', 'black');
         }
     };
@@ -63,7 +77,7 @@ angular.module('patient').controller('patientController', function ($scope, $htt
             headers: {'Content-Type': undefined}
         })
                 .success(function (data) {
-                 $scope.patient.patientPictureXray = data;    
+                    $scope.patient.patientPictureXray = data;
                 });
     };
 
@@ -75,7 +89,7 @@ angular.module('patient').controller('patientController', function ($scope, $htt
             headers: {'Content-Type': undefined}
         })
                 .success(function (data) {
-                   $scope.patient.patientPictureBefore = data;
+                    $scope.patient.patientPictureBefore = data;
                 });
     };
 
@@ -87,7 +101,7 @@ angular.module('patient').controller('patientController', function ($scope, $htt
             headers: {'Content-Type': undefined}
         })
                 .success(function (data) {
-                   $scope.patient.patientPictureCurrent = data;
+                    $scope.patient.patientPictureCurrent = data;
                 });
     };
 
@@ -99,41 +113,124 @@ angular.module('patient').controller('patientController', function ($scope, $htt
             headers: {'Content-Type': undefined}
         })
                 .success(function (data) {
-                   $scope.patient.patientPictureAfter = data;
+                    $scope.patient.patientPictureAfter = data;
                 });
     };
 
-    NoImage();
-     function NoImage() {
-                $http.get('/getnoimage').success(function (data) {
-                 imageIsNo = data.contentImage;
-                 noImageXray();
-                 noImageBefore();
-                 noImageCurrent();
-                 noImageAfter();
-                });
+    function clearData() {
+        patientService.patienUpdate = {};
+        $scope.patient = {};
+        $('.update').removeClass('active');
+        $('.clear-prefix').css('color', 'black');
+        noImageAfter();
+        noImageBefore();
+        noImageCurrent();
+        noImageXray();
+     }
+
+    $scope.clearData = function () {
+        clearData();
+    };
+
+    $scope.changePrefix = function (my) {
+        $(my).css('color', '#00bcd4');
+    };
+
+    hasImage();
+    function hasImage() {
+
+        if (!!$scope.patient.patientPictureXray) {
+            if (!!$scope.patient.patientPictureXray.contentXrayFilm) {
+                console.log('true');
+                document.getElementById('patient-xrayfilm').src = "data:image/jpg;base64," + $scope.patient.patientPictureXray.contentXrayFilm;
             }
-            ;
-    
-    
-      function noImageXray(){
-          document.getElementById('patient-xrayfilm').src = "data:image/jpg;base64," + imageIsNo;
-      }
-      
-     
-      function noImageBefore(){
-           document.getElementById('patient-before').src = "data:image/jpg;base64," + imageIsNo;
-      }
-     
-    
-      function noImageCurrent(){
-          document.getElementById('patient-current').src = "data:image/jpg;base64," + imageIsNo;
-      }
-      
-     
-      function noImageAfter(){
-          document.getElementById('patient-after').src = "data:image/jpg;base64," + imageIsNo;
-      }
+            else {
+                console.log('false');
+                noImageXray();
+            }
+
+        }
+        else {
+            console.log('no image');
+            noImageXray();
+        }
+
+        if (!!$scope.patient.patientPictureBefore) {
+            if (!!$scope.patient.patientPictureBefore.contentBefore) {
+                console.log('true');
+                document.getElementById('patient-before').src = "data:image/jpg;base64," + $scope.patient.patientPictureBefore.contentBefore;
+            }
+            else {
+                console.log('false');
+                noImageBefore();
+            }
+
+        }
+        else {
+            console.log('no image');
+            noImageBefore();
+        }
+
+        if (!!$scope.patient.patientPictureCurrent) {
+            if (!!$scope.patient.patientPictureCurrent.contentCurrent) {
+                console.log('true');
+                document.getElementById('patient-current').src = "data:image/jpg;base64," + $scope.patient.patientPictureCurrent.contentCurrent;
+            }
+            else {
+                console.log('false');
+                noImageCurrent();
+            }
+
+        }
+        else {
+            console.log('no image');
+            noImageCurrent();
+        }
+
+        if (!!$scope.patient.patientPictureAfter) {
+            if (!!$scope.patient.patientPictureAfter.contentAfter) {
+                console.log('true');
+                document.getElementById('patient-after').src = "data:image/jpg;base64," + $scope.patient.patientPictureAfter.contentAfter;
+            }
+            else {
+                console.log('false');
+                noImageAfter()
+            }
+
+        }
+        else {
+            console.log('no image');
+            noImageAfter();
+        }
+
+    }
+
+    function noImageXray() {
+        $http.get('/getnoimage').success(function (data) {
+            document.getElementById('patient-xrayfilm').src = "data:image/jpg;base64," + data.contentImage;
+        });
+    }
+
+
+    function noImageBefore() {
+        $http.get('/getnoimage').success(function (data) {
+            document.getElementById('patient-before').src = "data:image/jpg;base64," + data.contentImage;
+        });
+    }
+
+
+    function noImageCurrent() {
+        $http.get('/getnoimage').success(function (data) {
+            document.getElementById('patient-current').src = "data:image/jpg;base64," + data.contentImage;
+        });
+    }
+
+
+    function noImageAfter() {
+        $http.get('/getnoimage').success(function (data) {
+            document.getElementById('patient-after').src = "data:image/jpg;base64," + data.contentImage;
+        });
+    }
 
     function readURLBefore(input) {
         if (input.files && input.files[0]) {

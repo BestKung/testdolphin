@@ -5,9 +5,11 @@
  */
 package th.co.geniustree.dental.repo;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import th.co.geniustree.dental.model.Employee;
+import th.co.geniustree.dental.model.Department;
 import th.co.geniustree.dental.model.Staff;
 
 /**
@@ -17,4 +19,5 @@ import th.co.geniustree.dental.model.Staff;
 public interface StaffRepo extends JpaRepository<Staff, Integer>, JpaSpecificationExecutor<Staff>{
    
     public Staff findByEmail(String email);
+    public Page<Staff> findByDepartment(Department department , Pageable pageable);
 }
