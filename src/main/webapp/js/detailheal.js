@@ -58,8 +58,8 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
 
 
     $scope.addSelectHeal = function (name) {
-        if (!$scope.amountListSelectHeal || $scope.amountListSelectHeal === 0) {
-            Materialize.toast('การุณากรอกจำนวนด้วยครับ', 3000, 'rounded');
+        if (!$scope.amountListSelectHeal || $scope.amountListSelectHeal === 0 || $scope.amountListSelectHeal < 0) {
+            Materialize.toast('การุณากรอกจำนวนให้ถูกต้องด้วยครับ', 3000, 'rounded');
         } else {
             if ($scope.orderHeals.length === 0) {
                 $scope.orderHeals.push({'listSelectHeal': $scope.nameListOrderheal,

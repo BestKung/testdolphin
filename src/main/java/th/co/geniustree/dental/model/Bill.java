@@ -6,6 +6,7 @@
 package th.co.geniustree.dental.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -40,8 +41,8 @@ public class Bill implements Serializable {
     @Column(name = "SUMPRICE")
     private Double sumPrice;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "bill",cascade = CascadeType.REMOVE)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
     private List<OrderBill> orderBills;
 
     public List<OrderBill> getOrderBills() {

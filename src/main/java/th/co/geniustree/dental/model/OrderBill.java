@@ -5,6 +5,7 @@
  */
 package th.co.geniustree.dental.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -33,6 +34,7 @@ public class OrderBill implements Serializable {
     @Column(name = "VALUE")
     private Integer value;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "BILL_ID")
     private Bill bill;
