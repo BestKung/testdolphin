@@ -126,7 +126,7 @@ angular.module('patient').controller('patientController', function (patientServi
         noImageBefore();
         noImageCurrent();
         noImageXray();
-     }
+    }
 
     $scope.clearData = function () {
         clearData();

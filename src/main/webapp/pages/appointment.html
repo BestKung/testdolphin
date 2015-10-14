@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title" style="color: black;"><h4>การนัดหมาย</h4></span>
+
+            <div class="row">
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix" id="id">label</i>
+                    <input type="text" id="id" disabled ng-model="id">
+                    <label for="id" class="update">ID</label>
+                </div>
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">content_paste</i>
+                    <textarea type="text" id="treatmentlist" ng-model="treatmentList" class="materialize-textarea"></textarea>
+                    <label for="treatmentlist" class="update">รายการรักษา</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">person</i>
+                    <input type="text" id="appointment-patient" ng-model="patient">
+                    <label for="appointment-patient" class="update">คนไข้</label>
+                </div>
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">label</i>
+                    <input type="text" id="appointment-doctor" ng-model="doctor">
+                    <label for="appointment-doctor" class="update">ทันตเเพทย์</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">person</i>
+                    <input type="text" id="mobile" ng-model="mobile">
+                    <label for="mobile" class="update">เบอร์ติดต่อ</label>
+                </div>
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">label</i>
+                    <input type="text" id="appointday" ng-model="appointDay">
+                    <label for="appointday" class="update">วันที่</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">label</i>
+                    <input type="text" id="startTime" ng-model="startTime">
+                    <label for="startTime" class="update">เวลาเริ่ม</label>
+                </div>
+                <div class="col m6 s12 input-field">
+                    <i class="material-icons prefix clear-prefix">label</i>
+                    <input type="text" id="endTime" ng-model="endTime">
+                    <label for="endTime" class="update">เวลาสิ่นสุด</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="right">
+                    <a href="" class="btn btn-orenge waves-effect waves-light" ng-click="clearData()">Clear</a>
+                    <a href="" class="btn btn-green waves-effect waves-light" ng-click="saveDepartment()">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>

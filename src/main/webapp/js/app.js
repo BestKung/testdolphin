@@ -1,7 +1,7 @@
 var app = angular.module('app', ['checklist-model', 'ngRoute', 'employee', 'department'
             , 'employee-information', 'doctor', 'doctor-information', 'patient'
             , 'bill', 'detailHeal', 'listSelectHeal', 'priceAndExpireProduct', 'product', 'typeProduct', 'unitProduct', 'lot',
-    'patient-information']);
+    'patient-information', 'appointment']);
 var app = angular.module('app');
 app.controller('homeController', function ($scope, $http) {
     $scope.login = {};
@@ -25,8 +25,8 @@ app.controller('homeController', function ($scope, $http) {
     }
 
     $scope.changcolor = function () {
-          $('.color1').toggleClass('color2'); 
-          $('.text-sky').toggleClass('text-sky-grann'); 
+        $('.color1').toggleClass('color2');
+        $('.text-sky').toggleClass('text-sky-grann');
     };
 
 
@@ -83,8 +83,6 @@ app.config(function ($routeProvider) {
     }).when('/patient', {
         controller: 'patientController',
         templateUrl: 'pages/patient.html'
-
-
     }).when('/listselectheal', {
         controller: 'listSelectHealController',
         templateUrl: 'pages/listselectheal.html'
@@ -112,6 +110,9 @@ app.config(function ($routeProvider) {
     }).when('/patient/information', {
         controller: 'patientInformationController',
         templateUrl: 'pages/patient-information.html'
+    }).when('/appointment', {
+        controller: 'appointmentController',
+        templateUrl:'pages/appointment.html'
     }).otherwise({
         redirectTo: '/'
     });

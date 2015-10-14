@@ -68,6 +68,10 @@ public class Patient implements Serializable {
     @JsonIgnore
     private List<DetailHeal> detailHeals;
     
+    @OneToMany(mappedBy = "patient")
+    @JsonIgnore
+    private List<Appointment> appointments;
+    
     public Integer getId() {
         return id;
     }
@@ -228,6 +232,15 @@ public class Patient implements Serializable {
         this.detailHeals = detailHeals;
     }
 
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    
     @Override
     public int hashCode() {
         int hash = 7;
