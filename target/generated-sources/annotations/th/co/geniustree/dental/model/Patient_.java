@@ -11,6 +11,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 public abstract class Patient_ {
 
 	public static volatile SingularAttribute<Patient, PatientPictureAfter> patientPictureAfter;
+	public static volatile ListAttribute<Patient, Appointment> appointments;
 	public static volatile SingularAttribute<Patient, String> address;
 	public static volatile SingularAttribute<Patient, String> race;
 	public static volatile SingularAttribute<Patient, String> nation;

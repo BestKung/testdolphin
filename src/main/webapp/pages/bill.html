@@ -42,7 +42,7 @@
                                 <td>รวมรายการรักษา</td>
                                 <td>{{orderDetailHeals.length}}</td>
                                 <td>รายการ</td>
-                                <td><input type="button" value="ลบ" class="btn btn-primary red" ng-click="removeRowSelectOrderHeal()"/></td>
+                                <td><input type="button" value="ลบ" class="btn btn-primary red" ng-click="removeRowSelectOrderHeal(ODH.id)"/></td>
                             </tr>
                             <tr ng-repeat="OP in orderProducts">
                                 <td>{{$index + 1}}</td>
@@ -50,7 +50,7 @@
                                 <td>{{OP.value}}</td>
                                 <td>{{OP.priceAndExpireProduct.priceSell * OP.value}}</td>
                                 <td>บาท</td>
-                                <td><input type="button" value="ลบ" class="btn btn-primary red" ng-click="removeRowSelectProduct(OP.priceAndExpireProduct.product.name)"/></td>
+                                <td><input type="button" value="ลบ" class="btn btn-primary red" ng-click="removeRowSelectProduct(OP.priceAndExpireProduct.product.name,OP.id)"/></td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -169,7 +169,7 @@
                     </div>
                     <div class="row margin-top right">
                         <a class="btn btn-gray waves-effect waves-light" ng-click="cancel()">ยกเลิก</a>
-                        <a class="btn btn-blue2 waves-effect waves-light" ng-click="updateBill(seeBill)">แก้ไข</a>
+<!--                        <a class="btn btn-blue2 waves-effect waves-light" ng-click="updateBill(seeBill)">แก้ไข</a>-->
                         <button class="btn btn-red waves-effect waves-light modal-trigger" href="#modal-delete">ลบ</button>
                     </div>
                 </div>

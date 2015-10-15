@@ -31,10 +31,11 @@ angular.module('bill').controller('billController', function ($scope, $http) {
                 'name': nameDetailHeal.orderHealDetailHeals[i].listSelectHeal.name,
                 'value': nameDetailHeal.orderHealDetailHeals[i].value,
                 'price': nameDetailHeal.orderHealDetailHeals[i].listSelectHeal.price
-            });      
+            });
         }
     };
-    $scope.removeRowSelectOrderHeal = function () {
+    $scope.removeRowSelectOrderHeal = function (id) {
+        console.log(id);
         $scope.orderDetailHeals = [];
     };
     $scope.orderProducts = [];
@@ -71,7 +72,11 @@ angular.module('bill').controller('billController', function ($scope, $http) {
         }
 
     };
-    $scope.removeRowSelectProduct = function (name) {
+    
+    $scope.deleteOrderBillProduct = [];
+    $scope.updateOrderBillProduct = {};
+    var count = 0;
+    $scope.removeRowSelectProduct = function (name, id) {
         var index = -1;
         for (var i = 0; i < $scope.orderProducts.length; i++) {
             if ($scope.orderProducts[i].priceAndExpireProduct.product.name === name) {
@@ -83,7 +88,10 @@ angular.module('bill').controller('billController', function ($scope, $http) {
             Materialize.toast('บางอย่างผิดพลาด', 3000, 'rounded');
         }
         $scope.orderProducts.splice(index, 1);
+        $scope.deleteOrderBillProduct[count] = id;
+        count++;
     };
+    
     $scope.getTotal = function () {
         var total = 0;
         for (var i = 0; i < $scope.orderDetailHeals.length; i++) {
@@ -105,8 +113,13 @@ angular.module('bill').controller('billController', function ($scope, $http) {
     }
 
     $scope.saveBill = function () {
+        count = 0;
+         $scope.updateOrderBillProduct.orderBill = $scope.orderProducts;
+         $scope.updateOrderBillProduct.id = $scope.deleteOrderBillProduct;
+         console.log($scope.updateOrderBillProduct.id);
+         console.log($scope.updateOrderBillProduct.orderBill);
         $http.post('/savebill', $scope.bill).success(function (data) {
-            $http.post('/saveorderbill', $scope.orderProducts).success(function (data) {
+            $http.post('/saveorderbill', $scope.updateOrderBillProduct).success(function (data) {
                 $http.post('/saveiddetailheal', $scope.idDatailHeal).success(function (data) {
                     Materialize.toast('saveข้อมูลเรียบร้อย', 3000, 'rounded');
                     $scope.orderProducts = [];
@@ -149,7 +162,7 @@ angular.module('bill').controller('billController', function ($scope, $http) {
 
         });
     };
-    
+
     $scope.updateBill = function (seeBill) {
         $('body,html').animate({scrollTop: 0}, "600");
         $scope.bill.id = seeBill.id;
@@ -159,7 +172,6 @@ angular.module('bill').controller('billController', function ($scope, $http) {
         for (i = 0; i < seeBill.orderBills.length; i++) {
             if (!!seeBill.orderBills[i].detailHeal) {
                 order = seeBill.orderBills[i].detailHeal.orderHealDetailHeals;
-                console.log(order);
             }
             for (j = 0; j < order.length; j++) {
                 $scope.orderDetailHeals[j] = ({

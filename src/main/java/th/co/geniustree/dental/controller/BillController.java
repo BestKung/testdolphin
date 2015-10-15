@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import th.co.geniustree.dental.model.Bill;
 import th.co.geniustree.dental.model.OrderBill;
 import th.co.geniustree.dental.model.OrderHeal;
+import th.co.geniustree.dental.model.UpdateOrderBill;
 import th.co.geniustree.dental.repo.BillRepo;
 import th.co.geniustree.dental.repo.OrderBillRepo;
 import th.co.geniustree.dental.repo.OrderHealRepo;
@@ -47,10 +48,17 @@ public class BillController {
     }
 
     @RequestMapping(value = "/saveorderbill", method = RequestMethod.POST)
-    public void saveOrderBill(@RequestBody OrderBill[] orderBill) {
-        for (OrderBill orderBill1 : orderBill) {
-            orderBill1.setBill(idBill);
-            orderBillRepo.save(orderBill1);
+    public void saveOrderBill(@RequestBody UpdateOrderBill updateOrderBill) {
+        OrderBill[] orderBills = updateOrderBill.getOrderBill();
+        Integer[] id = updateOrderBill.getId();
+         if (id.length != 0) {
+            for (int i = 0; i < id.length; i++) {
+                orderBillRepo.delete(id[i]);
+            }
+        }    
+        for (OrderBill orderBill : orderBills) {
+            orderBill.setBill(idBill);
+            orderBillRepo.save(orderBill);
         }
     }
 
