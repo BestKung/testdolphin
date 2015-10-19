@@ -8,10 +8,14 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
     $scope.doctors = {};
     $scope.listSelectHeals = {};
     $scope.preScroll = 0;
+    
+//    $scope.deleteOrderHeal = [];
+//    $scope.updateOrderHeal = {};
+//    var updateDeleteOrderHeal = [];
+//    var updateCount = 0;
+//    var count = 0;
+    
     loadDetailHeal();
-    $scope.deleteOrderHeal = [];
-    $scope.updateOrderHeal = {};
-    var count = 0;
     function loadDetailHeal() {
         $http.get('/loaddetailheal').success(function (data) {
             $scope.detailHeals = data;
@@ -71,12 +75,14 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
                 var temp = 0;
                 for (var i = 0; i < $scope.orderHeals.length; i++) {
                     if ($scope.orderHeals[i].listSelectHeal.name === name.name) {
+//                        updateDeleteOrderHeal[updateCount] = $scope.orderHeals[i];
                         temp = Number($scope.orderHeals[i].value) + Number($scope.amountListSelectHeal);
                         $scope.orderHeals[i] = {'listSelectHeal': $scope.nameListOrderheal,
                             'value': temp};
                         $scope.nameListOrderheal = '';
                         $scope.amountListSelectHeal = '';
                         flag = true;
+//                        updateCount++;
                         break;
                     }
                 }
@@ -103,19 +109,22 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
             Materialize.toast('บางอย่างผิดพลาด', 3000, 'rounded');
         }
         $scope.orderHeals.splice(index, 1);
-        $scope.deleteOrderHeal[count] = id;
-        count++;
+//        $scope.deleteOrderHeal[count] = id;
+//        count++;
     };
 
     $scope.saveDetailheal = function () {
-
-        count = 0;
-        $scope.updateOrderHeal.orderHeal = $scope.orderHeals;
-        $scope.updateOrderHeal.id = $scope.deleteOrderHeal;
+//        $scope.updateOrderHeal.deleteOrderHeal = updateDeleteOrderHeal;
+//        console.log(updateDeleteOrderHeal);
+//        $scope.updateOrderHeal.orderHeal = $scope.orderHeals;
+//        $scope.updateOrderHeal.id = $scope.deleteOrderHeal;
+//        updateCount = 0;
+//        count = 0;
         $http.post('/savedetailheal', $scope.detailHeal).success(function (data) {
-            $http.post('/saveorderheal', $scope.updateOrderHeal).success(function (data) {
+            $http.post('/saveorderheal', $scope.orderHeals).success(function (data) {
                 Materialize.toast('บันทึกข้อมูลเรียบร้อย', 3000, 'rounded');
                 loadDetailHeal();
+//                $scope.updateOrderHeal = {};
                 $scope.detailHeal = {};
                 $scope.orderHeals = [];
                 $scope.nameListPayHeal = '';
@@ -123,6 +132,7 @@ angular.module('detailHeal').controller('detailHealController', function ($scope
                 loadListSelectHeal();
                 loadPatient();
                 loadDoctor();
+
             }).error(function (data, status, header, cofig) {
                 Materialize.toast('ผิดพลาดsavedetailHeal', 3000, 'rounded');
             });

@@ -40,4 +40,9 @@ public class ListSelectHealController {
     public void deleteListSelectHeal(@RequestBody ListSelectHeal listSelectHeal){
         listSelectHealRepo.delete(listSelectHeal.getId());
     }
+    
+     @RequestMapping(value = "/totallistselectheal", method = RequestMethod.GET)
+    public Long getTotalListSelectHeal() {
+        return listSelectHealRepo.count();
+    }
 }

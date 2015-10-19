@@ -43,7 +43,7 @@ public class DetailHeal implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date dateHeal;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "PATIENT_ID")
     private Patient patient;
 

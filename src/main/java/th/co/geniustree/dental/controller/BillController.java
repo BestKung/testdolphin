@@ -51,11 +51,11 @@ public class BillController {
     public void saveOrderBill(@RequestBody UpdateOrderBill updateOrderBill) {
         OrderBill[] orderBills = updateOrderBill.getOrderBill();
         Integer[] id = updateOrderBill.getId();
-         if (id.length != 0) {
+        if (id.length != 0) {
             for (int i = 0; i < id.length; i++) {
                 orderBillRepo.delete(id[i]);
             }
-        }    
+        }
         for (OrderBill orderBill : orderBills) {
             orderBill.setBill(idBill);
             orderBillRepo.save(orderBill);
@@ -71,6 +71,11 @@ public class BillController {
     @RequestMapping(value = "/deletebill", method = RequestMethod.POST)
     public void deleteBill(@RequestBody Bill bill) {
         billRepo.delete(bill.getId());
+    }
+
+    @RequestMapping(value = "/totalbill", method = RequestMethod.GET)
+    public Long getTotalBill() {
+        return billRepo.count();
     }
 
 }

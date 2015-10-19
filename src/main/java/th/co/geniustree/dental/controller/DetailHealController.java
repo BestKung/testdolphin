@@ -34,4 +34,9 @@ public class DetailHealController {
     public void deleteDetailHeal(@RequestBody DetailHeal detailHeal){
         detailHealRepo.delete(detailHeal.getId());
     }
+    
+    @RequestMapping(value = "/totaldetailheal", method = RequestMethod.GET)
+    public Long getTotalDetailHeal() {
+        return detailHealRepo.count();
+    }
 }

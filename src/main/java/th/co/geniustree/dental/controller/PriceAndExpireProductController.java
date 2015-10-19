@@ -21,22 +21,27 @@ import th.co.geniustree.dental.repo.PriceAndExpireProductRepo;
  */
 @RestController
 public class PriceAndExpireProductController {
-    
+
     @Autowired
     PriceAndExpireProductRepo priceAndExpireProductRepo;
-    
+
     @RequestMapping(value = "/loadpriceandexpireproduct")
-    public Page<PriceAndExpireProduct> loadPriceAndExpireProduct(Pageable pageable){
+    public Page<PriceAndExpireProduct> loadPriceAndExpireProduct(Pageable pageable) {
         return priceAndExpireProductRepo.findAll(pageable);
     }
-    
-    @RequestMapping(value = "/savepriceandexpireproduct",method = RequestMethod.POST)
-    public void savePriceAndExpireProduct(@RequestBody PriceAndExpireProduct priceAndExpireProduct){
+
+    @RequestMapping(value = "/savepriceandexpireproduct", method = RequestMethod.POST)
+    public void savePriceAndExpireProduct(@RequestBody PriceAndExpireProduct priceAndExpireProduct) {
         priceAndExpireProductRepo.save(priceAndExpireProduct);
     }
-    
-    @RequestMapping(value = "/deletepriceandexpireproduct",method = RequestMethod.POST)
-    public void deletePriceAndExpireProduct(@RequestBody PriceAndExpireProduct priceAndExpireProduct){
+
+    @RequestMapping(value = "/deletepriceandexpireproduct", method = RequestMethod.POST)
+    public void deletePriceAndExpireProduct(@RequestBody PriceAndExpireProduct priceAndExpireProduct) {
         priceAndExpireProductRepo.delete(priceAndExpireProduct.getId());
+    }
+
+    @RequestMapping(value = "/totalpriceandexpireproduct", method = RequestMethod.GET)
+    public Long getTotalPriceAndExpireProduct() {
+        return priceAndExpireProductRepo.count();
     }
 }

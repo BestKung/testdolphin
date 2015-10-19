@@ -21,22 +21,27 @@ import th.co.geniustree.dental.repo.LotRepo;
  */
 @RestController
 public class LotController {
-    
+
     @Autowired
     private LotRepo lotRepo;
-    
+
     @RequestMapping(value = "/loadlot")
-    public Page<Lot> loadLot(Pageable pageable){
+    public Page<Lot> loadLot(Pageable pageable) {
         return lotRepo.findAll(pageable);
     }
-    
-    @RequestMapping(value = "/savelot",method = RequestMethod.POST)
-    public void saveLot(@RequestBody Lot lot){
+
+    @RequestMapping(value = "/savelot", method = RequestMethod.POST)
+    public void saveLot(@RequestBody Lot lot) {
         lotRepo.save(lot);
     }
-    
-    @RequestMapping(value = "/deletelot",method = RequestMethod.POST)
-    public void deleteLot(@RequestBody Lot lot){
+
+    @RequestMapping(value = "/deletelot", method = RequestMethod.POST)
+    public void deleteLot(@RequestBody Lot lot) {
         lotRepo.delete(lot.getId());
+    }
+
+    @RequestMapping(value = "/totallot", method = RequestMethod.GET)
+    public Long getTotalLot() {
+        return lotRepo.count();
     }
 }

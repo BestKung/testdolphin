@@ -21,23 +21,28 @@ import th.co.geniustree.dental.repo.TypeProductRepo;
  */
 @RestController
 public class TypeProductController {
-     
+
     @Autowired
     private TypeProductRepo typeProductRepo;
-    
+
     @RequestMapping(value = "/loadtypeproduct")
-    public Page<TypeProduct> loadTypeProduct(Pageable pageable){
+    public Page<TypeProduct> loadTypeProduct(Pageable pageable) {
         return typeProductRepo.findAll(pageable);
     }
-    
-    @RequestMapping(value = "/savetypeproduct",method = RequestMethod.POST)
-    public void saveTypeProduct(@RequestBody TypeProduct typeProduct){
+
+    @RequestMapping(value = "/savetypeproduct", method = RequestMethod.POST)
+    public void saveTypeProduct(@RequestBody TypeProduct typeProduct) {
         typeProductRepo.save(typeProduct);
     }
-    
-    @RequestMapping(value = "/deletetypeproduct",method = RequestMethod.POST)
-    public void deleteTypeProduct(@RequestBody TypeProduct typeProduct){
+
+    @RequestMapping(value = "/deletetypeproduct", method = RequestMethod.POST)
+    public void deleteTypeProduct(@RequestBody TypeProduct typeProduct) {
         typeProductRepo.delete(typeProduct.getId());
     }
-    
+
+    @RequestMapping(value = "/totaltypeproduct", method = RequestMethod.GET)
+    public Long getTotalTypeProduct() {
+        return typeProductRepo.count();
+    }
+
 }

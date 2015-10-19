@@ -13,6 +13,7 @@ package th.co.geniustree.dental.model;
 public class UpdateOrderHeal {
     private OrderHeal[] orderHeal;
     private Integer[] id;
+    private OrderHeal[] deleteOrderHeal;
 
     public OrderHeal[] getOrderHeal() {
         return orderHeal;
@@ -28,6 +29,14 @@ public class UpdateOrderHeal {
 
     public void setId(Integer[] id) {
         this.id = id;
+    }
+
+    public OrderHeal[] getDeleteOrderHeal() {
+        return deleteOrderHeal;
+    }
+
+    public void setDeleteOrderHeal(OrderHeal[] deleteOrderHeal) {
+        this.deleteOrderHeal = deleteOrderHeal;
     }
     
     
