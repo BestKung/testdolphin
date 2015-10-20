@@ -7,12 +7,13 @@ package th.co.geniustree.dental.repo;
 
 import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import th.co.geniustree.dental.model.Lot;
 
 /**
  *
  * @author User
  */
-public interface LotRepo extends JpaRepository<Lot, Integer>{
+public interface LotRepo extends JpaRepository<Lot, Integer>,JpaSpecificationExecutor<Lot>{
     
 }
